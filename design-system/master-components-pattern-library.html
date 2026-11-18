@@ -1,0 +1,1424 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AyojanSetu – Design Tokens &amp; Reusable Component Library</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              green: '#173D32',
+              'green-hover': '#245746',
+              ivory: '#F7F4ED',
+              gold: '#B99A62',
+              charcoal: '#292D2A',
+              secondary: '#777D77',
+              border: '#E7E3DA',
+              success: '#27845B',
+              warning: '#D69A36',
+              error: '#C64D48',
+              info: '#4778A8',
+            }
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #F7F4ED;
+      color: #292D2A;
+    }
+    .color-swatch-shadow {
+      box-shadow: 0 2px 8px -2px rgba(23, 61, 50, 0.08);
+    }
+    .custom-scroll::-webkit-scrollbar {
+      height: 6px;
+      width: 6px;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background: #E7E3DA;
+      border-radius: 4px;
+    }
+  </style>
+<meta content="web_standard" name="shell-type"/></head>
+<body class="min-h-screen bg-[#F7F4ED] text-[#292D2A] antialiased selection:bg-[#B99A62]/20 selection:text-[#173D32]">
+<!-- Top Sticky Navigation Bar -->
+<header class="sticky top-0 z-40 bg-[#173D32] text-white border-b border-[#245746] shadow-sm">
+<div class="max-w-[1440px] mx-auto px-6 lg:px-10 h-16 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-[#B99A62] text-[#173D32] flex items-center justify-center font-bold text-lg shadow-inner">
+          अ
+        </div>
+<div>
+<div class="flex items-center gap-2">
+<span class="font-semibold text-lg tracking-tight">AyojanSetu</span>
+<span class="text-[10px] font-semibold tracking-wider uppercase bg-[#245746] text-[#B99A62] px-2 py-0.5 rounded-[4px] border border-[#B99A62]/30">UI Kit v1.0</span>
+</div>
+<p class="text-xs text-[#E7E3DA]/70 font-normal">Component System &amp; Living Token Spec</p>
+</div>
+</div>
+<nav class="hidden md:flex items-center gap-6 text-sm font-medium">
+<a class="text-white/80 hover:text-white transition-colors" href="#colors">1. Color Palette</a>
+<a class="text-white/80 hover:text-white transition-colors" href="#typography">2. Typography</a>
+<a class="text-white/80 hover:text-white transition-colors" href="#buttons">3. Buttons</a>
+<a class="text-white/80 hover:text-white transition-colors" href="#inputs">4. Form Inputs</a>
+</nav>
+<div class="flex items-center gap-3">
+<span class="text-xs bg-[#245746] text-white px-3 py-1.5 rounded-[6px] border border-[#E7E3DA]/20 hidden sm:inline-block">
+          Tagline: Every Event. Every Occasion. One Platform.
+        </span>
+</div>
+</div>
+</header>
+<!-- Main Container -->
+<main class="max-w-[1440px] mx-auto px-6 lg:px-10 py-10 space-y-16"><div class="flex flex-col w-full">
+<!-- System Sheet Hero Sub-Header -->
+<div class="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-[#E7E3DA]">
+<div class="space-y-2">
+<div class="flex items-center gap-2">
+<span class="px-2.5 py-0.5 rounded-[4px] bg-[#B99A62]/15 text-[#173D32] font-badge-text text-badge-text border border-[#B99A62]/30 uppercase">Master Spec 02</span>
+<span class="text-secondary font-body-sm text-body-sm">Platform &amp; Core Operations</span>
+</div>
+<h1 class="font-h1 text-h1 text-[#292D2A] tracking-tight">AyojanSetu – Master Components &amp; Pattern Library</h1>
+<p class="font-body-base text-body-base text-secondary max-w-3xl">
+        Standardized, high-density pattern assets for urban Indian event operations, administrative portals, and Hyderabad marketplace workflows. Strictly adhering to an 8px grid cadence and high-trust architectural aesthetics.
+      </p>
+</div>
+<div class="flex items-center gap-3 shrink-0">
+<div class="px-3 py-1.5 rounded-[6px] bg-[#FFFFFF] border border-[#E7E3DA] flex items-center gap-2 shadow-sm">
+<span class="w-2 h-2 rounded-full bg-[#27845B] animate-pulse"></span>
+<span class="font-body-sm text-body-sm text-[#292D2A] font-medium">Tokens Synced: v1.0.4</span>
+</div>
+</div>
+</div>
+<!-- SECTION 01: DASHBOARD NAVIGATION COMPONENTS -->
+<section class="space-y-8 mb-20" id="dash-nav">
+<div class="flex items-baseline justify-between border-b border-[#E7E3DA] pb-3">
+<div class="flex items-center gap-3">
+<span class="font-mono text-xs px-2 py-0.5 rounded bg-[#173D32] text-white font-semibold">01</span>
+<h2 class="font-h2 text-h2 text-[#292D2A]">Dashboard Navigation Components (Vendor &amp; Admin)</h2>
+</div>
+<span class="text-xs text-secondary font-body-sm">Sidebars, Topbars &amp; Sub-navigation Tabs</span>
+</div>
+<!-- 1. Top Navigation Bar Demonstration -->
+<div class="space-y-3">
+<h3 class="font-h4 text-h4 text-[#292D2A] flex items-center gap-2">
+<span>Desktop Dashboard Top Navigation</span>
+<span class="text-xs font-normal text-secondary">(H: 72px Fixed System Bar)</span>
+</h3>
+<div class="w-full bg-white rounded-[10px] border border-[#E7E3DA] shadow-sm px-6 h-[72px] flex items-center justify-between">
+<!-- Breadcrumbs -->
+<div class="flex items-center gap-2 text-sm text-[#777D77]">
+<span class="hover:text-[#173D32] cursor-pointer transition-colors">Dashboard</span>
+<span class="material-symbols-outlined text-[16px] text-[#777D77]">chevron_right</span>
+<span class="hover:text-[#173D32] cursor-pointer transition-colors">Vendor Approvals</span>
+<span class="material-symbols-outlined text-[16px] text-[#777D77]">chevron_right</span>
+<span class="font-semibold text-[#173D32]">Review #2041</span>
+</div>
+<!-- Global Search & Actions -->
+<div class="flex items-center gap-5">
+<div class="relative w-72">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[18px] text-[#777D77]">search</span>
+<input class="w-full pl-9 pr-3 h-[38px] rounded-[6px] border border-[#E7E3DA] bg-[#F7F4ED]/50 text-sm focus:outline-none focus:border-[#173D32] placeholder:text-[#777D77]/70" placeholder="Search vendors, leads, GST..." type="text"/>
+<kbd class="absolute right-2.5 top-1/2 -translate-y-1/2 text-[10px] bg-white border border-[#E7E3DA] px-1.5 py-0.5 rounded text-[#777D77]">⌘K</kbd>
+</div>
+<div class="h-6 w-px bg-[#E7E3DA]"></div>
+<button class="relative p-2 rounded-[6px] hover:bg-[#F7F4ED] text-[#292D2A] transition-colors" title="Notifications">
+<span class="material-symbols-outlined text-[22px]">notifications</span>
+<span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-[#C64D48] ring-2 ring-white"></span>
+</button>
+<button class="p-2 rounded-[6px] hover:bg-[#F7F4ED] text-[#292D2A] transition-colors" title="Support &amp; Help">
+<span class="material-symbols-outlined text-[22px]">help_outline</span>
+</button>
+<!-- User Trigger & Dropdown preview -->
+<div class="relative group">
+<div class="flex items-center gap-3 pl-2 py-1 pr-3 rounded-[8px] hover:bg-[#F7F4ED] cursor-pointer transition-colors border border-transparent hover:border-[#E7E3DA]">
+<div class="w-9 h-9 rounded-full bg-[#173D32] text-[#B99A62] font-semibold text-sm flex items-center justify-center border border-[#B99A62]/40">
+                AR
+              </div>
+<div class="text-left hidden lg:block">
+<p class="font-button-text text-button-text text-[#292D2A] leading-tight">Admin Ramesh</p>
+<p class="text-[11px] text-[#777D77] font-body-sm">Super Administrator</p>
+</div>
+<span class="material-symbols-outlined text-[18px] text-[#777D77]">expand_more</span>
+</div>
+<!-- Profile Dropdown Flyout Menu -->
+<div class="absolute right-0 top-full mt-2 w-56 bg-white rounded-[10px] border border-[#E7E3DA] shadow-xl py-2 z-30 transition-all opacity-95">
+<div class="px-4 py-2 border-b border-[#E7E3DA] mb-1">
+<p class="text-xs font-semibold text-[#292D2A]">ramesh.k@ayojansetu.in</p>
+<span class="text-[10px] text-[#27845B] font-medium flex items-center gap-1 mt-0.5">
+<span class="w-1.5 h-1.5 rounded-full bg-[#27845B]"></span> Hyderabad Central Admin
+                </span>
+</div>
+<a class="flex items-center gap-2.5 px-4 py-2 text-sm text-[#292D2A] hover:bg-[#F7F4ED] transition-colors" href="javascript:void(0)">
+<span class="material-symbols-outlined text-[18px] text-[#777D77]">manage_accounts</span> Account Settings
+              </a>
+<a class="flex items-center gap-2.5 px-4 py-2 text-sm text-[#292D2A] hover:bg-[#F7F4ED] transition-colors" href="javascript:void(0)">
+<span class="material-symbols-outlined text-[18px] text-[#777D77]">terminal</span> System Logs &amp; Audit
+              </a>
+<a class="flex items-center gap-2.5 px-4 py-2 text-sm text-[#292D2A] hover:bg-[#F7F4ED] transition-colors" href="javascript:void(0)">
+<span class="material-symbols-outlined text-[18px] text-[#777D77]">swap_horiz</span> Switch to Vendor Portal
+              </a>
+<div class="my-1 border-t border-[#E7E3DA]"></div>
+<a class="flex items-center gap-2.5 px-4 py-2 text-sm text-[#C64D48] hover:bg-[#C64D48]/10 transition-colors" href="javascript:void(0)">
+<span class="material-symbols-outlined text-[18px]">logout</span> Sign Out
+              </a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- 2. Dual Sidebars Display: Expanded (240px) and Collapsed (64px) + Subnav -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<!-- Full 240px Wide Sidebar -->
+<div class="lg:col-span-4 space-y-2">
+<div class="flex items-center justify-between text-xs text-secondary font-body-sm px-1">
+<span>Expanded Desktop Sidebar (240px)</span>
+<span class="text-[#27845B] font-mono">Role: SUPER ADMIN</span>
+</div>
+<div class="w-[240px] bg-[#173D32] text-white rounded-[14px] flex flex-col justify-between p-4 shadow-xl border border-[#245746] min-h-[580px]">
+<div>
+<!-- Brand Mark -->
+<div class="flex items-center gap-3 px-2 pb-5 border-b border-[#245746]">
+<div class="w-8 h-8 rounded-lg bg-[#B99A62] text-[#173D32] flex items-center justify-center font-bold text-base shadow-inner">
+                अ
+              </div>
+<div>
+<div class="flex items-center gap-1.5">
+<span class="font-semibold text-sm tracking-tight">AyojanSetu</span>
+<span class="text-[9px] uppercase px-1.5 py-0.5 rounded bg-[#245746] text-[#B99A62] font-bold tracking-wider">ADMIN</span>
+</div>
+<span class="text-[10px] text-[#E7E3DA]/60 block -mt-0.5">Control Centre</span>
+</div>
+</div>
+<!-- Menu Header -->
+<p class="text-[10px] font-semibold tracking-wider text-[#B99A62] uppercase px-3 pt-5 pb-2">Main Menu</p>
+<nav class="space-y-1 text-sm font-medium">
+<!-- Active Item -->
+<a class="flex items-center justify-between px-3 py-2.5 rounded-[6px] bg-[#245746] text-white border-l-2 border-[#B99A62] shadow-sm" href="javascript:void(0)">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px] text-[#B99A62]">verified_user</span>
+<span>Vendor Approvals</span>
+</div>
+<span class="px-2 py-0.5 text-[11px] font-semibold rounded-full bg-[#B99A62] text-[#173D32]">18</span>
+</a>
+<a class="flex items-center justify-between px-3 py-2.5 rounded-[6px] text-white/80 hover:text-white hover:bg-[#245746]/50 transition-colors" href="javascript:void(0)">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px]">storefront</span>
+<span>Directory</span>
+</div>
+<span class="text-xs text-white/40">248</span>
+</a>
+<a class="flex items-center justify-between px-3 py-2.5 rounded-[6px] text-white/80 hover:text-white hover:bg-[#245746]/50 transition-colors" href="javascript:void(0)">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px]">event_seat</span>
+<span>Enquiry Registry</span>
+</div>
+<span class="px-2 py-0.5 text-[11px] font-medium rounded-full bg-[#245746] text-[#E7E3DA]">1.2k</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-[6px] text-white/80 hover:text-white hover:bg-[#245746]/50 transition-colors" href="javascript:void(0)">
+<span class="material-symbols-outlined text-[20px]">currency_rupee</span>
+<span>Payouts &amp; Escrow</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-[6px] text-white/80 hover:text-white hover:bg-[#245746]/50 transition-colors" href="javascript:void(0)">
+<span class="material-symbols-outlined text-[20px]">analytics</span>
+<span>City Analytics</span>
+</a>
+</nav>
+<p class="text-[10px] font-semibold tracking-wider text-[#B99A62] uppercase px-3 pt-6 pb-2">Operations</p>
+<nav class="space-y-1 text-sm">
+<a class="flex items-center gap-3 px-3 py-2 rounded-[6px] text-white/70 hover:text-white hover:bg-[#245746]/40 transition-colors" href="javascript:void(0)">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+<span>Hyderabad Zones</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-[6px] text-white/70 hover:text-white hover:bg-[#245746]/40 transition-colors" href="javascript:void(0)">
+<span class="material-symbols-outlined text-[18px]">settings</span>
+<span>Platform Config</span>
+</a>
+</nav>
+</div>
+<!-- Footer Admin Profile -->
+<div class="pt-4 border-t border-[#245746] flex items-center justify-between px-1">
+<div class="flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-full bg-[#B99A62]/20 border border-[#B99A62]/40 text-[#B99A62] text-xs font-semibold flex items-center justify-center">
+                HYD
+              </div>
+<div class="leading-tight">
+<p class="text-xs font-semibold text-white">Zone 01 · Central</p>
+<p class="text-[10px] text-[#B99A62]">admin@hyderabad.in</p>
+</div>
+</div>
+<button class="text-white/60 hover:text-white transition-colors" title="Lock Console">
+<span class="material-symbols-outlined text-[18px]">lock</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Collapsed Mini Sidebar (64px) -->
+<div class="lg:col-span-2 space-y-2">
+<div class="text-xs text-secondary font-body-sm px-1">Mini Sidebar (64px)</div>
+<div class="w-[64px] bg-[#173D32] text-white rounded-[14px] flex flex-col items-center justify-between py-4 shadow-xl border border-[#245746] min-h-[580px]">
+<div class="flex flex-col items-center gap-5 w-full">
+<div class="w-9 h-9 rounded-lg bg-[#B99A62] text-[#173D32] flex items-center justify-center font-bold text-base shadow">
+              अ
+            </div>
+<div class="w-8 h-px bg-[#245746]"></div>
+<nav class="flex flex-col items-center gap-2 w-full px-2">
+<button class="relative w-10 h-10 rounded-[8px] bg-[#245746] text-[#B99A62] flex items-center justify-center transition-colors group" title="Vendor Approvals">
+<span class="material-symbols-outlined text-[20px]">verified_user</span>
+<span class="absolute top-1 right-1 w-2 h-2 rounded-full bg-[#B99A62]"></span>
+</button>
+<button class="relative w-10 h-10 rounded-[8px] text-white/70 hover:bg-[#245746]/50 hover:text-white flex items-center justify-center transition-colors" title="Directory">
+<span class="material-symbols-outlined text-[20px]">storefront</span>
+</button>
+<button class="relative w-10 h-10 rounded-[8px] text-white/70 hover:bg-[#245746]/50 hover:text-white flex items-center justify-center transition-colors" title="Enquiries">
+<span class="material-symbols-outlined text-[20px]">event_seat</span>
+<span class="absolute top-1.5 right-1.5 w-1.5 h-1.5 rounded-full bg-[#D69A36]"></span>
+</button>
+<button class="relative w-10 h-10 rounded-[8px] text-white/70 hover:bg-[#245746]/50 hover:text-white flex items-center justify-center transition-colors" title="Escrow Payouts">
+<span class="material-symbols-outlined text-[20px]">currency_rupee</span>
+</button>
+<button class="relative w-10 h-10 rounded-[8px] text-white/70 hover:bg-[#245746]/50 hover:text-white flex items-center justify-center transition-colors" title="Analytics">
+<span class="material-symbols-outlined text-[20px]">analytics</span>
+</button>
+</nav>
+</div>
+<div class="flex flex-col items-center gap-3">
+<button class="w-8 h-8 rounded-full bg-[#245746] text-[#B99A62] text-xs font-bold flex items-center justify-center">
+              AR
+            </button>
+</div>
+</div>
+</div>
+<!-- Sub-Navigation Pill Tabs & Micro Filter Panel -->
+<div class="lg:col-span-6 space-y-4">
+<div class="text-xs text-secondary font-body-sm px-1">Sub-Navigation Lifecycle Filter Tabs &amp; State Toggles</div>
+<div class="p-6 bg-white rounded-[10px] border border-[#E7E3DA] shadow-sm space-y-6">
+<div class="space-y-2">
+<p class="text-xs font-semibold text-[#777D77] uppercase tracking-wider">Sub-Navigation Segment Tabs</p>
+<div class="flex flex-wrap items-center gap-2 p-1.5 bg-[#F7F4ED] rounded-[8px] border border-[#E7E3DA]">
+<button class="px-3.5 py-1.5 rounded-[6px] bg-[#173D32] text-white text-xs font-semibold shadow-sm flex items-center gap-1.5">
+<span>All Vendors</span>
+<span class="px-1.5 py-0.2 rounded-full bg-[#245746] text-[10px] text-[#B99A62]">1,240</span>
+</button>
+<button class="px-3.5 py-1.5 rounded-[6px] text-[#292D2A] hover:bg-white text-xs font-medium transition-colors flex items-center gap-1.5">
+<span>Pending Review</span>
+<span class="px-1.5 py-0.2 rounded-full bg-[#D69A36]/20 text-[#9C6A15] text-[10px] font-semibold">18</span>
+</button>
+<button class="px-3.5 py-1.5 rounded-[6px] text-[#292D2A] hover:bg-white text-xs font-medium transition-colors flex items-center gap-1.5">
+<span>Approved</span>
+<span class="px-1.5 py-0.2 rounded-full bg-[#27845B]/15 text-[#27845B] text-[10px] font-semibold">210</span>
+</button>
+<button class="px-3.5 py-1.5 rounded-[6px] text-[#292D2A] hover:bg-white text-xs font-medium transition-colors flex items-center gap-1.5">
+<span>Flagged</span>
+<span class="px-1.5 py-0.2 rounded-full bg-[#C64D48]/15 text-[#C64D48] text-[10px] font-semibold">3</span>
+</button>
+</div>
+</div>
+<div class="space-y-2">
+<p class="text-xs font-semibold text-[#777D77] uppercase tracking-wider">Tab Bar Alternative (Underline Variant)</p>
+<div class="flex items-center gap-6 border-b border-[#E7E3DA] text-sm">
+<button class="pb-2.5 border-b-2 border-[#173D32] text-[#173D32] font-semibold flex items-center gap-2">
+<span>Active Listings</span>
+<span class="text-xs bg-[#173D32]/10 text-[#173D32] px-2 py-0.5 rounded-full font-bold">198</span>
+</button>
+<button class="pb-2.5 border-b-2 border-transparent text-[#777D77] hover:text-[#292D2A] font-medium flex items-center gap-2 transition-colors">
+<span>Draft Applications</span>
+<span class="text-xs bg-[#777D77]/10 text-[#777D77] px-2 py-0.5 rounded-full">14</span>
+</button>
+<button class="pb-2.5 border-b-2 border-transparent text-[#777D77] hover:text-[#292D2A] font-medium flex items-center gap-2 transition-colors">
+<span>Rejected / Archived</span>
+<span class="text-xs bg-[#777D77]/10 text-[#777D77] px-2 py-0.5 rounded-full">8</span>
+</button>
+</div>
+</div>
+<!-- Micro Quick Filters -->
+<div class="pt-2 flex flex-wrap items-center gap-2 text-xs">
+<span class="text-[#777D77] font-medium">Quick Hyd Filter:</span>
+<span class="px-2.5 py-1 rounded-[4px] bg-white border border-[#E7E3DA] text-[#292D2A] cursor-pointer hover:border-[#173D32]">📍 Banjara Hills</span>
+<span class="px-2.5 py-1 rounded-[4px] bg-[#173D32] text-white cursor-pointer font-medium">📍 Gachibowli</span>
+<span class="px-2.5 py-1 rounded-[4px] bg-white border border-[#E7E3DA] text-[#292D2A] cursor-pointer hover:border-[#173D32]">📍 Jubilee Hills</span>
+<span class="px-2.5 py-1 rounded-[4px] bg-white border border-[#E7E3DA] text-[#292D2A] cursor-pointer hover:border-[#173D32]">📍 Madhapur</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 02: DATA TABLE & FILTER SYSTEM -->
+<section class="space-y-8 mb-20" id="data-tables">
+<div class="flex items-baseline justify-between border-b border-[#E7E3DA] pb-3">
+<div class="flex items-center gap-3">
+<span class="font-mono text-xs px-2 py-0.5 rounded bg-[#173D32] text-white font-semibold">02</span>
+<h2 class="font-h2 text-h2 text-[#292D2A]">Data Table &amp; Filter System</h2>
+</div>
+<span class="text-xs text-secondary font-body-sm">Enterprise Data Grid, Sorting, Realistic Records &amp; State Fallbacks</span>
+</div>
+<!-- Data Table Container Card -->
+<div class="bg-white rounded-[10px] border border-[#E7E3DA] shadow-sm overflow-hidden">
+<!-- Toolbar -->
+<div class="p-5 border-b border-[#E7E3DA] flex flex-col lg:flex-row lg:items-center justify-between gap-4 bg-[#FDFCF9]">
+<!-- Search & Dropdowns -->
+<div class="flex flex-wrap items-center gap-3">
+<div class="relative w-64">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[18px] text-[#777D77]">search</span>
+<input class="w-full pl-9 pr-3 h-[38px] rounded-[6px] border border-[#E7E3DA] bg-white text-xs text-[#292D2A] focus:outline-none focus:border-[#173D32]" placeholder="Filter by vendor name, locality..." type="text"/>
+</div>
+<!-- Category Filter -->
+<div class="relative">
+<select class="h-[38px] px-3 pr-8 rounded-[6px] border border-[#E7E3DA] bg-white text-xs text-[#292D2A] appearance-none focus:outline-none focus:border-[#173D32] cursor-pointer">
+<option>All Categories</option>
+<option>Decoration &amp; Mandap</option>
+<option>Catering &amp; Sweets</option>
+<option>Photography &amp; Films</option>
+<option>Sound &amp; DJ</option>
+<option>Mehendi &amp; Makeup</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-[16px] text-[#777D77] pointer-events-none">expand_more</span>
+</div>
+<!-- Status Filter -->
+<div class="relative">
+<select class="h-[38px] px-3 pr-8 rounded-[6px] border border-[#E7E3DA] bg-white text-xs text-[#292D2A] appearance-none focus:outline-none focus:border-[#173D32] cursor-pointer">
+<option>Status: All Statuses</option>
+<option>Pending Review (18)</option>
+<option>Approved</option>
+<option>Changes Requested</option>
+<option>Rejected</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-[16px] text-[#777D77] pointer-events-none">expand_more</span>
+</div>
+<!-- Date Picker Pill -->
+<div class="flex items-center gap-2 h-[38px] px-3 rounded-[6px] border border-[#E7E3DA] bg-white text-xs text-[#292D2A] cursor-pointer hover:border-[#173D32]">
+<span class="material-symbols-outlined text-[16px] text-[#777D77]">calendar_month</span>
+<span>01 Dec 2026 – 31 Dec 2026</span>
+</div>
+</div>
+<!-- Export & Primary Action -->
+<div class="flex items-center gap-2.5">
+<button class="h-[38px] px-3 rounded-[6px] border border-[#E7E3DA] bg-white text-xs font-semibold text-[#173D32] hover:bg-[#F7F4ED] flex items-center gap-1.5 transition-colors">
+<span class="material-symbols-outlined text-[16px]">file_download</span>
+<span>Export CSV</span>
+</button>
+<button class="h-[38px] px-4 rounded-[6px] bg-[#173D32] hover:bg-[#245746] text-white text-xs font-semibold flex items-center gap-1.5 shadow-sm transition-colors">
+<span class="material-symbols-outlined text-[16px]">add</span>
+<span>Onboard Vendor</span>
+</button>
+</div>
+</div>
+<!-- Data Table Body -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-[#F7F4ED]/80 border-b border-[#E7E3DA] text-[11px] font-semibold text-[#777D77] uppercase tracking-wider">
+<th class="py-3.5 px-4 w-12 text-center">
+<input class="rounded-[3px] accent-[#173D32] cursor-pointer" type="checkbox"/>
+</th>
+<th class="py-3.5 px-4">
+<div class="flex items-center gap-1.5 cursor-pointer hover:text-[#173D32]">
+<span>Vendor Name &amp; Category</span>
+<span class="material-symbols-outlined text-[14px]">swap_vert</span>
+</div>
+</th>
+<th class="py-3.5 px-4">Contact &amp; Location</th>
+<th class="py-3.5 px-4">Event Types</th>
+<th class="py-3.5 px-4">
+<div class="flex items-center gap-1.5 cursor-pointer hover:text-[#173D32]">
+<span>Budget / Pricing</span>
+<span class="material-symbols-outlined text-[14px]">swap_vert</span>
+</div>
+</th>
+<th class="py-3.5 px-4">
+<div class="flex items-center gap-1.5 cursor-pointer hover:text-[#173D32]">
+<span>Submission Date</span>
+<span class="material-symbols-outlined text-[14px]">arrow_downward</span>
+</div>
+</th>
+<th class="py-3.5 px-4">Status</th>
+<th class="py-3.5 px-4 text-right">Quick Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-[#E7E3DA] text-sm">
+<!-- Row 1: Sri Venkateswara Mandap -->
+<tr class="hover:bg-[#FDFCF9] transition-colors group">
+<td class="py-4 px-4 text-center">
+<input class="rounded-[3px] accent-[#173D32] cursor-pointer" type="checkbox"/>
+</td>
+<td class="py-4 px-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-[8px] bg-[#173D32]/10 text-[#173D32] font-semibold flex items-center justify-center shrink-0 border border-[#173D32]/20">
+                    SV
+                  </div>
+<div>
+<div class="flex items-center gap-1.5">
+<p class="font-semibold text-[#292D2A] group-hover:text-[#173D32] transition-colors">Sri Venkateswara Mandap &amp; Floral Decorators</p>
+<span class="material-symbols-outlined text-[16px] text-[#B99A62]" title="GST &amp; Document Verified">verified</span>
+</div>
+<div class="flex items-center gap-2 mt-0.5">
+<span class="text-[11px] px-2 py-0.5 rounded-[4px] bg-[#F7F4ED] text-[#777D77] font-medium border border-[#E7E3DA]">Decoration</span>
+<span class="text-[11px] text-[#777D77]">ID: #VN-8841</span>
+</div>
+</div>
+</div>
+</td>
+<td class="py-4 px-4">
+<div class="space-y-0.5">
+<div class="flex items-center gap-1.5 text-xs text-[#292D2A] font-medium">
+<span>+91 98490 21980</span>
+<span class="text-[10px] text-[#25D366] font-semibold">WA</span>
+</div>
+<div class="flex items-center gap-1 text-xs text-[#777D77]">
+<span class="material-symbols-outlined text-[13px] text-[#B99A62]">location_on</span>
+<span>Banjara Hills, Hyderabad</span>
+</div>
+</div>
+</td>
+<td class="py-4 px-4">
+<div class="flex flex-wrap gap-1 max-w-[160px]">
+<span class="text-[10px] px-1.5 py-0.5 rounded bg-[#F7F4ED] text-[#292D2A]">Weddings</span>
+<span class="text-[10px] px-1.5 py-0.5 rounded bg-[#F7F4ED] text-[#292D2A]">Receptions</span>
+<span class="text-[10px] px-1.5 py-0.5 rounded bg-[#F7F4ED] text-[#292D2A]">+2 more</span>
+</div>
+</td>
+<td class="py-4 px-4">
+<div>
+<p class="font-semibold text-xs text-[#292D2A]">₹85,000 – ₹3,50,000</p>
+<p class="text-[11px] text-[#777D77]">Per setup tier</p>
+</div>
+</td>
+<td class="py-4 px-4">
+<div>
+<p class="text-xs text-[#292D2A] font-medium">18 Dec 2026</p>
+<p class="text-[11px] text-[#777D77]">11:42 AM IST</p>
+</div>
+</td>
+<td class="py-4 px-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[6px] bg-[#D69A36]/15 text-[#9C6A15] text-[11px] font-semibold uppercase tracking-wider">
+<span class="w-1.5 h-1.5 rounded-full bg-[#D69A36]"></span> Pending Review
+                </span>
+</td>
+<td class="py-4 px-4 text-right">
+<div class="flex items-center justify-end gap-1.5">
+<button class="px-2.5 py-1 rounded-[4px] bg-[#173D32] hover:bg-[#245746] text-white text-xs font-semibold transition-colors">
+                    Review
+                  </button>
+<button class="p-1 rounded-[4px] hover:bg-[#F7F4ED] text-[#777D77] transition-colors" title="More options">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2: Deccan Royal Biryani -->
+<tr class="hover:bg-[#FDFCF9] transition-colors group">
+<td class="py-4 px-4 text-center">
+<input class="rounded-[3px] accent-[#173D32] cursor-pointer" type="checkbox"/>
+</td>
+<td class="py-4 px-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-[8px] bg-[#B99A62]/20 text-[#745a29] font-semibold flex items-center justify-center shrink-0 border border-[#B99A62]/30">
+                    DR
+                  </div>
+<div>
+<div class="flex items-center gap-1.5">
+<p class="font-semibold text-[#292D2A] group-hover:text-[#173D32] transition-colors">Deccan Royal Biryani &amp; Catering</p>
+<span class="material-symbols-outlined text-[16px] text-[#B99A62]" title="GST Verified">verified</span>
+</div>
+<div class="flex items-center gap-2 mt-0.5">
+<span class="text-[11px] px-2 py-0.5 rounded-[4px] bg-[#F7F4ED] text-[#777D77] font-medium border border-[#E7E3DA]">Catering</span>
+<span class="text-[11px] text-[#777D77]">ID: #VN-8839</span>
+</div>
+</div>
+</div>
+</td>
+<td class="py-4 px-4">
+<div class="space-y-0.5">
+<div class="flex items-center gap-1.5 text-xs text-[#292D2A] font-medium">
+<span>+91 97003 45112</span>
+</div>
+<div class="flex items-center gap-1 text-xs text-[#777D77]">
+<span class="material-symbols-outlined text-[13px] text-[#B99A62]">location_on</span>
+<span>Madhapur, Hyderabad</span>
+</div>
+</div>
+</td>
+<td class="py-4 px-4">
+<div class="flex flex-wrap gap-1 max-w-[160px]">
+<span class="text-[10px] px-1.5 py-0.5 rounded bg-[#F7F4ED] text-[#292D2A]">Biryani Banquets</span>
+<span class="text-[10px] px-1.5 py-0.5 rounded bg-[#F7F4ED] text-[#292D2A]">Corporate</span>
+</div>
+</td>
+<td class="py-4 px-4">
+<div>
+<p class="font-semibold text-xs text-[#292D2A]">₹650 – ₹1,200</p>
+<p class="text-[11px] text-[#777D77]">Per Plate / Pax</p>
+</div>
+</td>
+<td class="py-4 px-4">
+<div>
+<p class="text-xs text-[#292D2A] font-medium">17 Dec 2026</p>
+<p class="text-[11px] text-[#777D77]">04:15 PM IST</p>
+</div>
+</td>
+<td class="py-4 px-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[6px] bg-[#27845B]/15 text-[#27845B] text-[11px] font-semibold uppercase tracking-wider">
+<span class="w-1.5 h-1.5 rounded-full bg-[#27845B]"></span> Approved
+                </span>
+</td>
+<td class="py-4 px-4 text-right">
+<div class="flex items-center justify-end gap-1.5">
+<button class="px-2.5 py-1 rounded-[4px] bg-[#F7F4ED] hover:bg-[#EBE5D6] text-[#173D32] border border-[#E7E3DA] text-xs font-medium transition-colors">
+                    View
+                  </button>
+<button class="p-1 rounded-[4px] hover:bg-[#F7F4ED] text-[#777D77] transition-colors">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3: Moments Hyderabad Photography -->
+<tr class="hover:bg-[#FDFCF9] transition-colors group">
+<td class="py-4 px-4 text-center">
+<input class="rounded-[3px] accent-[#173D32] cursor-pointer" type="checkbox"/>
+</td>
+<td class="py-4 px-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-[8px] bg-[#4778A8]/15 text-[#4778A8] font-semibold flex items-center justify-center shrink-0 border border-[#4778A8]/20">
+                    MH
+                  </div>
+<div>
+<div class="flex items-center gap-1.5">
+<p class="font-semibold text-[#292D2A] group-hover:text-[#173D32] transition-colors">Moments Hyderabad Photography</p>
+</div>
+<div class="flex items-center gap-2 mt-0.5">
+<span class="text-[11px] px-2 py-0.5 rounded-[4px] bg-[#F7F4ED] text-[#777D77] font-medium border border-[#E7E3DA]">Photography</span>
+<span class="text-[11px] text-[#777D77]">ID: #VN-8832</span>
+</div>
+</div>
+</div>
+</td>
+<td class="py-4 px-4">
+<div class="space-y-0.5">
+<div class="flex items-center gap-1.5 text-xs text-[#292D2A] font-medium">
+<span>+91 91212 99401</span>
+</div>
+<div class="flex items-center gap-1 text-xs text-[#777D77]">
+<span class="material-symbols-outlined text-[13px] text-[#B99A62]">location_on</span>
+<span>Jubilee Hills, Hyderabad</span>
+</div>
+</div>
+</td>
+<td class="py-4 px-4">
+<div class="flex flex-wrap gap-1 max-w-[160px]">
+<span class="text-[10px] px-1.5 py-0.5 rounded bg-[#F7F4ED] text-[#292D2A]">Pre-Wedding</span>
+<span class="text-[10px] px-1.5 py-0.5 rounded bg-[#F7F4ED] text-[#292D2A]">Candid Teasers</span>
+</div>
+</td>
+<td class="py-4 px-4">
+<div>
+<p class="font-semibold text-xs text-[#292D2A]">₹1,20,000 – ₹2,80,000</p>
+<p class="text-[11px] text-[#777D77]">Complete 2-day package</p>
+</div>
+</td>
+<td class="py-4 px-4">
+<div>
+<p class="text-xs text-[#292D2A] font-medium">16 Dec 2026</p>
+<p class="text-[11px] text-[#777D77]">09:30 AM IST</p>
+</div>
+</td>
+<td class="py-4 px-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[6px] bg-[#4778A8]/15 text-[#4778A8] text-[11px] font-semibold uppercase tracking-wider">
+<span class="w-1.5 h-1.5 rounded-full bg-[#4778A8]"></span> Changes Requested
+                </span>
+</td>
+<td class="py-4 px-4 text-right">
+<div class="flex items-center justify-end gap-1.5">
+<button class="px-2.5 py-1 rounded-[4px] bg-[#F7F4ED] hover:bg-[#EBE5D6] text-[#173D32] border border-[#E7E3DA] text-xs font-medium transition-colors">
+                    Feedback
+                  </button>
+<button class="p-1 rounded-[4px] hover:bg-[#F7F4ED] text-[#777D77] transition-colors">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination Footnote -->
+<div class="p-4 border-t border-[#E7E3DA] flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-[#FDFCF9]">
+<div class="text-xs text-[#777D77]">
+          Showing <span class="font-semibold text-[#292D2A]">1</span> to <span class="font-semibold text-[#292D2A]">3</span> of <span class="font-semibold text-[#292D2A]">248</span> registered Hyderabad vendors
+        </div>
+<div class="flex items-center gap-1">
+<button class="px-2.5 py-1 rounded-[4px] border border-[#E7E3DA] bg-white text-xs text-[#777D77] hover:bg-[#F7F4ED] disabled:opacity-50" disabled="">
+            Previous
+          </button>
+<button class="w-7 h-7 rounded-[4px] bg-[#173D32] text-white text-xs font-semibold">1</button>
+<button class="w-7 h-7 rounded-[4px] hover:bg-[#F7F4ED] border border-[#E7E3DA] bg-white text-xs font-medium text-[#292D2A]">2</button>
+<button class="w-7 h-7 rounded-[4px] hover:bg-[#F7F4ED] border border-[#E7E3DA] bg-white text-xs font-medium text-[#292D2A]">3</button>
+<span class="px-1 text-xs text-[#777D77]">...</span>
+<button class="w-7 h-7 rounded-[4px] hover:bg-[#F7F4ED] border border-[#E7E3DA] bg-white text-xs font-medium text-[#292D2A]">25</button>
+<button class="px-2.5 py-1 rounded-[4px] border border-[#E7E3DA] bg-white text-xs text-[#292D2A] hover:bg-[#F7F4ED]">
+            Next
+          </button>
+</div>
+</div>
+</div>
+<!-- Secondary Data Table States: Empty State & Shimmering Loading Skeleton -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+<!-- Empty State Card -->
+<div class="bg-white rounded-[10px] border border-[#E7E3DA] p-8 text-center flex flex-col items-center justify-center space-y-3 shadow-sm min-h-[260px]">
+<div class="w-14 h-14 rounded-full bg-[#F7F4ED] border border-[#E7E3DA] flex items-center justify-center text-[#B99A62]">
+<span class="material-symbols-outlined text-[28px]">search_off</span>
+</div>
+<div class="space-y-1">
+<h4 class="font-h4 text-h4 text-[#292D2A]">No Vendors Found</h4>
+<p class="text-xs text-[#777D77] max-w-sm">No applications match your active filters for "Secunderabad" and "Sound &amp; DJ" during this cycle.</p>
+</div>
+<button class="mt-2 px-4 py-2 rounded-[6px] border border-[#E7E3DA] bg-[#F7F4ED] hover:bg-[#EBE5D6] text-xs font-semibold text-[#173D32] transition-colors">
+          Clear Filter Selections
+        </button>
+</div>
+<!-- Loading Skeleton Preview Card -->
+<div class="bg-white rounded-[10px] border border-[#E7E3DA] p-6 space-y-4 shadow-sm min-h-[260px]">
+<div class="flex items-center justify-between">
+<div class="h-4 bg-[#E7E3DA]/80 rounded w-1/3 animate-pulse"></div>
+<div class="h-4 bg-[#E7E3DA]/50 rounded w-16 animate-pulse"></div>
+</div>
+<!-- Skeleton Rows -->
+<div class="space-y-3 pt-2">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded bg-[#E7E3DA] shrink-0 animate-pulse"></div>
+<div class="space-y-1.5 flex-1">
+<div class="h-3.5 bg-[#E7E3DA] rounded w-3/4 animate-pulse"></div>
+<div class="h-2.5 bg-[#E7E3DA]/60 rounded w-1/2 animate-pulse"></div>
+</div>
+<div class="w-16 h-5 bg-[#E7E3DA] rounded animate-pulse"></div>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded bg-[#E7E3DA] shrink-0 animate-pulse"></div>
+<div class="space-y-1.5 flex-1">
+<div class="h-3.5 bg-[#E7E3DA] rounded w-2/3 animate-pulse"></div>
+<div class="h-2.5 bg-[#E7E3DA]/60 rounded w-1/3 animate-pulse"></div>
+</div>
+<div class="w-16 h-5 bg-[#E7E3DA] rounded animate-pulse"></div>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded bg-[#E7E3DA] shrink-0 animate-pulse"></div>
+<div class="space-y-1.5 flex-1">
+<div class="h-3.5 bg-[#E7E3DA] rounded w-4/5 animate-pulse"></div>
+<div class="h-2.5 bg-[#E7E3DA]/60 rounded w-1/2 animate-pulse"></div>
+</div>
+<div class="w-16 h-5 bg-[#E7E3DA] rounded animate-pulse"></div>
+</div>
+</div>
+<p class="text-[11px] text-[#777D77] italic text-right pt-1">Simulated asynchronous sync</p>
+</div>
+</div>
+</section>
+<!-- SECTION 03: STATUS BADGES & INDICATORS -->
+<section class="space-y-8 mb-20" id="status-badges">
+<div class="flex items-baseline justify-between border-b border-[#E7E3DA] pb-3">
+<div class="flex items-center gap-3">
+<span class="font-mono text-xs px-2 py-0.5 rounded bg-[#173D32] text-white font-semibold">03</span>
+<h2 class="font-h2 text-h2 text-[#292D2A]">Status Badges &amp; Lifecycle Indicators</h2>
+</div>
+<span class="text-xs text-secondary font-body-sm">Operational Tags for Vendor Portals &amp; Enquiry Funnels</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- 1. Vendor Application Lifecycle -->
+<div class="bg-white rounded-[10px] border border-[#E7E3DA] p-6 space-y-6 shadow-sm">
+<div>
+<h3 class="font-h4 text-h4 text-[#292D2A]">Vendor Onboarding Lifecycle</h3>
+<p class="text-xs text-[#777D77] mt-0.5">States indicating internal audit, document validation, and catalog state.</p>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<!-- Draft -->
+<div class="p-3 rounded-[8px] bg-[#F7F4ED] border border-[#E7E3DA] space-y-1.5">
+<div class="flex items-center justify-between">
+<span class="text-xs text-[#777D77] font-medium">State 01</span>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-[6px] bg-[#777D77]/15 text-[#777D77] text-badge-text font-badge-text uppercase">
+                Draft
+              </span>
+</div>
+<p class="text-[11px] text-[#777D77]">Vendor initialized registration, incomplete docs.</p>
+</div>
+<!-- Pending Review -->
+<div class="p-3 rounded-[8px] bg-[#F7F4ED] border border-[#E7E3DA] space-y-1.5">
+<div class="flex items-center justify-between">
+<span class="text-xs text-[#777D77] font-medium">State 02</span>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-[6px] bg-[#D69A36]/15 text-[#9C6A15] text-badge-text font-badge-text uppercase">
+<span class="w-1.5 h-1.5 rounded-full bg-[#D69A36]"></span> Pending Review
+              </span>
+</div>
+<p class="text-[11px] text-[#777D77]">Submitted with GST, waiting for Admin review.</p>
+</div>
+<!-- Approved -->
+<div class="p-3 rounded-[8px] bg-[#F7F4ED] border border-[#E7E3DA] space-y-1.5">
+<div class="flex items-center justify-between">
+<span class="text-xs text-[#777D77] font-medium">State 03</span>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-[6px] bg-[#27845B]/15 text-[#27845B] text-badge-text font-badge-text uppercase">
+<span class="w-1.5 h-1.5 rounded-full bg-[#27845B]"></span> Approved
+              </span>
+</div>
+<p class="text-[11px] text-[#777D77]">Published live on Hyderabad marketplace.</p>
+</div>
+<!-- Changes Requested -->
+<div class="p-3 rounded-[8px] bg-[#F7F4ED] border border-[#E7E3DA] space-y-1.5">
+<div class="flex items-center justify-between">
+<span class="text-xs text-[#777D77] font-medium">State 04</span>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-[6px] bg-[#4778A8]/15 text-[#4778A8] text-badge-text font-badge-text uppercase">
+<span class="w-1.5 h-1.5 rounded-full bg-[#4778A8]"></span> Changes Requested
+              </span>
+</div>
+<p class="text-[11px] text-[#777D77]">Action needed on menu card or photo clarity.</p>
+</div>
+<!-- Rejected -->
+<div class="p-3 rounded-[8px] bg-[#F7F4ED] border border-[#E7E3DA] space-y-1.5 sm:col-span-2">
+<div class="flex items-center justify-between">
+<span class="text-xs text-[#777D77] font-medium">State 05</span>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-[6px] bg-[#C64D48]/15 text-[#C64D48] text-badge-text font-badge-text uppercase">
+<span class="w-1.5 h-1.5 rounded-full bg-[#C64D48]"></span> Rejected
+              </span>
+</div>
+<p class="text-[11px] text-[#777D77]">Application denied due to compliance or duplicate presence.</p>
+</div>
+</div>
+</div>
+<!-- 2. Enquiry Management Lifecycle -->
+<div class="bg-white rounded-[10px] border border-[#E7E3DA] p-6 space-y-6 shadow-sm">
+<div>
+<h3 class="font-h4 text-h4 text-[#292D2A]">Customer Enquiry &amp; Lead Funnel</h3>
+<p class="text-xs text-[#777D77] mt-0.5">Tracks interaction between organizer and Hyderabad service partners.</p>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<!-- New -->
+<div class="p-3 rounded-[8px] bg-[#F7F4ED] border border-[#E7E3DA] space-y-1.5">
+<div class="flex items-center justify-between">
+<span class="text-xs text-[#777D77] font-medium">Stage 01</span>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-[6px] bg-[#D69A36]/20 text-[#9C6A15] text-badge-text font-badge-text uppercase">
+<span class="w-1.5 h-1.5 rounded-full bg-[#D69A36] animate-ping"></span> New
+              </span>
+</div>
+<p class="text-[11px] text-[#777D77]">Fresh incoming enquiry waiting for initial vendor response.</p>
+</div>
+<!-- Contacted -->
+<div class="p-3 rounded-[8px] bg-[#F7F4ED] border border-[#E7E3DA] space-y-1.5">
+<div class="flex items-center justify-between">
+<span class="text-xs text-[#777D77] font-medium">Stage 02</span>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-[6px] bg-[#4778A8]/15 text-[#4778A8] text-badge-text font-badge-text uppercase">
+                Contacted
+              </span>
+</div>
+<p class="text-[11px] text-[#777D77]">Direct WhatsApp or Phone discussion initiated.</p>
+</div>
+<!-- Quotation Sent -->
+<div class="p-3 rounded-[8px] bg-[#F7F4ED] border border-[#E7E3DA] space-y-1.5">
+<div class="flex items-center justify-between">
+<span class="text-xs text-[#777D77] font-medium">Stage 03</span>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-[6px] bg-[#B99A62]/20 text-[#745a29] text-badge-text font-badge-text uppercase font-bold">
+                Quotation Sent
+              </span>
+</div>
+<p class="text-[11px] text-[#777D77]">Formal itemized rate card shared with organizer.</p>
+</div>
+<!-- Booked -->
+<div class="p-3 rounded-[8px] bg-[#F7F4ED] border border-[#E7E3DA] space-y-1.5">
+<div class="flex items-center justify-between">
+<span class="text-xs text-[#777D77] font-medium">Stage 04</span>
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-[6px] bg-[#27845B]/15 text-[#27845B] text-badge-text font-badge-text uppercase">
+<span class="material-symbols-outlined text-[13px]">check_circle</span> Booked
+              </span>
+</div>
+<p class="text-[11px] text-[#777D77]">Advance deposit secured, date blocked on calendar.</p>
+</div>
+<!-- Not Converted -->
+<div class="p-3 rounded-[8px] bg-[#F7F4ED] border border-[#E7E3DA] space-y-1.5">
+<div class="flex items-center justify-between">
+<span class="text-xs text-[#777D77] font-medium">Stage 05</span>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-[6px] bg-[#777D77]/15 text-[#777D77] text-badge-text font-badge-text uppercase">
+                Not Converted
+              </span>
+</div>
+<p class="text-[11px] text-[#777D77]">Customer chose another vendor or dates unavailable.</p>
+</div>
+<!-- Closed -->
+<div class="p-3 rounded-[8px] bg-[#F7F4ED] border border-[#E7E3DA] space-y-1.5">
+<div class="flex items-center justify-between">
+<span class="text-xs text-[#777D77] font-medium">Stage 06</span>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-[6px] bg-[#292D2A]/10 text-[#292D2A] text-badge-text font-badge-text uppercase">
+                Closed
+              </span>
+</div>
+<p class="text-[11px] text-[#777D77]">Event successfully executed &amp; review gathered.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 04: DASHBOARD METRIC SUMMARY CARDS -->
+<section class="space-y-8 mb-20" id="metric-cards">
+<div class="flex items-baseline justify-between border-b border-[#E7E3DA] pb-3">
+<div class="flex items-center gap-3">
+<span class="font-mono text-xs px-2 py-0.5 rounded bg-[#173D32] text-white font-semibold">04</span>
+<h2 class="font-h2 text-h2 text-[#292D2A]">Dashboard Metric Summary Cards</h2>
+</div>
+<span class="text-xs text-secondary font-body-sm">Operational KPI Cards with Structured Trend Chips</span>
+</div>
+<!-- 6 Primary Metric Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Card 1: Total Vendors -->
+<div class="bg-white rounded-[10px] border border-[#E7E3DA] p-5 shadow-sm space-y-3">
+<div class="flex items-center justify-between">
+<div class="w-10 h-10 rounded-full bg-[#F7F4ED] border border-[#E7E3DA] text-[#173D32] flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">store</span>
+</div>
+<span class="inline-flex items-center gap-1 text-[11px] font-semibold text-[#27845B] bg-[#27845B]/10 px-2 py-0.5 rounded-full">
+<span class="material-symbols-outlined text-[13px]">trending_up</span> +12% MoM
+          </span>
+</div>
+<div>
+<p class="text-xs text-[#777D77] font-medium uppercase tracking-wider">Total Onboarded Vendors</p>
+<p class="text-[28px] font-bold text-[#292D2A] tracking-tight leading-none mt-1">248</p>
+</div>
+<p class="text-xs text-[#777D77] pt-1 border-t border-[#E7E3DA]">Across 14 Hyderabad micro-zones</p>
+</div>
+<!-- Card 2: Pending Approvals (Alert Style) -->
+<div class="bg-white rounded-[10px] border border-[#D69A36]/40 p-5 shadow-sm space-y-3 bg-gradient-to-br from-white via-white to-[#D69A36]/5">
+<div class="flex items-center justify-between">
+<div class="w-10 h-10 rounded-full bg-[#D69A36]/15 text-[#9C6A15] flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">pending_actions</span>
+</div>
+<span class="inline-flex items-center gap-1 text-[11px] font-bold text-[#9C6A15] bg-[#D69A36]/20 px-2 py-0.5 rounded-[4px] uppercase tracking-wider">
+            Action Required
+          </span>
+</div>
+<div>
+<p class="text-xs text-[#777D77] font-medium uppercase tracking-wider">Pending Approvals</p>
+<p class="text-[28px] font-bold text-[#D69A36] tracking-tight leading-none mt-1">18</p>
+</div>
+<p class="text-xs text-[#9C6A15] font-medium pt-1 border-t border-[#D69A36]/20">Avg. turnaround: 4.2 hours</p>
+</div>
+<!-- Card 3: Active Vendors -->
+<div class="bg-white rounded-[10px] border border-[#E7E3DA] p-5 shadow-sm space-y-3">
+<div class="flex items-center justify-between">
+<div class="w-10 h-10 rounded-full bg-[#27845B]/10 text-[#27845B] flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">verified</span>
+</div>
+<span class="inline-flex items-center gap-1 text-[11px] font-medium text-[#777D77] bg-[#F7F4ED] px-2 py-0.5 rounded-full border border-[#E7E3DA]">
+            93% Active Rate
+          </span>
+</div>
+<div>
+<p class="text-xs text-[#777D77] font-medium uppercase tracking-wider">Live Active Directory</p>
+<p class="text-[28px] font-bold text-[#292D2A] tracking-tight leading-none mt-1">230</p>
+</div>
+<p class="text-xs text-[#777D77] pt-1 border-t border-[#E7E3DA]">Accepting direct customer enquiries</p>
+</div>
+<!-- Card 4: Total Enquiries -->
+<div class="bg-white rounded-[10px] border border-[#E7E3DA] p-5 shadow-sm space-y-3">
+<div class="flex items-center justify-between">
+<div class="w-10 h-10 rounded-full bg-[#F7F4ED] border border-[#E7E3DA] text-[#173D32] flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">forum</span>
+</div>
+<span class="inline-flex items-center gap-1 text-[11px] font-semibold text-[#27845B] bg-[#27845B]/10 px-2 py-0.5 rounded-full">
+<span class="material-symbols-outlined text-[13px]">trending_up</span> +18% WoW
+          </span>
+</div>
+<div>
+<p class="text-xs text-[#777D77] font-medium uppercase tracking-wider">Total Event Enquiries</p>
+<p class="text-[28px] font-bold text-[#292D2A] tracking-tight leading-none mt-1">1,240</p>
+</div>
+<p class="text-xs text-[#777D77] pt-1 border-t border-[#E7E3DA]">38% Mandap &amp; Floral Decorators</p>
+</div>
+<!-- Card 5: New Enquiries -->
+<div class="bg-white rounded-[10px] border border-[#E7E3DA] p-5 shadow-sm space-y-3">
+<div class="flex items-center justify-between">
+<div class="w-10 h-10 rounded-full bg-[#173D32]/10 text-[#173D32] flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">bolt</span>
+</div>
+<span class="inline-flex items-center gap-1 text-[11px] font-semibold text-[#173D32] bg-[#173D32]/10 px-2 py-0.5 rounded-[4px]">
+            Unassigned: 14
+          </span>
+</div>
+<div>
+<p class="text-xs text-[#777D77] font-medium uppercase tracking-wider">New Inbound Leads (Today)</p>
+<p class="text-[28px] font-bold text-[#173D32] tracking-tight leading-none mt-1">86</p>
+</div>
+<p class="text-xs text-[#777D77] pt-1 border-t border-[#E7E3DA]">High volume from Banjara Hills</p>
+</div>
+<!-- Card 6: Booked Leads (GMV) -->
+<div class="bg-white rounded-[10px] border border-[#E7E3DA] p-5 shadow-sm space-y-3">
+<div class="flex items-center justify-between">
+<div class="w-10 h-10 rounded-full bg-[#B99A62]/20 text-[#745a29] flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">payments</span>
+</div>
+<span class="inline-flex items-center gap-1 text-[11px] font-semibold text-[#27845B] bg-[#27845B]/10 px-2 py-0.5 rounded-full">
+            412 Bookings
+          </span>
+</div>
+<div>
+<p class="text-xs text-[#777D77] font-medium uppercase tracking-wider">Estimated Facilitated GMV</p>
+<p class="text-[28px] font-bold text-[#292D2A] tracking-tight leading-none mt-1">₹42.8 Lakhs</p>
+</div>
+<p class="text-xs text-[#777D77] pt-1 border-t border-[#E7E3DA]">Cumulative Dec 2026 season volume</p>
+</div>
+</div>
+</section>
+<!-- SECTION 05: DIALOGS, MODALS & TOAST NOTIFICATIONS -->
+<section class="space-y-8 mb-20" id="modals-toasts">
+<div class="flex items-baseline justify-between border-b border-[#E7E3DA] pb-3">
+<div class="flex items-center gap-3">
+<span class="font-mono text-xs px-2 py-0.5 rounded bg-[#173D32] text-white font-semibold">05</span>
+<h2 class="font-h2 text-h2 text-[#292D2A]">Dialogs, Modals &amp; Toast Notifications</h2>
+</div>
+<span class="text-xs text-secondary font-body-sm">System Overlays, Confirmation Sheets &amp; Feedback Prompts</span>
+</div>
+<!-- Modals Grid Showcase -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
+<!-- Modal 1: Approve Vendor Application -->
+<div class="bg-white rounded-[14px] border border-[#E7E3DA] p-6 shadow-xl space-y-5">
+<div class="flex items-start justify-between border-b border-[#E7E3DA] pb-3">
+<div>
+<span class="text-[10px] font-bold uppercase tracking-wider text-[#27845B] bg-[#27845B]/10 px-2 py-0.5 rounded">Action Confirm</span>
+<h3 class="font-h4 text-h4 text-[#292D2A] mt-1">Approve Application</h3>
+</div>
+<button class="text-[#777D77] hover:text-[#292D2A]">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<div class="p-3.5 rounded-[8px] bg-[#F7F4ED] border border-[#E7E3DA] space-y-2">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-[#27845B]"></span>
+<p class="text-xs font-semibold text-[#292D2A]">Sri Venkateswara Mandap &amp; Floral</p>
+</div>
+<p class="text-[11px] text-[#777D77]">Banjara Hills, Hyderabad · GST: 36AAAAA0000A1Z5</p>
+<p class="text-[11px] text-[#173D32] font-medium">Primary Contact: +91 98490 21980</p>
+</div>
+<div class="space-y-3">
+<label class="flex items-start gap-2.5 cursor-pointer">
+<input checked="" class="mt-0.5 rounded-[4px] accent-[#173D32]" type="checkbox"/>
+<span class="text-xs text-[#292D2A] leading-relaxed">
+              Send SMS &amp; WhatsApp onboarding credentials to <strong class="text-[#173D32]">+91 98490 21980</strong> immediately.
+            </span>
+</label>
+<label class="flex items-start gap-2.5 cursor-pointer">
+<input checked="" class="mt-0.5 rounded-[4px] accent-[#173D32]" type="checkbox"/>
+<span class="text-xs text-[#292D2A] leading-relaxed">
+              Publish profile directly to Hyderabad live marketplace search.
+            </span>
+</label>
+</div>
+<div class="flex items-center justify-end gap-2.5 pt-3 border-t border-[#E7E3DA]">
+<button class="px-4 py-2 rounded-[6px] border border-[#E7E3DA] bg-white text-xs font-semibold text-[#292D2A] hover:bg-[#F7F4ED]">
+            Cancel
+          </button>
+<button class="px-4 py-2 rounded-[6px] bg-[#173D32] hover:bg-[#245746] text-white text-xs font-semibold shadow-sm transition-colors flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px]">check</span>
+<span>Confirm Approval</span>
+</button>
+</div>
+</div>
+<!-- Modal 2: Reject Vendor Application -->
+<div class="bg-white rounded-[14px] border border-[#E7E3DA] p-6 shadow-xl space-y-5">
+<div class="flex items-start justify-between border-b border-[#E7E3DA] pb-3">
+<div>
+<span class="text-[10px] font-bold uppercase tracking-wider text-[#C64D48] bg-[#C64D48]/10 px-2 py-0.5 rounded">Compliance Check</span>
+<h3 class="font-h4 text-h4 text-[#292D2A] mt-1">Reject Application</h3>
+</div>
+<button class="text-[#777D77] hover:text-[#292D2A]">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<div class="space-y-3">
+<div>
+<label class="block text-xs font-medium text-[#292D2A] mb-1">Mandatory Rejection Reason *</label>
+<div class="relative">
+<select class="w-full h-[38px] px-3 pr-8 rounded-[6px] border border-[#E7E3DA] bg-white text-xs text-[#292D2A] appearance-none focus:outline-none focus:border-[#C64D48]">
+<option>Invalid GST or Business Address Proof</option>
+<option>Incomplete or Low-Resolution Portfolio</option>
+<option>Pricing Mismatch with Hyderabad Standard</option>
+<option>Duplicate Vendor Account Detected</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-[16px] text-[#777D77] pointer-events-none">expand_more</span>
+</div>
+</div>
+<div>
+<div class="flex items-center justify-between mb-1">
+<label class="text-xs font-medium text-[#292D2A]">Detailed Feedback for Vendor</label>
+<span class="text-[11px] text-[#777D77]">142 / 300</span>
+</div>
+<textarea class="w-full p-2.5 rounded-[6px] border border-[#E7E3DA] text-xs text-[#292D2A] focus:outline-none focus:border-[#C64D48] placeholder:text-[#777D77]/60" placeholder="Specify why the business registration or venue photos were declined..." rows="3"></textarea>
+</div>
+</div>
+<div class="flex items-center justify-end gap-2.5 pt-3 border-t border-[#E7E3DA]">
+<button class="px-4 py-2 rounded-[6px] border border-[#E7E3DA] bg-white text-xs font-semibold text-[#292D2A] hover:bg-[#F7F4ED]">
+            Back
+          </button>
+<button class="px-4 py-2 rounded-[6px] bg-[#C64D48] hover:bg-[#B33D38] text-white text-xs font-semibold shadow-sm transition-colors flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px]">close</span>
+<span>Reject Application</span>
+</button>
+</div>
+</div>
+<!-- Modal 3: Request Changes & Compact Delete Dialog -->
+<div class="space-y-6">
+<!-- Changes Modal -->
+<div class="bg-white rounded-[14px] border border-[#E7E3DA] p-5 shadow-xl space-y-4">
+<div class="flex items-center justify-between border-b border-[#E7E3DA] pb-2.5">
+<h4 class="font-h4 text-h4 text-[#292D2A] text-sm">Request Vendor Changes</h4>
+<span class="text-[10px] text-[#4778A8] bg-[#4778A8]/10 font-bold px-1.5 py-0.5 rounded">Action Item</span>
+</div>
+<div class="space-y-2 text-xs text-[#292D2A]">
+<p class="font-medium text-[#777D77]">Required Updates Checklist:</p>
+<label class="flex items-center gap-2">
+<input checked="" class="rounded accent-[#173D32]" type="checkbox"/>
+<span>Higher quality 16:10 Mandap photos</span>
+</label>
+<label class="flex items-center gap-2">
+<input checked="" class="rounded accent-[#173D32]" type="checkbox"/>
+<span>Clarify per-plate pricing inclusions</span>
+</label>
+<label class="flex items-center gap-2">
+<input class="rounded accent-[#173D32]" type="checkbox"/>
+<span>Upload FSSAI License copy</span>
+</label>
+</div>
+<div class="flex justify-end gap-2 pt-2 border-t border-[#E7E3DA]">
+<button class="px-3 py-1.5 rounded-[6px] bg-[#173D32] text-white text-xs font-medium">Send Checklist</button>
+</div>
+</div>
+<!-- Compact Delete Dialog -->
+<div class="bg-white rounded-[14px] border border-[#E7E3DA] p-4 shadow-xl flex items-start gap-3">
+<div class="w-9 h-9 rounded-full bg-[#C64D48]/10 text-[#C64D48] flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[18px]">warning</span>
+</div>
+<div class="flex-1 space-y-1">
+<p class="text-xs font-bold text-[#292D2A]">Delete enquiry #ENQ-8821?</p>
+<p class="text-[11px] text-[#777D77]">This will permanently purge this record from customer logs.</p>
+<div class="flex items-center gap-2 pt-2">
+<button class="px-2.5 py-1 rounded-[4px] bg-[#C64D48] text-white text-[11px] font-semibold">Delete Record</button>
+<button class="px-2.5 py-1 rounded-[4px] border border-[#E7E3DA] text-[11px] font-medium text-[#777D77]">Cancel</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Toast Notifications Stack -->
+<div class="space-y-3 pt-4">
+<p class="text-xs font-semibold text-[#777D77] uppercase tracking-wider">System Toast Notification Banners</p>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<!-- Success Toast -->
+<div class="bg-white rounded-[8px] border-l-4 border-l-[#27845B] border border-[#E7E3DA] p-3.5 shadow-md flex items-center justify-between gap-3">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-[#27845B] text-[20px]">check_circle</span>
+<div class="text-xs">
+<p class="font-semibold text-[#292D2A]">Profile Approved</p>
+<p class="text-[11px] text-[#777D77]">Onboarding SMS credentials sent.</p>
+</div>
+</div>
+<button class="text-[#777D77] hover:text-[#292D2A]">
+<span class="material-symbols-outlined text-[16px]">close</span>
+</button>
+</div>
+<!-- Error Toast -->
+<div class="bg-white rounded-[8px] border-l-4 border-l-[#C64D48] border border-[#E7E3DA] p-3.5 shadow-md flex items-center justify-between gap-3">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-[#C64D48] text-[20px]">error</span>
+<div class="text-xs">
+<p class="font-semibold text-[#292D2A]">Network Interruption</p>
+<p class="text-[11px] text-[#777D77]">Unable to update status. Check link.</p>
+</div>
+</div>
+<button class="text-[#777D77] hover:text-[#292D2A]">
+<span class="material-symbols-outlined text-[16px]">close</span>
+</button>
+</div>
+<!-- Information Toast -->
+<div class="bg-white rounded-[8px] border-l-4 border-l-[#4778A8] border border-[#E7E3DA] p-3.5 shadow-md flex items-center justify-between gap-3">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-[#4778A8] text-[20px]">notifications_active</span>
+<div class="text-xs">
+<p class="font-semibold text-[#292D2A]">Inbound Lead Received</p>
+<p class="text-[11px] text-[#777D77]">Wedding Decor · Madhapur venue.</p>
+</div>
+</div>
+<button class="text-[#777D77] hover:text-[#292D2A]">
+<span class="material-symbols-outlined text-[16px]">close</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 06: MARKETPLACE-SPECIFIC COMPONENTS -->
+<section class="space-y-8 mb-12" id="marketplace-components">
+<div class="flex items-baseline justify-between border-b border-[#E7E3DA] pb-3">
+<div class="flex items-center gap-3">
+<span class="font-mono text-xs px-2 py-0.5 rounded bg-[#173D32] text-white font-semibold">06</span>
+<h2 class="font-h2 text-h2 text-[#292D2A]">Marketplace-Specific Components</h2>
+</div>
+<span class="text-xs text-secondary font-body-sm">Vendor Profile Cards, Gallery Sets, Packages &amp; Telugu Wedding Enquiries</span>
+</div>
+<!-- Category Tiles Selector & Hyderabad Location Chips -->
+<div class="space-y-4">
+<div>
+<p class="text-xs font-semibold text-[#777D77] uppercase tracking-wider mb-2">Service Category Interactive Selector</p>
+<div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+<div class="p-3.5 rounded-[10px] bg-white border border-[#173D32] shadow-sm flex flex-col items-center text-center cursor-pointer">
+<span class="material-symbols-outlined text-[#173D32] text-[26px]">celebration</span>
+<span class="font-semibold text-xs text-[#173D32] mt-1.5">Mandap &amp; Decor</span>
+<span class="text-[10px] text-[#777D77]">68 Vendors</span>
+</div>
+<div class="p-3.5 rounded-[10px] bg-white border border-[#E7E3DA] hover:border-[#173D32] shadow-sm flex flex-col items-center text-center cursor-pointer transition-colors">
+<span class="material-symbols-outlined text-[#B99A62] text-[26px]">restaurant</span>
+<span class="font-semibold text-xs text-[#292D2A] mt-1.5">Catering &amp; Sweets</span>
+<span class="text-[10px] text-[#777D77]">54 Vendors</span>
+</div>
+<div class="p-3.5 rounded-[10px] bg-white border border-[#E7E3DA] hover:border-[#173D32] shadow-sm flex flex-col items-center text-center cursor-pointer transition-colors">
+<span class="material-symbols-outlined text-[#173D32] text-[26px]">photo_camera</span>
+<span class="font-semibold text-xs text-[#292D2A] mt-1.5">Photo &amp; Films</span>
+<span class="text-[10px] text-[#777D77]">42 Vendors</span>
+</div>
+<div class="p-3.5 rounded-[10px] bg-white border border-[#E7E3DA] hover:border-[#173D32] shadow-sm flex flex-col items-center text-center cursor-pointer transition-colors">
+<span class="material-symbols-outlined text-[#173D32] text-[26px]">speaker</span>
+<span class="font-semibold text-xs text-[#292D2A] mt-1.5">Sound &amp; DJ</span>
+<span class="text-[10px] text-[#777D77]">29 Vendors</span>
+</div>
+<div class="p-3.5 rounded-[10px] bg-white border border-[#E7E3DA] hover:border-[#173D32] shadow-sm flex flex-col items-center text-center cursor-pointer transition-colors">
+<span class="material-symbols-outlined text-[#B99A62] text-[26px]">brush</span>
+<span class="font-semibold text-xs text-[#292D2A] mt-1.5">Mehendi &amp; Makeup</span>
+<span class="text-[10px] text-[#777D77]">36 Vendors</span>
+</div>
+<div class="p-3.5 rounded-[10px] bg-white border border-[#E7E3DA] hover:border-[#173D32] shadow-sm flex flex-col items-center text-center cursor-pointer transition-colors">
+<span class="material-symbols-outlined text-[#173D32] text-[26px]">event</span>
+<span class="font-semibold text-xs text-[#292D2A] mt-1.5">Event Planners</span>
+<span class="text-[10px] text-[#777D77]">19 Vendors</span>
+</div>
+</div>
+</div>
+<!-- Location Chips -->
+<div class="flex flex-wrap items-center gap-2 pt-1">
+<span class="text-xs text-[#777D77] font-medium mr-1">Hyderabad Zones:</span>
+<button class="px-3 py-1 rounded-full bg-[#173D32] text-white text-xs font-semibold">Banjara Hills</button>
+<button class="px-3 py-1 rounded-full bg-white border border-[#E7E3DA] text-[#292D2A] text-xs hover:border-[#173D32]">Jubilee Hills</button>
+<button class="px-3 py-1 rounded-full bg-white border border-[#E7E3DA] text-[#292D2A] text-xs hover:border-[#173D32]">Gachibowli</button>
+<button class="px-3 py-1 rounded-full bg-white border border-[#E7E3DA] text-[#292D2A] text-xs hover:border-[#173D32]">Madhapur</button>
+<button class="px-3 py-1 rounded-full bg-white border border-[#E7E3DA] text-[#292D2A] text-xs hover:border-[#173D32]">Secunderabad</button>
+<button class="px-3 py-1 rounded-full bg-white border border-[#E7E3DA] text-[#292D2A] text-xs hover:border-[#173D32]">Hitec City</button>
+</div>
+</div>
+<!-- Dual Column: Vendor Profile Summary & Portfolio Gallery -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<!-- 1. Full Featured Marketplace Vendor Card -->
+<div class="lg:col-span-5 bg-white rounded-[10px] border border-[#E7E3DA] overflow-hidden shadow-sm space-y-4">
+<!-- Media Banner with Overlays -->
+<div class="relative h-48 w-full bg-cover bg-center" data-alt="Lavish grand Indian wedding mandap ceremony stage decorated with rich marigold garlands, white jasmine strings, brass oil lamps, and warm golden architectural spotlights in an opulent Hyderabad heritage convention hall." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDmQAHlPBfMYW1OfvIc5PLcvCQl9N00ZpbP73MxURN-DpUn9bAWv9cV6i6VU7s4uhmm_xzq6tbCDeH1m3uMBlwFgBEnwL8CC41qL9F3ra1E5BwzqOKgXhE_H_mXRb9G5i5ENsvw6oDdmidb_kSkGeCPHc3e0CTSi4Nd13FGw7QoHvW4HVpgpYYxMMw4lhxjvv7MOiJWykwq5Ms9jOmfkq86BfoCXN9w_opCp4-saJc')">
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+<span class="absolute top-3 left-3 px-2.5 py-1 rounded-[4px] bg-[#B99A62] text-white text-[11px] font-bold tracking-wider uppercase shadow">
+            Verified Partner
+          </span>
+<button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 text-[#C64D48] flex items-center justify-center shadow hover:bg-white transition-colors" title="Bookmark vendor">
+<span class="material-symbols-outlined text-[18px]">favorite</span>
+</button>
+<div class="absolute bottom-3 left-3 text-white">
+<span class="text-[11px] bg-black/40 backdrop-blur-sm px-2 py-0.5 rounded">Mandap &amp; Stage Design</span>
+</div>
+</div>
+<div class="px-5 pb-5 space-y-4">
+<div class="flex items-start justify-between gap-2">
+<div>
+<h4 class="font-h4 text-h4 text-[#292D2A]">Sri Venkateswara Mandap Decor</h4>
+<p class="text-xs text-[#777D77] flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-[14px] text-[#B99A62]">location_on</span>
+<span>Road No. 12, Banjara Hills, Hyderabad</span>
+</p>
+</div>
+<!-- Star Rating Badge -->
+<div class="flex items-center gap-1 bg-[#F7F4ED] px-2 py-1 rounded-[6px] border border-[#E7E3DA]">
+<span class="material-symbols-outlined text-[15px] text-[#B99A62]">star</span>
+<span class="text-xs font-bold text-[#292D2A]">4.9</span>
+<span class="text-[10px] text-[#777D77]">(128)</span>
+</div>
+</div>
+<!-- Pricing Tier & Features -->
+<div class="p-3 rounded-[8px] bg-[#F7F4ED] flex items-center justify-between border border-[#E7E3DA]">
+<div>
+<span class="text-[11px] text-[#777D77] block">Packages from</span>
+<span class="text-sm font-bold text-[#173D32]">₹45,000</span>
+<span class="text-[11px] text-[#777D77]">/ event</span>
+</div>
+<span class="text-[11px] text-[#27845B] font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check</span> Free Consultation
+            </span>
+</div>
+<!-- CTAs -->
+<div class="grid grid-cols-2 gap-3 pt-1">
+<button class="h-[40px] px-3 rounded-[6px] border border-[#E7E3DA] bg-white hover:bg-[#F7F4ED] text-[#173D32] text-xs font-semibold transition-colors flex items-center justify-center gap-1.5">
+<span>View Profile</span>
+</button>
+<button class="h-[40px] px-3 rounded-[6px] bg-[#25D366] hover:bg-[#1EBE5D] text-white text-xs font-semibold shadow-sm transition-colors flex items-center justify-center gap-1.5">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+<span>WhatsApp</span>
+</button>
+</div>
+</div>
+</div>
+<!-- 2. Portfolio Gallery Grid Component -->
+<div class="lg:col-span-7 bg-white rounded-[10px] border border-[#E7E3DA] p-6 shadow-sm space-y-4">
+<div class="flex items-center justify-between">
+<div>
+<h4 class="font-h4 text-h4 text-[#292D2A]">Portfolio Gallery (Mandap Projects)</h4>
+<p class="text-xs text-[#777D77]">Recent wedding decor delivered across Hyderabad luxury venues.</p>
+</div>
+<button class="text-xs font-semibold text-[#173D32] hover:underline">View All 18 Works</button>
+</div>
+<!-- Featured Mosaic -->
+<div class="grid grid-cols-3 gap-3">
+<!-- Main Hero Image (Spans 2 rows, 2 columns) -->
+<div class="col-span-2 row-span-2 relative rounded-[8px] overflow-hidden min-h-[220px] bg-cover bg-center border border-[#E7E3DA]" data-alt="Expansive grand botanical floral stage designed for a South Indian Telugu wedding reception with illuminated crystal chandeliers, tuberose curtains, and gold ornate temple pillars in Hyderabad." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAdvCAiZnYRMrKcH7MgStdmZURNz2XIhlong5zjcNnaA6v8068NYqw3SkCEcHWBOF4u9Ljj6lXFlEVPROrVkjNNlnAkdLzKrSu4WfZzWgGACg_gdhnfMPPhCdmQ3WYXU8DMjHuarvz_xq6l9ihfBQmHgItwHXHPyekfhDEhgHCDgWGQw9t-C1w-dUIL6aZhwza_zJi5Nfmd-bC-nV_L-BqgryusPMpPS-q9NVvJi6I')">
+<span class="absolute bottom-2 left-2 px-2 py-0.5 rounded bg-black/60 text-white text-[10px] font-medium backdrop-blur-sm">
+              Featured: Taj Falaknuma Palace Setup
+            </span>
+</div>
+<!-- Thumb 1 -->
+<div class="relative rounded-[8px] overflow-hidden h-[105px] bg-cover bg-center border border-[#E7E3DA]" data-alt="Close up of traditional brass diya oil lamps surrounded by yellow marigold and pink lotus blooms on an Indian wedding welcoming aisle." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBfDsgBbYbjUxZ9Ku2i5WZyRVRR2Ye1CIM5q9Xg5GvD5Hx-oV-siKGty4ot-aEuN_LKZiCTVpQ62y7pGhIcmpvz9ZBFN7KXUMm_BgfHfVe5HRaNcZJyyv4OoLC7M2b0zjBY1uYzByWVj_I5VLcwOErrmQR0Z4-Th37j0TX_8YJ3mqmZuD5qFOMMxmgBDwbfuiTZmpZf2ICwZNUjlOJ5KwOXb3eTFd60_eyvFQUcP4E')"></div>
+<!-- Thumb 2 with Overlay -->
+<div class="relative rounded-[8px] overflow-hidden h-[105px] bg-cover bg-center border border-[#E7E3DA]" data-alt="Modern pastel themed mandap with baby breath flowers, peach drapes, and ambient garden festoon lights in a Jubilee Hills outdoor venue." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCcYaY_5yZaRMgR_Btas8aXZawErOQX8mSDJ27cs2akSw50JkqcC7DoO5-J2jvcCwEiCPJ6Z4bEY7P4cSGY-dpgzilSpi9qKoNq7SeHny1ONcXui1Q-8raV2dhiquUGFpl8zD9Q-yrfBT4UQNFFfOkW4p2AJJKTQ1X7gZlNI1Qcb_du9o3v4wAAqD_Xo7OqZbbRGlmjLb0pXvu_moF9zxJsLmGs74C3iE-6yMVO2SU')">
+<div class="absolute inset-0 bg-[#173D32]/70 flex items-center justify-center text-white cursor-pointer hover:bg-[#173D32]/80 transition-colors">
+<span class="text-xs font-bold">+14 Photos</span>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between text-xs text-[#777D77] pt-2 border-t border-[#E7E3DA]">
+<span>Tags: Traditional Telugu · Royal Gold · Temple Floral</span>
+<span>Updated 2 days ago</span>
+</div>
+</div>
+</div>
+<!-- Pricing Packages & Customer Enquiry Summary Card -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<!-- Pricing Tier Showcase -->
+<div class="lg:col-span-7 bg-white rounded-[10px] border border-[#E7E3DA] p-6 shadow-sm space-y-4">
+<div class="flex items-center justify-between">
+<h4 class="font-h4 text-h4 text-[#292D2A]">Curated Package Tiers</h4>
+<span class="text-xs text-[#777D77]">Transparent Rate Matrix</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<!-- Tier 1 -->
+<div class="p-4 rounded-[8px] border border-[#E7E3DA] bg-[#FDFCF9] space-y-3">
+<div class="flex items-center justify-between">
+<span class="text-xs font-semibold text-[#777D77] uppercase">Silver Standard</span>
+<span class="px-2 py-0.5 rounded bg-[#F7F4ED] text-[10px] font-bold text-[#173D32]">Basic</span>
+</div>
+<div>
+<p class="font-h4 text-h4 text-[#292D2A]">Standard Floral Mandap</p>
+<p class="text-lg font-bold text-[#173D32] mt-0.5">₹65,000</p>
+</div>
+<ul class="space-y-1.5 text-xs text-[#292D2A] border-t border-[#E7E3DA] pt-3">
+<li class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px] text-[#27845B]">check_circle</span>
+<span>Fresh Marigold &amp; Tuberose setup</span>
+</li>
+<li class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px] text-[#27845B]">check_circle</span>
+<span>12ft Entrance Archway</span>
+</li>
+<li class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px] text-[#27845B]">check_circle</span>
+<span>Basic Warm Spotlighting</span>
+</li>
+</ul>
+</div>
+<!-- Tier 2 (Highlighted) -->
+<div class="p-4 rounded-[8px] border-2 border-[#173D32] bg-[#F7F4ED]/40 space-y-3 relative shadow-sm">
+<span class="absolute -top-2.5 right-3 px-2 py-0.5 rounded-full bg-[#173D32] text-white text-[9px] font-bold tracking-wider uppercase">
+              Most Popular
+            </span>
+<div class="flex items-center justify-between">
+<span class="text-xs font-semibold text-[#B99A62] uppercase">Royal Heritage</span>
+<span class="px-2 py-0.5 rounded bg-[#B99A62]/20 text-[10px] font-bold text-[#745a29]">Premium</span>
+</div>
+<div>
+<p class="font-h4 text-h4 text-[#292D2A]">Royal Gold Heritage Mandap</p>
+<p class="text-lg font-bold text-[#173D32] mt-0.5">₹1,40,000</p>
+</div>
+<ul class="space-y-1.5 text-xs text-[#292D2A] border-t border-[#E7E3DA] pt-3">
+<li class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px] text-[#27845B]">check_circle</span>
+<span>Imported Orchids, Roses &amp; Carnations</span>
+</li>
+<li class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px] text-[#27845B]">check_circle</span>
+<span>Carved Temple Pillars &amp; Brass Deepams</span>
+</li>
+<li class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px] text-[#27845B]">check_circle</span>
+<span>Bridal Pathway with Lotus Urli decor</span>
+</li>
+<li class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px] text-[#27845B]">check_circle</span>
+<span>Custom LED Wash &amp; Atmospheric Fog</span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Customer Enquiry Summary & Details Card -->
+<div class="lg:col-span-5 bg-white rounded-[10px] border border-[#E7E3DA] p-6 shadow-sm space-y-4">
+<div class="flex items-center justify-between border-b border-[#E7E3DA] pb-3">
+<div>
+<span class="text-[10px] font-bold text-[#D69A36] bg-[#D69A36]/15 px-2 py-0.5 rounded uppercase">Verified Lead</span>
+<h4 class="font-h4 text-h4 text-[#292D2A] mt-1">Customer Enquiry Summary</h4>
+</div>
+<span class="text-xs font-mono text-[#777D77]">#ENQ-9914</span>
+</div>
+<div class="space-y-3 text-xs">
+<div class="flex justify-between py-1 border-b border-[#E7E3DA]/60">
+<span class="text-[#777D77]">Organizer Name</span>
+<span class="font-semibold text-[#292D2A]">Ananya Sharma</span>
+</div>
+<div class="flex justify-between py-1 border-b border-[#E7E3DA]/60">
+<span class="text-[#777D77]">Occasion</span>
+<span class="font-semibold text-[#173D32]">Telugu Wedding &amp; Reception</span>
+</div>
+<div class="flex justify-between py-1 border-b border-[#E7E3DA]/60">
+<span class="text-[#777D77]">Target Date</span>
+<span class="font-semibold text-[#292D2A]">24 Dec 2026 (Evening Muhurtham)</span>
+</div>
+<div class="flex justify-between py-1 border-b border-[#E7E3DA]/60">
+<span class="text-[#777D77]">Guest Attendance</span>
+<span class="font-semibold text-[#292D2A]">600 Guests</span>
+</div>
+<div class="flex justify-between py-1 border-b border-[#E7E3DA]/60">
+<span class="text-[#777D77]">Selected Venue</span>
+<span class="font-semibold text-[#292D2A]">N Convention, Madhapur</span>
+</div>
+<div class="flex justify-between py-1 border-b border-[#E7E3DA]/60">
+<span class="text-[#777D77]">Budget Allocation</span>
+<span class="font-bold text-[#173D32]">₹2,50,000 – ₹4,00,000</span>
+</div>
+</div>
+<!-- WhatsApp Escalation CTA -->
+<button class="w-full h-[42px] rounded-[6px] bg-[#25D366] hover:bg-[#1EBE5D] text-white text-xs font-semibold shadow-sm transition-colors flex items-center justify-center gap-2 mt-2">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+<span>Contact Ananya via Direct WhatsApp</span>
+</button>
+</div>
+</div>
+</section>
+</div></main>
+<footer class="mt-12 py-8 border-t border-[#E7E3DA] bg-white text-center text-xs text-[#777D77]">
+    AyojanSetu Design System · Reusable Component &amp; Token Spec · Hyderabad, India
+  </footer>
+</body></html>

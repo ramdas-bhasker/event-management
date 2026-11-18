@@ -1,0 +1,360 @@
+/**
+ * AyojanSetu – Master UI System
+ * Root Design Tokens & Base Typography Spec (v1.0)
+ * Extracted from "AyojanSetu – Design Tokens & Reusable Component Library"
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,400;1,600&display=swap');
+
+:root {
+  /* ==========================================
+     1. BRAND & SEMANTIC COLOR TOKENS (12 Core)
+     ========================================== */
+  --brand-green: #173D32;
+  --brand-green-hover: #245746;
+  --brand-green-light: rgba(23, 61, 50, 0.06);
+  --brand-green-ring: rgba(23, 61, 50, 0.14);
+
+  --brand-ivory: #F7F4ED;
+  --brand-ivory-hover: #EAE5D9;
+  --brand-ivory-subtle: #FDFCF9;
+
+  --brand-gold: #B99A62;
+  --brand-gold-light: rgba(185, 154, 98, 0.15);
+  --brand-gold-border: rgba(185, 154, 98, 0.35);
+  --brand-gold-dark: #745A29;
+
+  --brand-white: #FFFFFF;
+
+  --text-primary: #292D2A;
+  --text-secondary: #777D77;
+  --text-muted: rgba(119, 125, 119, 0.65);
+  --text-inverse: #FFFFFF;
+
+  --border-default: #E7E3DA;
+  --border-focus: #173D32;
+
+  /* Semantic Status Tokens */
+  --state-success: #27845B;
+  --state-success-bg: rgba(39, 132, 91, 0.12);
+  --state-success-border: rgba(39, 132, 91, 0.25);
+
+  --state-warning: #D69A36;
+  --state-warning-bg: rgba(214, 154, 54, 0.15);
+  --state-warning-text: #9C6A15;
+
+  --state-error: #C64D48;
+  --state-error-hover: #B0403B;
+  --state-error-bg: rgba(198, 77, 72, 0.10);
+  --state-error-ring: rgba(198, 77, 72, 0.14);
+
+  --state-info: #4778A8;
+  --state-info-bg: rgba(71, 120, 168, 0.12);
+
+  /* Direct Contact / Marketplace Channel Tokens */
+  --whatsapp-green: #25D366;
+  --whatsapp-green-hover: #20BA5A;
+  --whatsapp-green-tint: rgba(37, 211, 102, 0.10);
+  --whatsapp-green-border: rgba(37, 211, 102, 0.30);
+
+  /* ==========================================
+     2. TYPOGRAPHY HIERARCHY TOKENS (9 Scales)
+     ========================================== */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* Scale 1: Display Heading (36px / 44px · Semibold 600) */
+  --fs-display: 2.25rem;
+  /* 36px */
+  --lh-display: 2.75rem;
+  /* 44px */
+  --ls-display: -0.02em;
+
+  /* Scale 2: H1 Heading (32px / 40px · Semibold 600) */
+  --fs-h1: 2rem;
+  /* 32px */
+  --lh-h1: 2.5rem;
+  /* 40px */
+  --ls-h1: -0.02em;
+
+  /* Scale 3: H2 Heading (24px / 32px · Semibold 600) */
+  --fs-h2: 1.5rem;
+  /* 24px */
+  --lh-h2: 2rem;
+  /* 32px */
+  --ls-h2: -0.015em;
+
+  /* Scale 4: H3 Heading (20px / 28px · Semibold 600) */
+  --fs-h3: 1.25rem;
+  /* 20px */
+  --lh-h3: 1.75rem;
+  /* 28px */
+  --ls-h3: -0.01em;
+
+  /* Scale 5: H4 Heading (18px / 26px · Medium 500) */
+  --fs-h4: 1.125rem;
+  /* 18px */
+  --lh-h4: 1.625rem;
+  /* 26px */
+  --ls-h4: -0.005em;
+
+  /* Scale 6: Body Large (16px / 24px · Regular 400) */
+  --fs-body-lg: 1rem;
+  /* 16px */
+  --lh-body-lg: 1.5rem;
+  /* 24px */
+
+  /* Scale 7: Body Default (14px / 20px · Regular 400) */
+  --fs-body: 0.875rem;
+  /* 14px */
+  --lh-body: 1.25rem;
+  /* 20px */
+
+  /* Scale 8: Form Labels (13px / 18px · Medium 500) */
+  --fs-label: 0.8125rem;
+  /* 13px */
+  --lh-label: 1.125rem;
+  /* 18px */
+  --ls-label: 0.005em;
+
+  /* Scale 9: Small Text (12px / 16px · Regular 400) */
+  --fs-small: 0.75rem;
+  /* 12px */
+  --lh-small: 1rem;
+  /* 16px */
+  --ls-small: 0.01em;
+
+  /* Micro Badge Text (11px / 14px · Semibold 600) */
+  --fs-badge: 0.6875rem;
+  /* 11px */
+  --lh-badge: 0.875rem;
+  /* 14px */
+  --ls-badge: 0.03em;
+
+  /* ==========================================
+     3. 8PX GRID SPACING & LAYOUT TOKENS
+     ========================================== */
+  --space-1: 0.25rem;
+  /* 4px  - 0.5x */
+  --space-2: 0.5rem;
+  /* 8px  - 1x base unit */
+  --space-3: 0.75rem;
+  /* 12px - 1.5x */
+  --space-4: 1rem;
+  /* 16px - 2x */
+  --space-5: 1.25rem;
+  /* 20px - 2.5x */
+  --space-6: 1.5rem;
+  /* 24px - 3x */
+  --space-8: 2rem;
+  /* 32px - 4x */
+  --space-10: 2.5rem;
+  /* 40px - 5x */
+  --space-12: 3rem;
+  /* 48px - 6x */
+  --space-16: 4rem;
+  /* 64px - 8x */
+  --space-20: 5rem;
+  /* 80px - 10x */
+
+  --container-max: 1360px;
+  --container-wide: 1440px;
+  --header-height: 76px;
+
+  /* ==========================================
+     4. BORDER RADIUS, SHADOW & MOTION TOKENS
+     ========================================== */
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  /* Badges, pills, small chips */
+  --radius-md: 8px;
+  /* Icon buttons, small controls */
+  --radius-lg: 10px;
+  /* Standard buttons & form inputs */
+  --radius-xl: 12px;
+  /* Color swatches, large buttons */
+  --radius-2xl: 14px;
+  /* Cards, containers, panels */
+  --radius-3xl: 20px;
+  /* Hero banners & CTA blocks */
+  --radius-full: 9999px;
+
+  --shadow-xs: 0 1px 3px rgba(23, 61, 50, 0.06);
+  --shadow-sm: 0 2px 8px -2px rgba(23, 61, 50, 0.08);
+  --shadow-md: 0 8px 24px -4px rgba(23, 61, 50, 0.10);
+  --shadow-lg: 0 16px 36px -6px rgba(23, 61, 50, 0.14);
+  --shadow-header: 0 1px 10px rgba(23, 61, 50, 0.06);
+
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 220ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ==========================================
+   BASE RESET & DOCUMENT DEFAULTS
+   ========================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--brand-ivory);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+::selection {
+  background-color: var(--brand-gold-light);
+  color: var(--brand-green);
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--brand-ivory);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-default);
+  border-radius: var(--radius-xs);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--brand-gold);
+}
+
+/* ==========================================
+   TYPOGRAPHY SCALE UTILITY CLASSES
+   ========================================== */
+.text-display {
+  font-size: var(--fs-display);
+  line-height: var(--lh-display);
+  letter-spacing: var(--ls-display);
+  font-weight: 600;
+}
+
+.text-h1 {
+  font-size: var(--fs-h1);
+  line-height: var(--lh-h1);
+  letter-spacing: var(--ls-h1);
+  font-weight: 600;
+}
+
+.text-h2 {
+  font-size: var(--fs-h2);
+  line-height: var(--lh-h2);
+  letter-spacing: var(--ls-h2);
+  font-weight: 600;
+}
+
+.text-h3 {
+  font-size: var(--fs-h3);
+  line-height: var(--lh-h3);
+  letter-spacing: var(--ls-h3);
+  font-weight: 600;
+}
+
+.text-h4 {
+  font-size: var(--fs-h4);
+  line-height: var(--lh-h4);
+  letter-spacing: var(--ls-h4);
+  font-weight: 500;
+}
+
+.text-body-lg {
+  font-size: var(--fs-body-lg);
+  line-height: var(--lh-body-lg);
+  font-weight: 400;
+}
+
+.text-body {
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  font-weight: 400;
+}
+
+.text-label {
+  font-size: var(--fs-label);
+  line-height: var(--lh-label);
+  letter-spacing: var(--ls-label);
+  font-weight: 500;
+}
+
+.text-small {
+  font-size: var(--fs-small);
+  line-height: var(--lh-small);
+  letter-spacing: var(--ls-small);
+  font-weight: 400;
+}
+
+.text-badge {
+  font-size: var(--fs-badge);
+  line-height: var(--lh-badge);
+  letter-spacing: var(--ls-badge);
+  font-weight: 600;
+}
+
+/* Layout Containers */
+.ay-container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--space-6);
+  padding-right: var(--space-6);
+}
+
+@media (max-width: 640px) {
+  :root {
+    --fs-display: 1.875rem;
+    /* 30px on mobile */
+    --lh-display: 2.375rem;
+    --fs-h1: 1.625rem;
+    /* 26px on mobile */
+    --lh-h1: 2.125rem;
+  }
+
+  .ay-container {
+    padding-left: var(--space-4);
+    padding-right: var(--space-4);
+  }
+}

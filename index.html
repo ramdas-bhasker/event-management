@@ -1,0 +1,1468 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AyojanSetu – Customer Homepage | Every Event. Every Occasion. One Platform.</title>
+
+  <!-- Google Fonts & Material Symbols -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    rel="stylesheet" />
+
+  <!-- Modular Design System Stylesheets -->
+  <link rel="stylesheet" href="./assets/css/root.css" />
+  <link rel="stylesheet" href="./assets/css/components.css" />
+  <link rel="stylesheet" href="./assets/css/pages/customer-homepage.css" />
+</head>
+
+<body>
+
+  <!-- ==========================================
+       TOP HERITAGE NOTICE STRIP
+       ========================================== -->
+  <div class="heritage-strip">
+    <div class="ay-container heritage-strip-inner">
+      <div class="heritage-strip-left">
+        <span class="badge badge-gold"
+          style="background: rgba(185,154,98,0.22); color: #FFDEA6; border-color: rgba(185,154,98,0.4);">
+          <span class="material-symbols-outlined" style="font-size: 14px;">verified</span>
+          Verified Nexus
+        </span>
+        <p class="text-small" style="color: rgba(255,255,255,0.88);">
+          Serving Hyderabad’s elite celebrations across <strong style="color: #FFFFFF; font-weight: 600;">Banjara Hills,
+            Jubilee Hills, Gachibowli &amp; Madhapur</strong>
+        </p>
+      </div>
+      <div class="heritage-strip-right">
+        <div
+          style="display: inline-flex; align-items: center; gap: 6px; font-size: var(--fs-badge); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: #FFDEA6;">
+          <span class="pulse-dot"></span>
+          <span>42+ Autumn Muhoorthams Live In Booking</span>
+        </div>
+        <a href="#footer-contact" class="text-small"
+          style="color: #FFFFFF; font-weight: 500; display: inline-flex; align-items: center; gap: 4px;">
+          <span>Concierge Helpline</span>
+          <span class="material-symbols-outlined" style="font-size: 14px;">arrow_outward</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       STICKY NAVIGATION HEADER
+       ========================================== -->
+  <header class="site-header">
+    <div class="ay-container site-header-inner">
+      <!-- Brand Identity & Location Pill -->
+      <div style="display: flex; align-items: center; gap: var(--space-3);">
+        <a href="index.html" class="brand-logo">
+          <div class="brand-mark">अ</div>
+          <div class="brand-text-group">
+            <span class="brand-title">AyojanSetu</span>
+            <span class="brand-tagline">Every Event. Every Occasion. One Platform.</span>
+          </div>
+        </a>
+        <div class="location-pill">
+          <span class="material-symbols-outlined">location_on</span>
+          <span>Hyderabad</span>
+        </div>
+      </div>
+
+      <!-- Primary Navigation with Mega-Dropdowns -->
+      <nav class="site-nav" aria-label="Primary Navigation">
+        <a href="#hero" class="site-nav-link is-active">Home</a>
+
+        <!-- Mega-Dropdown 1: Explore Vendors (WeddingWire 3-Col Icon + Text Layout) -->
+        <div class="nav-dropdown" data-nav-dropdown>
+          <button type="button" class="nav-dropdown-trigger" aria-expanded="false">
+            <span>Explore Vendors</span>
+            <span class="material-symbols-outlined nav-dropdown-chevron">expand_more</span>
+          </button>
+          <div class="nav-mega-panel">
+            <h3 class="nav-mega-title">Start hiring your vendors</h3>
+            <div class="nav-mega-grid">
+              <a href="#featured-vendors" class="nav-mega-link" data-select-service="photography">
+                <span class="material-symbols-outlined">photo_camera</span>
+                <span>Wedding Photographers</span>
+              </a>
+              <a href="#featured-vendors" class="nav-mega-link" data-select-service="photography">
+                <span class="material-symbols-outlined">videocam</span>
+                <span>Wedding Videography</span>
+              </a>
+              <a href="#featured-vendors" class="nav-mega-link" data-select-service="dj">
+                <span class="material-symbols-outlined">music_note</span>
+                <span>Wedding Music &amp; DJ</span>
+              </a>
+              <a href="#featured-vendors" class="nav-mega-link" data-select-service="catering">
+                <span class="material-symbols-outlined">room_service</span>
+                <span>Caterers</span>
+              </a>
+              <a href="#featured-vendors" class="nav-mega-link" data-select-service="venue">
+                <span class="material-symbols-outlined">directions_bus</span>
+                <span>Wedding Transportation</span>
+              </a>
+              <a href="#featured-vendors" class="nav-mega-link" data-select-service="decorators">
+                <span class="material-symbols-outlined">drafts</span>
+                <span>Wedding Invitations</span>
+              </a>
+              <a href="#featured-vendors" class="nav-mega-link" data-select-service="decorators">
+                <span class="material-symbols-outlined">redeem</span>
+                <span>Wedding Gifts</span>
+              </a>
+              <a href="#featured-vendors" class="nav-mega-link" data-select-service="decorators">
+                <span class="material-symbols-outlined">local_florist</span>
+                <span>Florists &amp; Decorators</span>
+              </a>
+              <a href="#featured-vendors" class="nav-mega-link" data-select-service="mandap">
+                <span class="material-symbols-outlined">menu_book</span>
+                <span>Wedding Planners</span>
+              </a>
+              <a href="#featured-vendors" class="nav-mega-link" data-select-service="makeup">
+                <span class="material-symbols-outlined">face_retouching_natural</span>
+                <span>Bridal Makeup Artists</span>
+              </a>
+              <a href="#featured-vendors" class="nav-mega-link" data-select-service="mandap">
+                <span class="material-symbols-outlined">temple_hindu</span>
+                <span>Mandap &amp; Stage Artisans</span>
+              </a>
+              <a href="#featured-vendors" class="nav-mega-link" data-select-service="venue">
+                <span class="material-symbols-outlined">apartment</span>
+                <span>Banquets &amp; Heritage Lawns</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mega-Dropdown 2: Event Categories (WeddingWire 3-Col Icon + Text Layout) -->
+        <div class="nav-dropdown" data-nav-dropdown>
+          <button type="button" class="nav-dropdown-trigger" aria-expanded="false">
+            <span>Event Categories</span>
+            <span class="material-symbols-outlined nav-dropdown-chevron">expand_more</span>
+          </button>
+          <div class="nav-mega-panel">
+            <h3 class="nav-mega-title">Explore celebrations &amp; occasions</h3>
+            <div class="nav-mega-grid">
+              <a href="#event-categories" class="nav-mega-link">
+                <span class="material-symbols-outlined">favorite</span>
+                <span>Weddings &amp; Vivaha</span>
+              </a>
+              <a href="#event-categories" class="nav-mega-link">
+                <span class="material-symbols-outlined">cake</span>
+                <span>Birthdays &amp; Milestones</span>
+              </a>
+              <a href="#event-categories" class="nav-mega-link">
+                <span class="material-symbols-outlined">diamond</span>
+                <span>Engagements &amp; Nishchitartham</span>
+              </a>
+              <a href="#event-categories" class="nav-mega-link">
+                <span class="material-symbols-outlined">business_center</span>
+                <span>Corporate Galas &amp; Summits</span>
+              </a>
+              <a href="#event-categories" class="nav-mega-link">
+                <span class="material-symbols-outlined">auto_awesome</span>
+                <span>Half Saree &amp; Cradle Functions</span>
+              </a>
+              <a href="#event-categories" class="nav-mega-link">
+                <span class="material-symbols-outlined">home_iot_device</span>
+                <span>Housewarming / Griha Pravesh</span>
+              </a>
+              <a href="#event-categories" class="nav-mega-link">
+                <span class="material-symbols-outlined">wine_bar</span>
+                <span>Anniversaries &amp; Jubilees</span>
+              </a>
+              <a href="#event-categories" class="nav-mega-link">
+                <span class="material-symbols-outlined">nightlife</span>
+                <span>Sangeet &amp; Cocktail Soirees</span>
+              </a>
+              <a href="#event-categories" class="nav-mega-link">
+                <span class="material-symbols-outlined">self_improvement</span>
+                <span>Poojas &amp; Traditional Homams</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <a href="#how-it-works" class="site-nav-link">How It Works</a>
+      </nav>
+
+      <!-- Header CTAs -->
+      <div class="header-actions">
+        <a href="#login" class="btn btn-sm btn-outline" data-open-enquiry data-vendor="Customer Account Sign-In">
+          Login / Sign Up
+        </a>
+        <a href="#vendor-cta" class="btn btn-md btn-primary">
+          <span>List Your Business</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================
+       MAIN CONTENT
+       ========================================== -->
+  <main>
+
+    <!-- ==========================================
+         SECTION 1: HERO SECTION & SEARCH WIDGET
+         ========================================== -->
+    <section id="hero" class="hero-section">
+      <div class="ay-container">
+        <div class="hero-grid">
+
+          <!-- Left Column: Copy & Multi-Filter Search Widget -->
+          <div>
+            <div class="hero-pill">
+              <span class="material-symbols-outlined"
+                style="font-size: 16px; color: var(--brand-gold-dark);">celebration</span>
+              <span class="text-badge" style="color: var(--brand-green); text-transform: uppercase;">Hyderabad’s
+                Dedicated Event Nexus</span>
+            </div>
+
+            <h1 class="hero-title">
+              Make Every Occasion <br />
+              <span class="hero-title-accent">Unforgettable.</span>
+            </h1>
+
+            <p class="hero-subtitle">
+              Discover verified event professionals for grand weddings, intimate family poojas, milestone birthdays, and
+              prestigious corporate summits across Hyderabad.
+            </p>
+
+            <!-- Search Widget Component -->
+            <div class="search-widget-card">
+              <form id="heroSearchForm">
+                <div class="search-widget-grid">
+                  <!-- Field 1: Custom Service Type Dropdown (Icon + Name Only) -->
+                  <div class="ay-dropdown" id="serviceDropdown" data-dropdown="service">
+                    <input type="hidden" name="service" id="heroServiceInput" value="decorators" />
+                    <button type="button" class="ay-dropdown-trigger" aria-haspopup="listbox" aria-expanded="false">
+                      <div class="ay-dropdown-trigger-left">
+                        <div class="ay-dropdown-icon-box">
+                          <span class="material-symbols-outlined" id="serviceTriggerIcon" style="font-size: 19px;">local_florist</span>
+                        </div>
+                        <div class="ay-dropdown-text">
+                          <span class="ay-dropdown-label">Service Type</span>
+                          <span class="ay-dropdown-value" id="serviceTriggerValue">Wedding Decorators</span>
+                        </div>
+                      </div>
+                      <span class="material-symbols-outlined ay-dropdown-chevron">expand_more</span>
+                    </button>
+
+                    <!-- Clean Icon + Name Flyout Menu -->
+                    <div class="ay-dropdown-menu" role="listbox" aria-label="Select Service Type">
+                      <div class="ay-dropdown-list">
+                        <div class="ay-dropdown-item is-selected" role="option" data-value="decorators" data-label="Wedding Decorators" data-icon="local_florist">
+                          <span class="material-symbols-outlined ay-dropdown-item-icon">local_florist</span>
+                          <span class="ay-dropdown-item-title">Wedding Decorators</span>
+                        </div>
+
+                        <div class="ay-dropdown-item" role="option" data-value="photography" data-label="Wedding Photographers" data-icon="photo_camera">
+                          <span class="material-symbols-outlined ay-dropdown-item-icon">photo_camera</span>
+                          <span class="ay-dropdown-item-title">Wedding Photographers</span>
+                        </div>
+
+                        <div class="ay-dropdown-item" role="option" data-value="videography" data-label="Wedding Videography" data-icon="videocam">
+                          <span class="material-symbols-outlined ay-dropdown-item-icon">videocam</span>
+                          <span class="ay-dropdown-item-title">Wedding Videography</span>
+                        </div>
+
+                        <div class="ay-dropdown-item" role="option" data-value="catering" data-label="Caterers" data-icon="room_service">
+                          <span class="material-symbols-outlined ay-dropdown-item-icon">room_service</span>
+                          <span class="ay-dropdown-item-title">Caterers</span>
+                        </div>
+
+                        <div class="ay-dropdown-item" role="option" data-value="mandap" data-label="Mandap &amp; Stages" data-icon="temple_hindu">
+                          <span class="material-symbols-outlined ay-dropdown-item-icon">temple_hindu</span>
+                          <span class="ay-dropdown-item-title">Mandap &amp; Stages</span>
+                        </div>
+
+                        <div class="ay-dropdown-item" role="option" data-value="dj" data-label="Wedding Music &amp; DJ" data-icon="music_note">
+                          <span class="material-symbols-outlined ay-dropdown-item-icon">music_note</span>
+                          <span class="ay-dropdown-item-title">Wedding Music &amp; DJ</span>
+                        </div>
+
+                        <div class="ay-dropdown-item" role="option" data-value="makeup" data-label="Bridal Makeup" data-icon="face_retouching_natural">
+                          <span class="material-symbols-outlined ay-dropdown-item-icon">face_retouching_natural</span>
+                          <span class="ay-dropdown-item-title">Bridal Makeup</span>
+                        </div>
+
+                        <div class="ay-dropdown-item" role="option" data-value="planners" data-label="Wedding Planners" data-icon="menu_book">
+                          <span class="material-symbols-outlined ay-dropdown-item-icon">menu_book</span>
+                          <span class="ay-dropdown-item-title">Wedding Planners</span>
+                        </div>
+
+                        <div class="ay-dropdown-item" role="option" data-value="venue" data-label="Heritage Banquets" data-icon="apartment">
+                          <span class="material-symbols-outlined ay-dropdown-item-icon">apartment</span>
+                          <span class="ay-dropdown-item-title">Heritage Banquets</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Field 2: Custom Micro-Market Dropdown (Icon + Name Only) -->
+                  <div class="ay-dropdown" id="locationDropdown" data-dropdown="location">
+                    <input type="hidden" name="location" id="heroLocationInput" value="all" />
+                    <button type="button" class="ay-dropdown-trigger" aria-haspopup="listbox" aria-expanded="false">
+                      <div class="ay-dropdown-trigger-left">
+                        <div class="ay-dropdown-icon-box is-gold">
+                          <span class="material-symbols-outlined" id="locationTriggerIcon" style="font-size: 19px;">location_on</span>
+                        </div>
+                        <div class="ay-dropdown-text">
+                          <span class="ay-dropdown-label">Micro-Market</span>
+                          <span class="ay-dropdown-value" id="locationTriggerValue">All Hyderabad</span>
+                        </div>
+                      </div>
+                      <span class="material-symbols-outlined ay-dropdown-chevron">expand_more</span>
+                    </button>
+
+                    <!-- Clean Icon + Name Flyout Menu -->
+                    <div class="ay-dropdown-menu" role="listbox" aria-label="Select Micro-Market">
+                      <div class="ay-dropdown-list">
+                        <div class="ay-dropdown-item is-selected" role="option" data-value="all" data-label="All Hyderabad" data-icon="public">
+                          <span class="material-symbols-outlined ay-dropdown-item-icon">public</span>
+                          <span class="ay-dropdown-item-title">All Hyderabad</span>
+                        </div>
+
+                        <div class="ay-dropdown-item" role="option" data-value="banjara" data-label="Banjara Hills" data-icon="location_city">
+                          <span class="material-symbols-outlined ay-dropdown-item-icon">location_city</span>
+                          <span class="ay-dropdown-item-title">Banjara Hills</span>
+                        </div>
+
+                        <div class="ay-dropdown-item" role="option" data-value="jubilee" data-label="Jubilee Hills" data-icon="diamond">
+                          <span class="material-symbols-outlined ay-dropdown-item-icon">diamond</span>
+                          <span class="ay-dropdown-item-title">Jubilee Hills</span>
+                        </div>
+
+                        <div class="ay-dropdown-item" role="option" data-value="gachibowli" data-label="Gachibowli" data-icon="domain">
+                          <span class="material-symbols-outlined ay-dropdown-item-icon">domain</span>
+                          <span class="ay-dropdown-item-title">Gachibowli</span>
+                        </div>
+
+                        <div class="ay-dropdown-item" role="option" data-value="madhapur" data-label="Madhapur &amp; Hitec" data-icon="corporate_fare">
+                          <span class="material-symbols-outlined ay-dropdown-item-icon">corporate_fare</span>
+                          <span class="ay-dropdown-item-title">Madhapur &amp; Hitec</span>
+                        </div>
+
+                        <div class="ay-dropdown-item" role="option" data-value="secunderabad" data-label="Secunderabad" data-icon="account_balance">
+                          <span class="material-symbols-outlined ay-dropdown-item-icon">account_balance</span>
+                          <span class="ay-dropdown-item-title">Secunderabad</span>
+                        </div>
+
+                        <div class="ay-dropdown-item" role="option" data-value="kondapur" data-label="Kondapur" data-icon="pin_drop">
+                          <span class="material-symbols-outlined ay-dropdown-item-icon">pin_drop</span>
+                          <span class="ay-dropdown-item-title">Kondapur</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Field 3: Custom Occasion Date Calendar Dropdown -->
+                  <div class="ay-dropdown" id="dateDropdown" data-dropdown="date">
+                    <input type="hidden" name="date" id="heroDateInput" value="2026-11-20" />
+                    <button type="button" class="ay-dropdown-trigger" aria-haspopup="dialog" aria-expanded="false">
+                      <div class="ay-dropdown-trigger-left">
+                        <div class="ay-dropdown-icon-box">
+                          <span class="material-symbols-outlined" style="font-size: 19px;">calendar_month</span>
+                        </div>
+                        <div class="ay-dropdown-text">
+                          <span class="ay-dropdown-label">Occasion Date</span>
+                          <span class="ay-dropdown-value" id="dateTriggerValue">20 Nov 2026 · Muhurtham</span>
+                        </div>
+                      </div>
+                      <span class="material-symbols-outlined ay-dropdown-chevron">expand_more</span>
+                    </button>
+
+                    <!-- Custom Calendar Popover -->
+                    <div class="ay-dropdown-menu ay-calendar-menu align-right" role="dialog" aria-label="Choose Occasion Date">
+                      <div class="ay-dropdown-header">
+                        <span class="ay-dropdown-header-title">Select Celebration Date</span>
+                        <span class="badge badge-gold" style="padding: 1px 6px; font-size: 10px;">Panchangam Synced</span>
+                      </div>
+
+                      <!-- Quick Preset Chips -->
+                      <div class="ay-calendar-presets">
+                        <button type="button" class="ay-calendar-preset-btn is-active" data-date-preset="2026-11-20" data-date-label="20 Nov 2026 · Muhurtham">20 Nov · Muhurtham</button>
+                        <button type="button" class="ay-calendar-preset-btn" data-date-preset="2026-11-28" data-date-label="28 Nov 2026 · Muhurtham">28 Nov · Weekend</button>
+                        <button type="button" class="ay-calendar-preset-btn" data-date-preset="2026-12-06" data-date-label="06 Dec 2026 · Muhurtham">06 Dec · Vivaha</button>
+                      </div>
+
+                      <!-- Calendar Month Nav -->
+                      <div class="ay-calendar-nav">
+                        <button type="button" class="ay-calendar-nav-btn" id="calPrevMonth" aria-label="Previous Month">
+                          <span class="material-symbols-outlined" style="font-size: 16px;">chevron_left</span>
+                        </button>
+                        <span class="ay-calendar-month-label" id="calMonthYearLabel">November 2026</span>
+                        <button type="button" class="ay-calendar-nav-btn" id="calNextMonth" aria-label="Next Month">
+                          <span class="material-symbols-outlined" style="font-size: 16px;">chevron_right</span>
+                        </button>
+                      </div>
+
+                      <!-- Calendar Grid -->
+                      <div class="ay-calendar-grid" id="calDaysGrid">
+                        <!-- Populated dynamically by main.js -->
+                      </div>
+
+                      <div class="ay-calendar-footer">
+                        <span style="display: inline-flex; align-items: center; gap: 6px;">
+                          <span style="width: 6px; height: 6px; border-radius: 50%; background-color: var(--brand-gold);"></span>
+                          <span>Auspicious Muhurtham Date</span>
+                        </span>
+                        <button type="button" id="calFlexibleBtn" style="border: none; background: transparent; color: var(--brand-green); font-weight: 600; cursor: pointer;">
+                          Flexible Dates
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Primary Search CTA Button -->
+                <button type="submit" class="btn btn-lg btn-primary btn-block">
+                  <span class="material-symbols-outlined" style="font-size: 20px;">search</span>
+                  <span>Search 240+ Verified Vendors in Hyderabad</span>
+                </button>
+              </form>
+            </div>
+
+            <!-- Quick Trending Tags -->
+            <div class="trending-tags-row">
+              <span class="text-small" style="color: var(--text-secondary); font-weight: 500;">Trending searches:</span>
+              <a href="#featured-vendors" class="trending-tag" data-trending-service="mandap">Luxury Mandap Decor</a>
+              <a href="#featured-vendors" class="trending-tag" data-trending-service="catering">Biryani Catering</a>
+              <a href="#featured-vendors" class="trending-tag" data-trending-service="photography">Pre-Wedding
+                Shoots</a>
+              <a href="#featured-vendors" class="trending-tag" data-trending-service="venue">Gandipet Farmhouses</a>
+            </div>
+          </div>
+
+          <!-- Right Column: Hero Visual Showcase -->
+          <div>
+            <div class="hero-visual-frame">
+              <img src="assets/images/luxury_wedding_decor.png"
+                alt="Exquisite South Indian wedding reception in Hyderabad featuring fragrant jasmine garlands, cascading marigolds, and warm chandelier illumination" />
+              <div class="hero-visual-overlay"></div>
+
+              <!-- Floating Metric Pill 1 -->
+              <div class="hero-float-top">
+                <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 4px;">
+                  <span class="material-symbols-outlined"
+                    style="font-size: 18px; color: var(--brand-gold-dark);">verified_user</span>
+                  <span class="text-badge" style="color: var(--brand-green); text-transform: uppercase;">100%
+                    Audited</span>
+                </div>
+                <p class="text-small" style="color: var(--text-secondary); line-height: 1.35;">
+                  Physical site visits &amp; GST verification for all Hyderabad partners.
+                </p>
+              </div>
+
+              <!-- Floating Metric Pill 2 -->
+              <div class="hero-float-bottom">
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+                  <div style="display: flex; align-items: center; gap: 8px;">
+                    <span
+                      style="width: 10px; height: 10px; border-radius: 50%; background-color: var(--brand-gold);"></span>
+                    <span class="text-label" style="color: var(--brand-green); font-weight: 600;">Telugu Wedding
+                      Grandeur</span>
+                  </div>
+                  <span class="badge badge-gold">Banjara Hills</span>
+                </div>
+                <div style="display: flex; align-items: center; justify-content: space-between;">
+                  <span class="text-small" style="color: var(--text-secondary);">Avg. Client Satisfaction</span>
+                  <div style="display: flex; align-items: center; gap: 4px;">
+                    <span class="material-symbols-outlined"
+                      style="font-size: 16px; color: var(--brand-gold); font-variation-settings: 'FILL' 1;">star</span>
+                    <span class="text-label" style="font-weight: 700; color: var(--text-primary);">4.92 / 5.0</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 2: EVENT OCCASIONS & CATEGORIES (8-Card Grid)
+         ========================================== -->
+    <section id="event-categories" class="hp-section hp-section-ivory">
+      <div class="ay-container">
+        <div class="section-header-row">
+          <div>
+            <div class="section-eyebrow">
+              <span class="material-symbols-outlined" style="font-size: 16px;">celebration</span>
+              <span>Occasions &amp; Milestones</span>
+            </div>
+            <h2 class="text-h1">Celebrate Every Moment</h2>
+            <p class="text-body-lg" style="color: var(--text-secondary); margin-top: 4px;">
+              Curated vendors for Hyderabad’s most cherished traditions and modern gatherings.
+            </p>
+          </div>
+          <a href="#featured-vendors" class="section-link">
+            <span>Explore All 14 Categories</span>
+            <span class="material-symbols-outlined">arrow_forward</span>
+          </a>
+        </div>
+
+        <!-- 8-Card Occasions Grid -->
+        <div class="categories-grid">
+          <!-- Card 1: Weddings -->
+          <a href="#featured-vendors" class="ay-card ay-card-interactive category-card">
+            <div class="category-card-media">
+              <img
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIcg5uX5Fj1NvUrbI4BbwWLUsmc0E_vx5EGoSqKfAxxI8TSaAVhHGr1kw7Kr3yKUcB8ttIdP5vUJYcmsMuFGpBmkgIImuv7D0hcxIRfbAmmAjDNdw9r9dTaedUauh0QEsGlPkCsyWxcOcCB8DMjF9y7lRPwJ5yl9uoKw17GoKbeXrsl1ms6Cmhr2iaQPRI4TXLZEkRE5QATd0VfKkgF29uoaYylQt7uQ7IoLwehbQ"
+                alt="Traditional Telugu wedding ceremony in Hyderabad under an opulent floral mandap" />
+              <span class="category-count-pill">140+ Vendors</span>
+            </div>
+            <div class="category-card-body">
+              <div>
+                <h3 class="category-card-title">Weddings &amp; Vivaha</h3>
+                <p class="text-small" style="color: var(--text-secondary); margin-top: 6px;">
+                  Grand Telugu setups, Muhurtham mandaps, and evening reception stages.
+                </p>
+              </div>
+              <div class="category-card-footer">
+                <span>Packages from ₹1.5L</span>
+                <span class="material-symbols-outlined" style="font-size: 18px;">chevron_right</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- Card 2: Birthdays -->
+          <a href="#featured-vendors" class="ay-card ay-card-interactive category-card">
+            <div class="category-card-media">
+              <img
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7nmhQd-s-TSeFzH9E_yspmXeZ8r9DURuVX0xJ6xUPeRluxIZTE3IXQo7SWPLWu0JVHIZcZg_LZSGyX0MLLXYnRlQvOVBYwZIKPW0rXDpGC0y0Sh_XzSYNe0d2WYYAvTemYx9EO-N_nIRFRYHc0mzrDuEHOdOV649bfjOiS3Zk9EaSgWVqsPomIc1lga8JA2Ms7aF-Fqb0oPYLh0K_7uIRjAJ75H333jfMOHwglBU"
+                alt="Children birthday celebration setup in Gachibowli with pastel balloon archways" />
+              <span class="category-count-pill">78+ Vendors</span>
+            </div>
+            <div class="category-card-body">
+              <div>
+                <h3 class="category-card-title">Birthdays &amp; Milestones</h3>
+                <p class="text-small" style="color: var(--text-secondary); margin-top: 6px;">
+                  Theme balloon styling, custom patisseries, magic shows, and fun entertainment.
+                </p>
+              </div>
+              <div class="category-card-footer">
+                <span>Packages from ₹22K</span>
+                <span class="material-symbols-outlined" style="font-size: 18px;">chevron_right</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- Card 3: Engagements -->
+          <a href="#featured-vendors" class="ay-card ay-card-interactive category-card">
+            <div class="category-card-media">
+              <img
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnNyJPDNfFuJS4WMWWPbvZh1ll-bbwP3ZD8vUHqkEaiO4al_ZwBh9khsBbiAdpLAmF1ej3cJxStze6igW_H7tnG-81LrEqNy2tOaB_ISIQB0kB67zRXo2jgJret9XTDUKfZYFd8GTRt_Q9cRn_aSMCszxS29FyS-XAF52fudGy29uB9yq72NlYO_cdgzJVHo7Aw2C4FfrRYmJm-rP3zfkV7lVgQqlYUYusqEvsoxg"
+                alt="Modern engagement ring ceremony setting in Jubilee Hills with champagne gold arches" />
+              <span class="category-count-pill">64+ Vendors</span>
+            </div>
+            <div class="category-card-body">
+              <div>
+                <h3 class="category-card-title">Engagements &amp; Nishchitartham</h3>
+                <p class="text-small" style="color: var(--text-secondary); margin-top: 6px;">
+                  Intimate floral arches, ring trays, personalized signages, and stage aesthetics.
+                </p>
+              </div>
+              <div class="category-card-footer">
+                <span>Packages from ₹45K</span>
+                <span class="material-symbols-outlined" style="font-size: 18px;">chevron_right</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- Card 4: Corporate Summits -->
+          <a href="#featured-vendors" class="ay-card ay-card-interactive category-card">
+            <div class="category-card-media">
+              <img
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfZDCfPVJmqBn7LwfGma0wmJBQqEGWvIVmwubvNRIZuw7Mq_2sQIj7zRFw8IWf5Lbe0LWz2EhbMPK9mNtTULj89a5u4-rtfzDjHvGNFsGo55lTStYAQZuErv0sEwpM2pVdo12QqiOQ2rUu58wpbu0seiyJCnaV7FBC7VuD_oo7RqfJA-q-qC2B2d7zh8t6s8XVk5oPidkLx8NzM9fK6p4VR0STjZBBAsvr8rWXbk8"
+                alt="High-tech corporate gala and summit stage in Madhapur" />
+              <span class="category-count-pill">52+ Vendors</span>
+            </div>
+            <div class="category-card-body">
+              <div>
+                <h3 class="category-card-title">Corporate Galas &amp; Summits</h3>
+                <p class="text-small" style="color: var(--text-secondary); margin-top: 6px;">
+                  AV solutions, corporate retreats, awards staging, and Hitec City conferences.
+                </p>
+              </div>
+              <div class="category-card-footer">
+                <span>Direct Day Rates</span>
+                <span class="material-symbols-outlined" style="font-size: 18px;">chevron_right</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- Card 5: Half Saree & Cradle Functions -->
+          <a href="#featured-vendors" class="ay-card ay-card-interactive category-card">
+            <div class="category-card-media">
+              <img
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAm1Qrq_FjWG7liWeMyl3KboGxmFiXVeE7xaEFUkb0wmQd0OZEU8c572XWH-YEGIJob6boVnCSwi_901t3-0fHQDB-p4mpRgqHGyo_r09n_UCIIhPaIvCz9fOf9g_DVeg4la7oIoN-snAGwurCXh4rhXKrTmXQwH9cu63NYxRQGakB8oY-AJnlFVfz7yTHhqp8VrcUAD5OvfROnmstAhFLq3axr3ypX4ZF--4Lwhrk"
+                alt="Traditional South Indian Half Saree ceremony decor in Secunderabad" />
+              <span class="category-count-pill">89+ Vendors</span>
+            </div>
+            <div class="category-card-body">
+              <div>
+                <h3 class="category-card-title">Half Saree &amp; Cradle Functions</h3>
+                <p class="text-small" style="color: var(--text-secondary); margin-top: 6px;">
+                  Langa Voni, Dhoti functions, Cradle and Seemantham traditional ceremonies.
+                </p>
+              </div>
+              <div class="category-card-footer">
+                <span>Packages from ₹30K</span>
+                <span class="material-symbols-outlined" style="font-size: 18px;">chevron_right</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- Card 6: Housewarming / Griha Pravesh -->
+          <a href="#featured-vendors" class="ay-card ay-card-interactive category-card">
+            <div class="category-card-media">
+              <img
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJFfioaw2moNdshPzjx5XaPWBj0Yt7JnJdf2S0TRYZnZ_H4wz8ku2SkTUskjg8hBY8aZhi4crmAZ-ZV1q2j2j7yOLRoNR8xujsH2HSBLWESxptvyYQ_JcPLMdMCZEfggSPVWkmFOc1WTW9C3Mt7WdM15kCktpy-a4BloGgsAwkjbKnRaTesYy6E6oNlWQNHNCnMZDN4d-tbqef1dmcsT34m5d1l5Plx-ADkH_xGQg"
+                alt="Auspicious Griha Pravesh housewarming entry gate decor in Hyderabad" />
+              <span class="category-count-pill">45+ Vendors</span>
+            </div>
+            <div class="category-card-body">
+              <div>
+                <h3 class="category-card-title">Housewarming / Griha Pravesh</h3>
+                <p class="text-small" style="color: var(--text-secondary); margin-top: 6px;">
+                  Homam setups, auspicious entry threshold decor, and sattvic vegetarian feasts.
+                </p>
+              </div>
+              <div class="category-card-footer">
+                <span>Packages from ₹18K</span>
+                <span class="material-symbols-outlined" style="font-size: 18px;">chevron_right</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- Card 7: Anniversaries & Jubilees -->
+          <a href="#featured-vendors" class="ay-card ay-card-interactive category-card">
+            <div class="category-card-media">
+              <img
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAONWoNEl3jGyvskTXo1aPA5KCSb8xGDAwsSpOg9uUlMA6a-AwPGyWpsIQumMFLhm1YgmXqAsahZxdv-M_9agYQBLJwH1C6AV7gPYdJLgEdofis-yU8E3bs9bqLn04USCIrvqCVrPybMbPh4YN6l9WFyQnrddw5AN1ymNpjtgwxQrmC_Yi7-9RZQ66NFAYrSTjcCPt27jAlSTOxi-7iRsjtqNeDjEdZK-CPxuhjNoU"
+                alt="Chic silver jubilee anniversary dinner decor on a lush Hyderabad rooftop garden" />
+              <span class="category-count-pill">38+ Vendors</span>
+            </div>
+            <div class="category-card-body">
+              <div>
+                <h3 class="category-card-title">Anniversaries &amp; Jubilees</h3>
+                <p class="text-small" style="color: var(--text-secondary); margin-top: 6px;">
+                  Romantic private gazebo dining, silver jubilees, live string quartets, and portraits.
+                </p>
+              </div>
+              <div class="category-card-footer">
+                <span>Packages from ₹25K</span>
+                <span class="material-symbols-outlined" style="font-size: 18px;">chevron_right</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- Card 8: Sangeet & Cocktail Soirees -->
+          <a href="#featured-vendors" class="ay-card ay-card-interactive category-card">
+            <div class="category-card-media">
+              <img
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAq_OhXurhXxQM7dgYHDgp0-fgQlGnZHK-sgJes1gWFrXSx25n4d_WGEAI7_aG382e6YWtc_snLk5X_605nPvn1xUxCEM7NPXRKTUD-j8hvWUfdheomhuZnza0fIBAHSUH3_M7BvOfkQjNuPjtII2zFhlPV0ZSKsfNY77bv7EddU9Pf7Q28KHw92nBwfZUw7BUt4mva-VrLQCn8lRtqUUJqMJ_O97FF0MKsnkGk2xY"
+                alt="High-energy Hyderabad sangeet night party venue with dynamic lights and DJ console" />
+              <span class="category-count-pill">95+ Vendors</span>
+            </div>
+            <div class="category-card-body">
+              <div>
+                <h3 class="category-card-title">Sangeet &amp; Cocktail Soirees</h3>
+                <p class="text-small" style="color: var(--text-secondary); margin-top: 6px;">
+                  Concert grade acoustics, Dhol performers, Bollywood DJs, and modern bars.
+                </p>
+              </div>
+              <div class="category-card-footer">
+                <span>Packages from ₹50K</span>
+                <span class="material-symbols-outlined" style="font-size: 18px;">chevron_right</span>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 3: POPULAR SERVICES DIRECTORY
+         ========================================== -->
+    <section class="hp-section hp-section-white">
+      <div class="ay-container">
+        <div class="section-header-center">
+          <div class="section-eyebrow">Essential Artisans &amp; Crews</div>
+          <h2 class="text-h1">Top Booked Services in Hyderabad</h2>
+          <p class="text-body" style="color: var(--text-secondary); margin-top: 8px;">
+            Connect directly with vetted event specialists across all major disciplines with clear pricing frameworks.
+          </p>
+        </div>
+
+        <div class="services-grid">
+          <a href="#featured-vendors" class="ay-card ay-card-interactive service-card">
+            <div class="service-icon-box">
+              <span class="material-symbols-outlined">yard</span>
+            </div>
+            <div>
+              <h3 class="text-h4" style="font-weight: 600;">Wedding Decorators</h3>
+              <p class="text-small" style="color: var(--text-secondary); margin-top: 2px;">85+ Verified Studios</p>
+            </div>
+          </a>
+
+          <a href="#featured-vendors" class="ay-card ay-card-interactive service-card">
+            <div class="service-icon-box">
+              <span class="material-symbols-outlined">photo_camera</span>
+            </div>
+            <div>
+              <h3 class="text-h4" style="font-weight: 600;">Photographers &amp; Cinéma</h3>
+              <p class="text-small" style="color: var(--text-secondary); margin-top: 2px;">110+ Portfolios</p>
+            </div>
+          </a>
+
+          <a href="#featured-vendors" class="ay-card ay-card-interactive service-card">
+            <div class="service-icon-box">
+              <span class="material-symbols-outlined">restaurant</span>
+            </div>
+            <div>
+              <h3 class="text-h4" style="font-weight: 600;">Hyderabadi Dum Caterers</h3>
+              <p class="text-small" style="color: var(--text-secondary); margin-top: 2px;">Veg &amp; Authentic Biryani
+              </p>
+            </div>
+          </a>
+
+          <a href="#featured-vendors" class="ay-card ay-card-interactive service-card">
+            <div class="service-icon-box">
+              <span class="material-symbols-outlined">apartment</span>
+            </div>
+            <div>
+              <h3 class="text-h4" style="font-weight: 600;">Banquets &amp; Lawns</h3>
+              <p class="text-small" style="color: var(--text-secondary); margin-top: 2px;">60+ Hyderabad Venues</p>
+            </div>
+          </a>
+
+          <a href="#featured-vendors" class="ay-card ay-card-interactive service-card">
+            <div class="service-icon-box">
+              <span class="material-symbols-outlined">face</span>
+            </div>
+            <div>
+              <h3 class="text-h4" style="font-weight: 600;">Bridal Makeup Artists</h3>
+              <p class="text-small" style="color: var(--text-secondary); margin-top: 2px;">HD &amp; Airbrush Specialists
+              </p>
+            </div>
+          </a>
+
+          <a href="#featured-vendors" class="ay-card ay-card-interactive service-card">
+            <div class="service-icon-box">
+              <span class="material-symbols-outlined">event_note</span>
+            </div>
+            <div>
+              <h3 class="text-h4" style="font-weight: 600;">Full-Service Planners</h3>
+              <p class="text-small" style="color: var(--text-secondary); margin-top: 2px;">Turnkey Management</p>
+            </div>
+          </a>
+
+          <a href="#featured-vendors" class="ay-card ay-card-interactive service-card">
+            <div class="service-icon-box">
+              <span class="material-symbols-outlined">graphic_eq</span>
+            </div>
+            <div>
+              <h3 class="text-h4" style="font-weight: 600;">Sound, DJ &amp; Lights</h3>
+              <p class="text-small" style="color: var(--text-secondary); margin-top: 2px;">Line Array &amp; Trusses</p>
+            </div>
+          </a>
+
+          <a href="#featured-vendors" class="ay-card ay-card-interactive service-card">
+            <div class="service-icon-box">
+              <span class="material-symbols-outlined">spa</span>
+            </div>
+            <div>
+              <h3 class="text-h4" style="font-weight: 600;">Fresh Floral Stylists</h3>
+              <p class="text-small" style="color: var(--text-secondary); margin-top: 2px;">Exotic &amp; Traditional
+                Bloom</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 4: FEATURED HYDERABAD VENDORS
+         ========================================== -->
+    <section id="featured-vendors" class="hp-section hp-section-ivory">
+      <div class="ay-container">
+        <div class="section-header-row">
+          <div>
+            <div class="section-eyebrow">Curated &amp; Verified</div>
+            <h2 class="text-h1">Featured Hyderabad Vendors</h2>
+            <p class="text-body" style="color: var(--text-secondary); margin-top: 4px;">
+              Directly audited portfolios, transparent rate baselines, and certified customer reviews.
+            </p>
+          </div>
+          <a href="#featured-vendors" class="section-link">
+            <span>View All 240+ Vendors</span>
+            <span class="material-symbols-outlined">arrow_forward</span>
+          </a>
+        </div>
+
+        <div class="vendors-grid">
+          <!-- Vendor 1 -->
+          <article class="ay-card ay-card-interactive vendor-card">
+            <div>
+              <div class="vendor-card-media">
+                <img
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDnf0pqvNFVNguHktd6Iy_b-898ujhGo97JqrfPErxFjQE2MEnA2w_veSS8eVnPcBWp1PBvGMtr74XkyqA0psdV9nJ2YeKGgOFqK4zEqz395DHQF9ug9LsW53Mdg2PaPluXRRvcUPC9nh77UYjaRht3FDkud3pmxht9SndN2-tb5GowPLZCszqoRZ9-Zfi4hrEuQFqJNigljy4U7f54hkQ6EnWbCQRViGREdtACyk"
+                  alt="Sri Venkateswara Mandap Decor luxury South Indian wedding mandap in Hyderabad" />
+                <div class="vendor-verified-badge">
+                  <span class="material-symbols-outlined" style="font-size: 13px;">verified</span>
+                  <span>Verified Partner</span>
+                </div>
+                <button type="button" class="vendor-bookmark-btn" aria-label="Bookmark Sri Venkateswara Mandap Decor">
+                  <span class="material-symbols-outlined" style="font-size: 18px;">favorite</span>
+                </button>
+              </div>
+
+              <div class="vendor-card-body">
+                <div class="vendor-rating-row">
+                  <span class="material-symbols-outlined"
+                    style="font-size: 16px; color: var(--brand-gold); font-variation-settings: 'FILL' 1;">star</span>
+                  <span class="text-label" style="font-weight: 700;">4.9</span>
+                  <span class="text-small" style="color: var(--text-secondary);">(112 reviews)</span>
+                </div>
+                <h3 class="text-h4" style="font-weight: 600;">Sri Venkateswara Mandap Decor</h3>
+                <p class="text-small"
+                  style="color: var(--text-secondary); margin-top: 4px; display: flex; align-items: center; gap: 4px;">
+                  <span class="material-symbols-outlined"
+                    style="font-size: 14px; color: var(--brand-gold-dark);">location_on</span>
+                  <span>Banjara Hills, Hyderabad</span>
+                </p>
+                <div class="vendor-price-box">
+                  <span class="text-badge"
+                    style="color: var(--text-secondary); text-transform: uppercase; display: block;">Starting
+                    Investment</span>
+                  <span class="text-label" style="color: var(--brand-green); font-weight: 700;">₹65,000 / event
+                    onwards</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="vendor-card-actions">
+              <button type="button" class="btn btn-sm btn-secondary" data-open-enquiry
+                data-vendor="Sri Venkateswara Mandap Decor">
+                Profile
+              </button>
+              <button type="button" class="btn btn-sm btn-primary" data-open-enquiry
+                data-vendor="Sri Venkateswara Mandap Decor">
+                <span class="material-symbols-outlined" style="font-size: 16px;">chat</span>
+                <span>Enquire</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Vendor 2 -->
+          <article class="ay-card ay-card-interactive vendor-card">
+            <div>
+              <div class="vendor-card-media">
+                <img
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuAeGyvRr7IvYlFCEJicZ9JZIDHK8ZvVUJqELjNF0WUIKawbQzZiqtTkwH7dH5YHaiOT_8mCsHHvOQpObaSxO_GMPaS3zTbzv17ATvdhJ9cm-jLPC2SUcO7Coj6NzLRNKzQZ1QOVjtZkB9gfOJWDIBJvoQeh8sswlVROk1-NgGkl6BbMQpR9X9hlsYvbKMYV6NcBKB6cU-CveIUJSvyfHWHpIeJd3Sy0VdpAx1CudO8"
+                  alt="Deccan Royal Banquets & Catering traditional Hyderabadi dum biryani live station" />
+                <div class="vendor-verified-badge">
+                  <span class="material-symbols-outlined" style="font-size: 13px;">verified</span>
+                  <span>Verified Partner</span>
+                </div>
+                <button type="button" class="vendor-bookmark-btn"
+                  aria-label="Bookmark Deccan Royal Banquets & Catering">
+                  <span class="material-symbols-outlined" style="font-size: 18px;">favorite</span>
+                </button>
+              </div>
+
+              <div class="vendor-card-body">
+                <div class="vendor-rating-row">
+                  <span class="material-symbols-outlined"
+                    style="font-size: 16px; color: var(--brand-gold); font-variation-settings: 'FILL' 1;">star</span>
+                  <span class="text-label" style="font-weight: 700;">4.8</span>
+                  <span class="text-small" style="color: var(--text-secondary);">(94 reviews)</span>
+                </div>
+                <h3 class="text-h4" style="font-weight: 600;">Deccan Royal Banquets &amp; Catering</h3>
+                <p class="text-small"
+                  style="color: var(--text-secondary); margin-top: 4px; display: flex; align-items: center; gap: 4px;">
+                  <span class="material-symbols-outlined"
+                    style="font-size: 14px; color: var(--brand-gold-dark);">location_on</span>
+                  <span>Madhapur, Hyderabad</span>
+                </p>
+                <div class="vendor-price-box">
+                  <span class="text-badge"
+                    style="color: var(--text-secondary); text-transform: uppercase; display: block;">Catering
+                    Rate</span>
+                  <span class="text-label" style="color: var(--brand-green); font-weight: 700;">₹650 / Plate
+                    onwards</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="vendor-card-actions">
+              <button type="button" class="btn btn-sm btn-secondary" data-open-enquiry
+                data-vendor="Deccan Royal Banquets & Catering">
+                Profile
+              </button>
+              <button type="button" class="btn btn-sm btn-primary" data-open-enquiry
+                data-vendor="Deccan Royal Banquets & Catering">
+                <span class="material-symbols-outlined" style="font-size: 16px;">chat</span>
+                <span>Enquire</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Vendor 3 -->
+          <article class="ay-card ay-card-interactive vendor-card">
+            <div>
+              <div class="vendor-card-media">
+                <img
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDnxEsFymGjvYUDaBL4tX6-ooqBIROo_hTji4KMQ64-Dk5cj0G56qv-vIj-y-yMCIEC1aYxEoh4Q_hu8kgZixE3vOgqIeSCBtO7GG3Hil8vLj-p0YHZ-WOZl3ABD0L-E2Qz0faK1cWGfOj-qUH--Mid8rMTzeq-cJ94bzdt8uAgOrGAbEbcmZMQzFiH3jn6ApBz7wMxXFoVsVxX4b94ot18DomSGwRY6LFtOIuVaM"
+                  alt="Moments Pre-Wedding & Candid photography shoot in Hyderabad" />
+                <div class="vendor-verified-badge">
+                  <span class="material-symbols-outlined" style="font-size: 13px;">verified</span>
+                  <span>Verified Partner</span>
+                </div>
+                <button type="button" class="vendor-bookmark-btn" aria-label="Bookmark Moments Pre-Wedding & Candid">
+                  <span class="material-symbols-outlined" style="font-size: 18px;">favorite</span>
+                </button>
+              </div>
+
+              <div class="vendor-card-body">
+                <div class="vendor-rating-row">
+                  <span class="material-symbols-outlined"
+                    style="font-size: 16px; color: var(--brand-gold); font-variation-settings: 'FILL' 1;">star</span>
+                  <span class="text-label" style="font-weight: 700;">4.9</span>
+                  <span class="text-small" style="color: var(--text-secondary);">(140 reviews)</span>
+                </div>
+                <h3 class="text-h4" style="font-weight: 600;">Moments Pre-Wedding &amp; Candid</h3>
+                <p class="text-small"
+                  style="color: var(--text-secondary); margin-top: 4px; display: flex; align-items: center; gap: 4px;">
+                  <span class="material-symbols-outlined"
+                    style="font-size: 14px; color: var(--brand-gold-dark);">location_on</span>
+                  <span>Jubilee Hills, Hyderabad</span>
+                </p>
+                <div class="vendor-price-box">
+                  <span class="text-badge"
+                    style="color: var(--text-secondary); text-transform: uppercase; display: block;">Wedding
+                    Package</span>
+                  <span class="text-label" style="color: var(--brand-green); font-weight: 700;">₹1,20,000 / event
+                    onwards</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="vendor-card-actions">
+              <button type="button" class="btn btn-sm btn-secondary" data-open-enquiry
+                data-vendor="Moments Pre-Wedding & Candid">
+                Profile
+              </button>
+              <button type="button" class="btn btn-sm btn-primary" data-open-enquiry
+                data-vendor="Moments Pre-Wedding & Candid">
+                <span class="material-symbols-outlined" style="font-size: 16px;">chat</span>
+                <span>Enquire</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Vendor 4 -->
+          <article class="ay-card ay-card-interactive vendor-card">
+            <div>
+              <div class="vendor-card-media">
+                <img
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuCr6W3HAV8WbwZXj5PcHhoAlmDdlYCJ2K0qWmYzqsAbnNJ3YDwC4PWGTgBA0KvH0TBQFqgs7ANW0z5YK7Xg3nLVNzdLqDq4LqX9lcuTL6zPWFYgtHch1T_JRYy_k_2E7q2W_9pZPsEwq2SIjkCShKYyB-jR1g1Hy--jnmLhRjxNVkTMeMJAbMlqHyn0D0BZZV3sHVxOf0IxnI5bY-esAdZFD3fU8T_TxdFqUDJSr7I"
+                  alt="Siri Divine Pooja & Floral Styling traditional pooja backdrop decor in Gachibowli" />
+                <div class="vendor-verified-badge">
+                  <span class="material-symbols-outlined" style="font-size: 13px;">verified</span>
+                  <span>Verified Partner</span>
+                </div>
+                <button type="button" class="vendor-bookmark-btn"
+                  aria-label="Bookmark Siri Divine Pooja & Floral Styling">
+                  <span class="material-symbols-outlined" style="font-size: 18px;">favorite</span>
+                </button>
+              </div>
+
+              <div class="vendor-card-body">
+                <div class="vendor-rating-row">
+                  <span class="material-symbols-outlined"
+                    style="font-size: 16px; color: var(--brand-gold); font-variation-settings: 'FILL' 1;">star</span>
+                  <span class="text-label" style="font-weight: 700;">4.8</span>
+                  <span class="text-small" style="color: var(--text-secondary);">(58 reviews)</span>
+                </div>
+                <h3 class="text-h4" style="font-weight: 600;">Siri Divine Pooja &amp; Floral Styling</h3>
+                <p class="text-small"
+                  style="color: var(--text-secondary); margin-top: 4px; display: flex; align-items: center; gap: 4px;">
+                  <span class="material-symbols-outlined"
+                    style="font-size: 14px; color: var(--brand-gold-dark);">location_on</span>
+                  <span>Gachibowli, Hyderabad</span>
+                </p>
+                <div class="vendor-price-box">
+                  <span class="text-badge"
+                    style="color: var(--text-secondary); text-transform: uppercase; display: block;">Ceremony
+                    Package</span>
+                  <span class="text-label" style="color: var(--brand-green); font-weight: 700;">₹28,000 / event
+                    onwards</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="vendor-card-actions">
+              <button type="button" class="btn btn-sm btn-secondary" data-open-enquiry
+                data-vendor="Siri Divine Pooja & Floral Styling">
+                Profile
+              </button>
+              <button type="button" class="btn btn-sm btn-primary" data-open-enquiry
+                data-vendor="Siri Divine Pooja & Floral Styling">
+                <span class="material-symbols-outlined" style="font-size: 16px;">chat</span>
+                <span>Enquire</span>
+              </button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 5: HOW AYOJANSETU WORKS
+         ========================================== -->
+    <section id="how-it-works" class="hp-section hp-section-white">
+      <div class="ay-container">
+        <div class="section-header-center">
+          <div class="section-eyebrow">Simplicity &amp; Transparency</div>
+          <h2 class="text-h1">How AyojanSetu Works</h2>
+          <p class="text-body" style="color: var(--text-secondary); margin-top: 8px;">
+            Zero broker fees. No commissions taken from host families. Instant direct vendor connection.
+          </p>
+        </div>
+
+        <div class="steps-grid">
+          <!-- Step 1 -->
+          <div class="ay-card step-card">
+            <div>
+              <div
+                style="display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--space-6);">
+                <span class="step-number">01</span>
+                <div class="step-icon-box">
+                  <span class="material-symbols-outlined" style="font-size: 26px;">travel_explore</span>
+                </div>
+              </div>
+              <h3 class="text-h3" style="margin-bottom: var(--space-2);">Discover Vendors</h3>
+              <p class="text-body" style="color: var(--text-secondary);">
+                Browse authenticated Hyderabad event professionals filtered by your micro-market, required aesthetic,
+                and guest count capacities.
+              </p>
+            </div>
+            <div
+              style="margin-top: var(--space-6); padding-top: var(--space-4); border-top: 1px solid var(--border-default); display: flex; align-items: center; gap: 8px; color: var(--brand-green);"
+              class="text-label">
+              <span class="material-symbols-outlined"
+                style="font-size: 16px; color: var(--state-success);">check_circle</span>
+              <span>Real portfolio photos only</span>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="ay-card step-card">
+            <div>
+              <div
+                style="display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--space-6);">
+                <span class="step-number">02</span>
+                <div class="step-icon-box">
+                  <span class="material-symbols-outlined" style="font-size: 26px;">balance</span>
+                </div>
+              </div>
+              <h3 class="text-h3" style="margin-bottom: var(--space-2);">Compare Services</h3>
+              <p class="text-body" style="color: var(--text-secondary);">
+                Evaluate itemized rate sheets, decor material breakdowns, plate prices, live date calendars, and genuine
+                customer feedback.
+              </p>
+            </div>
+            <div
+              style="margin-top: var(--space-6); padding-top: var(--space-4); border-top: 1px solid var(--border-default); display: flex; align-items: center; gap: 8px; color: var(--brand-green);"
+              class="text-label">
+              <span class="material-symbols-outlined"
+                style="font-size: 16px; color: var(--state-success);">check_circle</span>
+              <span>No hidden markups or taxes</span>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="ay-card step-card">
+            <div>
+              <div
+                style="display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--space-6);">
+                <span class="step-number">03</span>
+                <div class="step-icon-box">
+                  <span class="material-symbols-outlined" style="font-size: 26px;">connect_without_contact</span>
+                </div>
+              </div>
+              <h3 class="text-h3" style="margin-bottom: var(--space-2);">Contact &amp; Finalize</h3>
+              <p class="text-body" style="color: var(--text-secondary);">
+                Engage the business owners directly over verified WhatsApp or schedule in-person site walkthroughs with
+                zero commission pressure.
+              </p>
+            </div>
+            <div
+              style="margin-top: var(--space-6); padding-top: var(--space-4); border-top: 1px solid var(--border-default); display: flex; align-items: center; gap: 8px; color: var(--brand-green);"
+              class="text-label">
+              <span class="material-symbols-outlined"
+                style="font-size: 16px; color: var(--state-success);">check_circle</span>
+              <span>Direct WhatsApp &amp; Call links</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 6: WHY CHOOSE AYOJANSETU
+         ========================================== -->
+    <section class="hp-section hp-section-ivory">
+      <div class="ay-container">
+        <div class="why-grid">
+          <!-- Left Highlight Panel -->
+          <div class="why-highlight-panel">
+            <span class="section-eyebrow">Institutional Reliability</span>
+            <h2 class="text-h2" style="margin-bottom: var(--space-4);">Built Specifically for Hyderabad Host Families
+            </h2>
+            <p class="text-body" style="color: var(--text-secondary); margin-bottom: var(--space-6);">
+              We understand that Indian celebrations aren't standard transactions. They represent family honor,
+              ancestral customs, and complex multi-vendor logistics.
+            </p>
+
+            <div style="display: flex; flex-direction: column; gap: var(--space-3);">
+              <div class="why-pledge-item">
+                <span class="material-symbols-outlined"
+                  style="color: var(--brand-gold-dark); font-size: 24px;">verified</span>
+                <div>
+                  <h4 class="text-label" style="font-weight: 700;">Physical Hyderabad Onboarding</h4>
+                  <p class="text-small" style="color: var(--text-secondary);">Every vendor’s office or workshop is
+                    vetted in-person.</p>
+                </div>
+              </div>
+
+              <div class="why-pledge-item">
+                <span class="material-symbols-outlined"
+                  style="color: var(--brand-gold-dark); font-size: 24px;">shield</span>
+                <div>
+                  <h4 class="text-label" style="font-weight: 700;">Anti-Ghosting Safeguards</h4>
+                  <p class="text-small" style="color: var(--text-secondary);">Vendors sign service availability pledges
+                    before listing.</p>
+                </div>
+              </div>
+
+              <div class="why-pledge-item">
+                <span class="material-symbols-outlined"
+                  style="color: var(--brand-gold-dark); font-size: 24px;">price_check</span>
+                <div>
+                  <h4 class="text-label" style="font-weight: 700;">True Local Market Rates</h4>
+                  <p class="text-small" style="color: var(--text-secondary);">Zero algorithmic surge pricing during
+                    auspicious Muhurtham dates.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right 5 Feature Blocks -->
+          <div class="why-features-grid">
+            <div class="ay-card why-feature-card">
+              <span class="material-symbols-outlined"
+                style="color: var(--brand-green); font-size: 28px; margin-bottom: var(--space-3);">assured_workload</span>
+              <h3 class="text-h4" style="font-weight: 600; margin-bottom: 6px;">100% Verified Vendors</h3>
+              <p class="text-small" style="color: var(--text-secondary); line-height: 1.55;">
+                We audit GST credentials, trade licenses, and run client reference checks on prior Telugu weddings and
+                Hyderabad gatherings.
+              </p>
+            </div>
+
+            <div class="ay-card why-feature-card">
+              <span class="material-symbols-outlined"
+                style="color: var(--brand-green); font-size: 28px; margin-bottom: var(--space-3);">receipt_long</span>
+              <h3 class="text-h4" style="font-weight: 600; margin-bottom: 6px;">Transparent Hyderabad Pricing</h3>
+              <p class="text-small" style="color: var(--text-secondary); line-height: 1.55;">
+                Itemized package pricing without surprise markups. Compare cost per plate, drone inclusions, and floral
+                tier grades transparently.
+              </p>
+            </div>
+
+            <div class="ay-card why-feature-card">
+              <span class="material-symbols-outlined"
+                style="color: var(--brand-green); font-size: 28px; margin-bottom: var(--space-3);">mark_chat_unread</span>
+              <h3 class="text-h4" style="font-weight: 600; margin-bottom: 6px;">Direct WhatsApp Connections</h3>
+              <p class="text-small" style="color: var(--text-secondary); line-height: 1.55;">
+                No hidden chat relays or spam cold calls. Tap once to launch direct conversations with the creative
+                leads on WhatsApp.
+              </p>
+            </div>
+
+            <div class="ay-card why-feature-card">
+              <span class="material-symbols-outlined"
+                style="color: var(--brand-green); font-size: 28px; margin-bottom: var(--space-3);">diversity_1</span>
+              <h3 class="text-h4" style="font-weight: 600; margin-bottom: 6px;">Every Occasion Covered</h3>
+              <p class="text-small" style="color: var(--text-secondary); line-height: 1.55;">
+                From a 25-guest intimate Satyanarayana Swamy Pooja in Kukatpally to a 3,000-guest luxury reception at
+                Shamshabad resorts.
+              </p>
+            </div>
+
+            <div class="ay-card why-feature-card span-2"
+              style="display: flex; align-items: center; gap: var(--space-4);">
+              <span class="material-symbols-outlined"
+                style="color: var(--brand-green); font-size: 32px; flex-shrink: 0;">support_agent</span>
+              <div>
+                <h3 class="text-h4" style="font-weight: 600; margin-bottom: 2px;">Local Hyderabad Concierge</h3>
+                <p class="text-small" style="color: var(--text-secondary);">
+                  Have an urgent requirement or large destination setup? Our Banjara Hills desk assists host families 7
+                  days a week.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 7: VENDOR REGISTRATION CTA BANNER
+         ========================================== -->
+    <section id="vendor-cta" class="hp-section hp-section-ivory" style="padding-top: 0;">
+      <div class="ay-container">
+        <div class="cta-banner">
+          <div class="cta-gold-bar"></div>
+          <div class="cta-banner-inner">
+            <div style="max-width: 680px;">
+              <div
+                style="display: inline-flex; align-items: center; gap: 8px; padding: 5px 12px; border-radius: var(--radius-full); background-color: rgba(255,255,255,0.10); margin-bottom: var(--space-4);">
+                <span class="material-symbols-outlined"
+                  style="font-size: 16px; color: var(--brand-gold);">storefront</span>
+                <span class="text-badge" style="text-transform: uppercase; color: #FFFFFF;">Partner With AyojanSetu
+                  Hyderabad</span>
+              </div>
+
+              <h2 class="text-display" style="color: #FFFFFF; margin-bottom: var(--space-3);">
+                Grow Your Event Business With AyojanSetu
+              </h2>
+
+              <p class="text-body" style="color: rgba(247, 244, 237, 0.88); line-height: 1.6;">
+                Showcase your portfolio directly to thousands of high-intent families and corporate planners in
+                Hyderabad. Zero listing fees, high-trust client leads, and direct client communications.
+              </p>
+
+              <div class="cta-metrics-row">
+                <div style="display: inline-flex; align-items: center; gap: 6px;">
+                  <span class="material-symbols-outlined" style="font-size: 18px;">verified</span>
+                  <span>240+ Active Partners</span>
+                </div>
+                <span style="opacity: 0.5;">·</span>
+                <div style="display: inline-flex; align-items: center; gap: 6px;">
+                  <span class="material-symbols-outlined" style="font-size: 18px;">mark_email_read</span>
+                  <span>1,200+ Monthly Inquiries</span>
+                </div>
+                <span style="opacity: 0.5;">·</span>
+                <div style="display: inline-flex; align-items: center; gap: 6px;">
+                  <span class="material-symbols-outlined" style="font-size: 18px;">percent</span>
+                  <span>0% Commission on Direct Calls</span>
+                </div>
+              </div>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: var(--space-3); flex-shrink: 0; min-width: 240px;">
+              <button type="button" class="btn btn-lg"
+                style="background-color: var(--brand-ivory); color: var(--brand-green);" data-open-enquiry
+                data-vendor="New Vendor Partner Onboarding">
+                List Your Business Now
+              </button>
+              <button type="button" class="btn btn-md"
+                style="background-color: rgba(255,255,255,0.10); color: #FFFFFF; border-color: rgba(255,255,255,0.20);"
+                data-open-enquiry data-vendor="Vendor Partner Verification Criteria">
+                <span class="material-symbols-outlined" style="font-size: 18px;">help_outline</span>
+                <span>Review Partner Criteria</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==========================================
+       GLOBAL FOOTER
+       ========================================== -->
+  <footer id="footer-contact" class="site-footer">
+    <div class="ay-container">
+      <div class="footer-grid">
+        <!-- Col 1: Brand Info -->
+        <div>
+          <a href="index.html" class="brand-logo" style="margin-bottom: var(--space-3);">
+            <div class="brand-mark">अ</div>
+            <div class="brand-text-group">
+              <span class="brand-title">AyojanSetu</span>
+              <span class="brand-tagline">Modern Heritage Celebrations</span>
+            </div>
+          </a>
+          <p class="text-body" style="color: var(--text-secondary); max-width: 360px;">
+            A refined event marketplace uniting host families, curated venues, and verified service artisans across
+            Hyderabad with institutional integrity and celebration warmth.
+          </p>
+          <div class="footer-concierge-box">
+            <span class="text-label" style="color: var(--brand-green); font-weight: 600; display: block;">Hyderabad
+              Central Concierge</span>
+            <p class="text-small" style="color: var(--text-secondary); margin-top: 2px;">
+              Banjara Hills · Jubilee Hills · Gachibowli · Madhapur · Secunderabad
+            </p>
+          </div>
+        </div>
+
+        <!-- Col 2: Explore Categories -->
+        <div>
+          <h3 class="footer-heading">Explore Categories</h3>
+          <ul class="footer-links">
+            <li><a href="#event-categories">Weddings &amp; Receptions</a></li>
+            <li><a href="#event-categories">Corporate Galas &amp; Summits</a></li>
+            <li><a href="#event-categories">Birthdays &amp; Milestones</a></li>
+            <li><a href="#event-categories">Traditional Ceremonies</a></li>
+            <li><a href="#event-categories">Catering &amp; Banqueting</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: For Vendors & System -->
+        <div>
+          <h3 class="footer-heading">For Vendors &amp; System</h3>
+          <ul class="footer-links">
+            <li><a href="#vendor-cta">List Your Business</a></li>
+            <li><a href="#vendor-cta">Vendor Portal Login</a></li>
+            <li><a href="#how-it-works">Verification Standards</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Contact & WhatsApp Support -->
+        <div>
+          <h3 class="footer-heading">Contact &amp; Support</h3>
+          <p class="text-small" style="color: var(--text-secondary); line-height: 1.6; margin-bottom: var(--space-3);">
+            AyojanSetu Hyderabad Office<br />
+            Road No. 10, Banjara Hills<br />
+            Telangana 500034
+          </p>
+          <button type="button" class="btn btn-sm btn-whatsapp-tint" data-open-enquiry
+            data-vendor="AyojanSetu WhatsApp Concierge">
+            <span style="width: 8px; height: 8px; border-radius: 50%; background-color: var(--whatsapp-green);"></span>
+            <span>Direct WhatsApp Concierge</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>Crafted for Hyderabad celebrations · Banjara Hills, Jubilee Hills, Gachibowli, Madhapur, Secunderabad</p>
+        <div style="display: flex; align-items: center; gap: var(--space-4);">
+          <a href="#privacy">Privacy Policy</a>
+          <a href="#terms">Terms of Service</a>
+          <span>© 2026 AyojanSetu. All rights reserved.</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================
+       INTERACTIVE QUICK ENQUIRY / QUOTATION MODAL
+       Built strictly with Form & Button Components from Design Tokens Spec
+       ========================================== -->
+  <div id="enquiryModal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div>
+          <span class="text-badge" style="color: var(--brand-gold); text-transform: uppercase;">Direct Vendor
+            Enquiry</span>
+          <h3 id="modalTitle" class="text-h4" style="color: #FFFFFF; font-weight: 600;">
+            Request Quotation · <span id="modalVendorName">Sri Venkateswara Mandap Decor</span>
+          </h3>
+        </div>
+        <button type="button" class="btn-icon"
+          style="background: rgba(255,255,255,0.12); border-color: transparent; color: #FFFFFF;" data-close-enquiry
+          aria-label="Close modal">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+
+      <form id="quickEnquiryForm">
+        <div class="modal-body">
+          <!-- Full Name Input -->
+          <div class="form-group">
+            <label class="form-label" for="eqName">
+              Full Name <span class="required">*</span>
+            </label>
+            <input id="eqName" type="text" class="form-input" placeholder="e.g. Ramesh Varma" required />
+          </div>
+
+          <!-- Indian Mobile Number (+91 Prefix) Component -->
+          <div class="form-group">
+            <label class="form-label" for="eqPhone">
+              Mobile Number <span class="required">*</span>
+            </label>
+            <div class="input-prefix-group">
+              <span class="input-prefix-addon">🇮🇳 +91</span>
+              <input id="eqPhone" type="tel" placeholder="98765 43210" required />
+            </div>
+            <span class="form-helper">Instant quotation details will be shared via WhatsApp &amp; SMS</span>
+          </div>
+
+          <!-- Two-Column Row: Occasion & Date -->
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3);">
+            <div class="form-group">
+              <label class="form-label" for="eqCategory">Event Occasion</label>
+              <select id="eqCategory" class="form-select">
+                <option>Wedding &amp; Reception</option>
+                <option>Engagement &amp; Sangeet</option>
+                <option>Birthday Party</option>
+                <option>Half Saree / Cradle</option>
+                <option>Griha Pravesh</option>
+                <option>Corporate Gala</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="eqDate">Event Date</label>
+              <input id="eqDate" type="date" value="2026-11-20" class="form-input" />
+            </div>
+          </div>
+
+          <!-- Custom Requirements Textarea -->
+          <div class="form-group">
+            <label class="form-label" for="eqNotes">Event Details &amp; Custom Requirements</label>
+            <textarea id="eqNotes" rows="3" class="form-textarea"
+              placeholder="Mention guest count, locality in Hyderabad (e.g. Banjara Hills), or stage decor preferences..."></textarea>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-md btn-outline" data-close-enquiry>Cancel</button>
+          <button type="submit" class="btn btn-md btn-primary">
+            <span>Request Quotation</span>
+            <span class="material-symbols-outlined" style="font-size: 18px;">arrow_forward</span>
+          </button>
+        </div>
+      </form>
+
+      <!-- Submission Confirmation View -->
+      <div id="enquirySuccessBanner" style="display: none; padding: var(--space-8) var(--space-6); text-align: center;">
+        <div
+          style="width: 52px; height: 52px; border-radius: 50%; background: var(--state-success-bg); color: var(--state-success); display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-4);">
+          <span class="material-symbols-outlined" style="font-size: 28px;">check_circle</span>
+        </div>
+        <h4 class="text-h3" style="margin-bottom: var(--space-2);">Enquiry Sent Directly to Vendor!</h4>
+        <p class="text-body" style="color: var(--text-secondary); margin-bottom: var(--space-6);">
+          Your requirements have been shared with the partner team in Hyderabad. Expect a direct response within 30
+          minutes.
+        </p>
+        <button type="button" class="btn btn-md btn-primary" data-close-enquiry>Done</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Script -->
+  <script src="./assets/js/main.js"></script>
+</body>
+
+</html>

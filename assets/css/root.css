@@ -57,6 +57,13 @@
   --whatsapp-green-tint: rgba(37, 211, 102, 0.10);
   --whatsapp-green-border: rgba(37, 211, 102, 0.30);
 
+  /* Header & Footer Surface Tokens (Ivory Navbar + Forest Green Footer) */
+  --header-bg: #F7F4ED;
+  --footer-bg: #173D32;
+  --footer-text: #F7F4ED;
+  --footer-muted: #C5CEC8;
+  --footer-border: rgba(247, 244, 237, 0.15);
+
   /* ==========================================
      2. TYPOGRAPHY HIERARCHY TOKENS (9 Scales)
      ========================================== */

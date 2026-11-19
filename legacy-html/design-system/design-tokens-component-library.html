@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AyojanSetu – Design Tokens & Reusable Component Library</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              green: '#173D32',
+              'green-hover': '#245746',
+              ivory: '#F7F4ED',
+              gold: '#B99A62',
+              charcoal: '#292D2A',
+              secondary: '#777D77',
+              border: '#E7E3DA',
+              success: '#27845B',
+              warning: '#D69A36',
+              error: '#C64D48',
+              info: '#4778A8',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #F7F4ED;
+      color: #292D2A;
+    }
+    .color-swatch-shadow {
+      box-shadow: 0 2px 8px -2px rgba(23, 61, 50, 0.08);
+    }
+    .custom-scroll::-webkit-scrollbar {
+      height: 6px;
+      width: 6px;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background: #E7E3DA;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-[#F7F4ED] text-[#292D2A] antialiased selection:bg-[#B99A62]/20 selection:text-[#173D32]">
+
+  <!-- Top Sticky Navigation Bar -->
+  <header class="sticky top-0 z-40 bg-[#173D32] text-white border-b border-[#245746] shadow-sm">
+    <div class="max-w-[1440px] mx-auto px-6 lg:px-10 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-lg bg-[#B99A62] text-[#173D32] flex items-center justify-center font-bold text-lg shadow-inner">
+          अ
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="font-semibold text-lg tracking-tight">AyojanSetu</span>
+            <span class="text-[10px] font-semibold tracking-wider uppercase bg-[#245746] text-[#B99A62] px-2 py-0.5 rounded-[4px] border border-[#B99A62]/30">UI Kit v1.0</span>
+          </div>
+          <p class="text-xs text-[#E7E3DA]/70 font-normal">Component System & Living Token Spec</p>
+        </div>
+      </div>
+
+      <nav class="hidden md:flex items-center gap-6 text-sm font-medium">
+        <a href="#colors" class="text-white/80 hover:text-white transition-colors">1. Color Palette</a>
+        <a href="#typography" class="text-white/80 hover:text-white transition-colors">2. Typography</a>
+        <a href="#buttons" class="text-white/80 hover:text-white transition-colors">3. Buttons</a>
+        <a href="#inputs" class="text-white/80 hover:text-white transition-colors">4. Form Inputs</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <span class="text-xs bg-[#245746] text-white px-3 py-1.5 rounded-[6px] border border-[#E7E3DA]/20 hidden sm:inline-block">
+          Tagline: Every Event. Every Occasion. One Platform.
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="max-w-[1440px] mx-auto px-6 lg:px-10 py-10 space-y-16">
+
+    <!-- Header Intro Banner -->
+    <div class="bg-white rounded-[14px] p-8 border border-[#E7E3DA] shadow-sm flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+      <div class="space-y-2">
+        <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-[6px] bg-[#173D32]/5 text-[#173D32] text-xs font-medium">
+          <span class="w-2 h-2 rounded-full bg-[#173D32]"></span>
+          Design Tokens & Atomic Components
+        </div>
+        <h1 class="text-3xl font-semibold tracking-tight text-[#292D2A]">AyojanSetu Master UI System</h1>
+        <p class="text-sm text-[#777D77] max-w-2xl">
+          Separate, production-ready modules for colors, typography scale, buttons, and form inputs. Designed specifically for the Customer Marketplace, Vendor Portal, and Admin Console with an 8px grid foundation.
+        </p>
+      </div>
+      <div class="flex flex-wrap gap-2 text-xs font-mono">
+        <div class="px-3 py-2 bg-[#F7F4ED] rounded-[8px] border border-[#E7E3DA]">
+          <span class="text-[#777D77] block text-[10px]">BASE UNIT</span>
+          <span class="font-semibold text-[#173D32]">8px Grid</span>
+        </div>
+        <div class="px-3 py-2 bg-[#F7F4ED] rounded-[8px] border border-[#E7E3DA]">
+          <span class="text-[#777D77] block text-[10px]">FONT FAMILY</span>
+          <span class="font-semibold text-[#173D32]">Inter (Sans)</span>
+        </div>
+        <div class="px-3 py-2 bg-[#F7F4ED] rounded-[8px] border border-[#E7E3DA]">
+          <span class="text-[#777D77] block text-[10px]">RADIUS TOKENS</span>
+          <span class="font-semibold text-[#173D32]">6px · 10px · 14px</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- 1. COLOR PALETTE SECTION -->
+    <!-- ========================================== -->
+    <section id="colors" class="space-y-6 scroll-mt-20">
+      <div class="flex items-center justify-between border-b border-[#E7E3DA] pb-4">
+        <div>
+          <span class="text-xs font-semibold tracking-wider text-[#B99A62] uppercase">01 / Palette Tokens</span>
+          <h2 class="text-2xl font-semibold text-[#292D2A]">Brand & Semantic Colors</h2>
+          <p class="text-xs text-[#777D77]">Exact color codes with semantic purpose, token name, and contrast recommendations.</p>
+        </div>
+        <div class="text-xs text-[#777D77] bg-white px-3 py-1.5 rounded-[6px] border border-[#E7E3DA]">
+          12 Core Tokens
+        </div>
+      </div>
+
+      <!-- Color Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+
+        <!-- Primary Forest Green -->
+        <div class="bg-white rounded-[12px] p-3.5 border border-[#E7E3DA] shadow-sm hover:border-[#173D32] transition-colors">
+          <div class="h-28 rounded-[8px] bg-[#173D32] flex items-end justify-between p-3 text-white">
+            <span class="text-xs font-mono font-medium">#173D32</span>
+            <span class="text-[10px] uppercase tracking-wider bg-white/20 px-2 py-0.5 rounded">Primary</span>
+          </div>
+          <div class="pt-3 space-y-1">
+            <div class="flex justify-between items-baseline">
+              <span class="text-sm font-semibold text-[#292D2A]">Primary Forest Green</span>
+              <span class="text-[11px] font-mono text-[#777D77]">--brand-green</span>
+            </div>
+            <p class="text-xs text-[#777D77]">Main navigation, primary buttons, headers, active states.</p>
+            <div class="text-[11px] text-[#173D32] font-mono pt-1">Contrast: 10.4:1 on white (AAA)</div>
+          </div>
+        </div>
+
+        <!-- Primary Green Hover -->
+        <div class="bg-white rounded-[12px] p-3.5 border border-[#E7E3DA] shadow-sm hover:border-[#245746] transition-colors">
+          <div class="h-28 rounded-[8px] bg-[#245746] flex items-end justify-between p-3 text-white">
+            <span class="text-xs font-mono font-medium">#245746</span>
+            <span class="text-[10px] uppercase tracking-wider bg-white/20 px-2 py-0.5 rounded">Hover</span>
+          </div>
+          <div class="pt-3 space-y-1">
+            <div class="flex justify-between items-baseline">
+              <span class="text-sm font-semibold text-[#292D2A]">Primary Green Hover</span>
+              <span class="text-[11px] font-mono text-[#777D77]">--brand-green-hover</span>
+            </div>
+            <p class="text-xs text-[#777D77]">Interactive hover states for buttons and active nav highlights.</p>
+            <div class="text-[11px] text-[#173D32] font-mono pt-1">Contrast: 7.6:1 on white (AAA)</div>
+          </div>
+        </div>
+
+        <!-- Warm Ivory Background -->
+        <div class="bg-white rounded-[12px] p-3.5 border border-[#E7E3DA] shadow-sm hover:border-[#B99A62] transition-colors">
+          <div class="h-28 rounded-[8px] bg-[#F7F4ED] border border-[#E7E3DA] flex items-end justify-between p-3 text-[#292D2A]">
+            <span class="text-xs font-mono font-semibold">#F7F4ED</span>
+            <span class="text-[10px] uppercase tracking-wider bg-white px-2 py-0.5 rounded border border-[#E7E3DA]">Surface</span>
+          </div>
+          <div class="pt-3 space-y-1">
+            <div class="flex justify-between items-baseline">
+              <span class="text-sm font-semibold text-[#292D2A]">Warm Ivory Background</span>
+              <span class="text-[11px] font-mono text-[#777D77]">--brand-ivory</span>
+            </div>
+            <p class="text-xs text-[#777D77]">Canvas background, subtle neutral card backing, section fills.</p>
+            <div class="text-[11px] text-[#777D77] font-mono pt-1">Soft warmth, reduces eye fatigue</div>
+          </div>
+        </div>
+
+        <!-- Champagne Gold -->
+        <div class="bg-white rounded-[12px] p-3.5 border border-[#E7E3DA] shadow-sm hover:border-[#B99A62] transition-colors">
+          <div class="h-28 rounded-[8px] bg-[#B99A62] flex items-end justify-between p-3 text-white">
+            <span class="text-xs font-mono font-medium">#B99A62</span>
+            <span class="text-[10px] uppercase tracking-wider bg-black/20 px-2 py-0.5 rounded">Accent</span>
+          </div>
+          <div class="pt-3 space-y-1">
+            <div class="flex justify-between items-baseline">
+              <span class="text-sm font-semibold text-[#292D2A]">Champagne Gold</span>
+              <span class="text-[11px] font-mono text-[#777D77]">--brand-gold</span>
+            </div>
+            <p class="text-xs text-[#777D77]">Premium badges, star ratings, subtle borders, festive accents.</p>
+            <div class="text-[11px] text-[#B99A62] font-mono pt-1">Used sparingly for elegance</div>
+          </div>
+        </div>
+
+        <!-- White -->
+        <div class="bg-white rounded-[12px] p-3.5 border border-[#E7E3DA] shadow-sm hover:border-[#777D77] transition-colors">
+          <div class="h-28 rounded-[8px] bg-[#FFFFFF] border border-[#E7E3DA] flex items-end justify-between p-3 text-[#292D2A]">
+            <span class="text-xs font-mono font-semibold">#FFFFFF</span>
+            <span class="text-[10px] uppercase tracking-wider bg-[#F7F4ED] px-2 py-0.5 rounded border border-[#E7E3DA]">Base</span>
+          </div>
+          <div class="pt-3 space-y-1">
+            <div class="flex justify-between items-baseline">
+              <span class="text-sm font-semibold text-[#292D2A]">Pure White</span>
+              <span class="text-[11px] font-mono text-[#777D77]">--brand-white</span>
+            </div>
+            <p class="text-xs text-[#777D77]">Cards, modals, dropdown surfaces, form input backgrounds.</p>
+            <div class="text-[11px] text-[#777D77] font-mono pt-1">Clean container layer</div>
+          </div>
+        </div>
+
+        <!-- Charcoal Text -->
+        <div class="bg-white rounded-[12px] p-3.5 border border-[#E7E3DA] shadow-sm hover:border-[#292D2A] transition-colors">
+          <div class="h-28 rounded-[8px] bg-[#292D2A] flex items-end justify-between p-3 text-white">
+            <span class="text-xs font-mono font-medium">#292D2A</span>
+            <span class="text-[10px] uppercase tracking-wider bg-white/20 px-2 py-0.5 rounded">Text</span>
+          </div>
+          <div class="pt-3 space-y-1">
+            <div class="flex justify-between items-baseline">
+              <span class="text-sm font-semibold text-[#292D2A]">Charcoal Text</span>
+              <span class="text-[11px] font-mono text-[#777D77]">--text-primary</span>
+            </div>
+            <p class="text-xs text-[#777D77]">Primary headings, body text, form field inputs, table data.</p>
+            <div class="text-[11px] text-[#292D2A] font-mono pt-1">Contrast: 12.8:1 on ivory (AAA)</div>
+          </div>
+        </div>
+
+        <!-- Secondary Text -->
+        <div class="bg-white rounded-[12px] p-3.5 border border-[#E7E3DA] shadow-sm hover:border-[#777D77] transition-colors">
+          <div class="h-28 rounded-[8px] bg-[#777D77] flex items-end justify-between p-3 text-white">
+            <span class="text-xs font-mono font-medium">#777D77</span>
+            <span class="text-[10px] uppercase tracking-wider bg-black/20 px-2 py-0.5 rounded">Muted</span>
+          </div>
+          <div class="pt-3 space-y-1">
+            <div class="flex justify-between items-baseline">
+              <span class="text-sm font-semibold text-[#292D2A]">Secondary Text</span>
+              <span class="text-[11px] font-mono text-[#777D77]">--text-secondary</span>
+            </div>
+            <p class="text-xs text-[#777D77]">Subheadings, timestamps, field helper text, metadata labels.</p>
+            <div class="text-[11px] text-[#777D77] font-mono pt-1">Contrast: 4.6:1 on white (AA)</div>
+          </div>
+        </div>
+
+        <!-- Border -->
+        <div class="bg-white rounded-[12px] p-3.5 border border-[#E7E3DA] shadow-sm hover:border-[#173D32] transition-colors">
+          <div class="h-28 rounded-[8px] bg-[#E7E3DA] flex items-end justify-between p-3 text-[#292D2A]">
+            <span class="text-xs font-mono font-semibold">#E7E3DA</span>
+            <span class="text-[10px] uppercase tracking-wider bg-white px-2 py-0.5 rounded border border-[#E7E3DA]">Stroke</span>
+          </div>
+          <div class="pt-3 space-y-1">
+            <div class="flex justify-between items-baseline">
+              <span class="text-sm font-semibold text-[#292D2A]">Border / Divider</span>
+              <span class="text-[11px] font-mono text-[#777D77]">--border-default</span>
+            </div>
+            <p class="text-xs text-[#777D77]">Card strokes, input borders, data table dividers, tabs.</p>
+            <div class="text-[11px] text-[#777D77] font-mono pt-1">Subtle 1px natural outline</div>
+          </div>
+        </div>
+
+        <!-- Success -->
+        <div class="bg-white rounded-[12px] p-3.5 border border-[#E7E3DA] shadow-sm hover:border-[#27845B] transition-colors">
+          <div class="h-28 rounded-[8px] bg-[#27845B] flex items-end justify-between p-3 text-white">
+            <span class="text-xs font-mono font-medium">#27845B</span>
+            <span class="text-[10px] uppercase tracking-wider bg-white/20 px-2 py-0.5 rounded">Success</span>
+          </div>
+          <div class="pt-3 space-y-1">
+            <div class="flex justify-between items-baseline">
+              <span class="text-sm font-semibold text-[#292D2A]">Success Green</span>
+              <span class="text-[11px] font-mono text-[#777D77]">--state-success</span>
+            </div>
+            <p class="text-xs text-[#777D77]">"Approved", "Booked", verified vendor pills, success alerts.</p>
+            <div class="text-[11px] text-[#27845B] font-mono pt-1">Positive status confirmation</div>
+          </div>
+        </div>
+
+        <!-- Warning -->
+        <div class="bg-white rounded-[12px] p-3.5 border border-[#E7E3DA] shadow-sm hover:border-[#D69A36] transition-colors">
+          <div class="h-28 rounded-[8px] bg-[#D69A36] flex items-end justify-between p-3 text-white">
+            <span class="text-xs font-mono font-medium">#D69A36</span>
+            <span class="text-[10px] uppercase tracking-wider bg-black/20 px-2 py-0.5 rounded">Warning</span>
+          </div>
+          <div class="pt-3 space-y-1">
+            <div class="flex justify-between items-baseline">
+              <span class="text-sm font-semibold text-[#292D2A]">Warning Ochre</span>
+              <span class="text-[11px] font-mono text-[#777D77]">--state-warning</span>
+            </div>
+            <p class="text-xs text-[#777D77]">"Pending", "Quote Sent", caution toasts, action required.</p>
+            <div class="text-[11px] text-[#D69A36] font-mono pt-1">Attention without panic</div>
+          </div>
+        </div>
+
+        <!-- Error -->
+        <div class="bg-white rounded-[12px] p-3.5 border border-[#E7E3DA] shadow-sm hover:border-[#C64D48] transition-colors">
+          <div class="h-28 rounded-[8px] bg-[#C64D48] flex items-end justify-between p-3 text-white">
+            <span class="text-xs font-mono font-medium">#C64D48</span>
+            <span class="text-[10px] uppercase tracking-wider bg-white/20 px-2 py-0.5 rounded">Danger</span>
+          </div>
+          <div class="pt-3 space-y-1">
+            <div class="flex justify-between items-baseline">
+              <span class="text-sm font-semibold text-[#292D2A]">Error / Danger</span>
+              <span class="text-[11px] font-mono text-[#777D77]">--state-error</span>
+            </div>
+            <p class="text-xs text-[#777D77]">"Rejected", validation error rings, destructive buttons.</p>
+            <div class="text-[11px] text-[#C64D48] font-mono pt-1">High-visibility critical alerts</div>
+          </div>
+        </div>
+
+        <!-- Information -->
+        <div class="bg-white rounded-[12px] p-3.5 border border-[#E7E3DA] shadow-sm hover:border-[#4778A8] transition-colors">
+          <div class="h-28 rounded-[8px] bg-[#4778A8] flex items-end justify-between p-3 text-white">
+            <span class="text-xs font-mono font-medium">#4778A8</span>
+            <span class="text-[10px] uppercase tracking-wider bg-white/20 px-2 py-0.5 rounded">Info</span>
+          </div>
+          <div class="pt-3 space-y-1">
+            <div class="flex justify-between items-baseline">
+              <span class="text-sm font-semibold text-[#292D2A]">Information Slate</span>
+              <span class="text-[11px] font-mono text-[#777D77]">--state-info</span>
+            </div>
+            <p class="text-xs text-[#777D77]">"Contacted", "In Progress", informative tooltips & notes.</p>
+            <div class="text-[11px] text-[#4778A8] font-mono pt-1">Calm operational status</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 2. TYPOGRAPHY SCALE SECTION -->
+    <!-- ========================================== -->
+    <section id="typography" class="space-y-6 scroll-mt-20">
+      <div class="flex items-center justify-between border-b border-[#E7E3DA] pb-4">
+        <div>
+          <span class="text-xs font-semibold tracking-wider text-[#B99A62] uppercase">02 / Typography Hierarchy</span>
+          <h2 class="text-2xl font-semibold text-[#292D2A]">Font Sizes & Text Hierarchy (Inter)</h2>
+          <p class="text-xs text-[#777D77]">Standardized font scale with specified line-heights, weights, and recommended usage.</p>
+        </div>
+        <div class="text-xs text-[#777D77] bg-white px-3 py-1.5 rounded-[6px] border border-[#E7E3DA]">
+          9 Defined Scales
+        </div>
+      </div>
+
+      <div class="bg-white rounded-[14px] border border-[#E7E3DA] divide-y divide-[#E7E3DA] shadow-sm overflow-hidden">
+        
+        <!-- Display Heading -->
+        <div class="p-6 flex flex-col lg:flex-row lg:items-center justify-between gap-4 hover:bg-[#F7F4ED]/30 transition-colors">
+          <div class="w-64 flex-shrink-0">
+            <div class="flex items-center gap-2">
+              <span class="font-semibold text-sm text-[#173D32]">Display Heading</span>
+              <span class="text-[10px] font-mono bg-[#E7E3DA] px-2 py-0.5 rounded text-[#292D2A]">36px</span>
+            </div>
+            <div class="text-xs text-[#777D77] mt-0.5">Semibold (600) · Line: 44px</div>
+            <div class="text-[11px] text-[#B99A62] mt-1 font-mono">Hero titles, Main landing pages</div>
+          </div>
+          <div class="flex-grow">
+            <p style="font-size: 36px; line-height: 44px;" class="font-semibold text-[#292D2A] tracking-tight">
+              Every Event. Every Occasion. One Platform.
+            </p>
+          </div>
+        </div>
+
+        <!-- H1 -->
+        <div class="p-6 flex flex-col lg:flex-row lg:items-center justify-between gap-4 hover:bg-[#F7F4ED]/30 transition-colors">
+          <div class="w-64 flex-shrink-0">
+            <div class="flex items-center gap-2">
+              <span class="font-semibold text-sm text-[#173D32]">H1 Heading</span>
+              <span class="text-[10px] font-mono bg-[#E7E3DA] px-2 py-0.5 rounded text-[#292D2A]">32px</span>
+            </div>
+            <div class="text-xs text-[#777D77] mt-0.5">Semibold (600) · Line: 40px</div>
+            <div class="text-[11px] text-[#B99A62] mt-1 font-mono">Dashboard main views, Category headers</div>
+          </div>
+          <div class="flex-grow">
+            <p style="font-size: 32px; line-height: 40px;" class="font-semibold text-[#292D2A] tracking-tight">
+              Top Wedding Decorators in Hyderabad
+            </p>
+          </div>
+        </div>
+
+        <!-- H2 -->
+        <div class="p-6 flex flex-col lg:flex-row lg:items-center justify-between gap-4 hover:bg-[#F7F4ED]/30 transition-colors">
+          <div class="w-64 flex-shrink-0">
+            <div class="flex items-center gap-2">
+              <span class="font-semibold text-sm text-[#173D32]">H2 Heading</span>
+              <span class="text-[10px] font-mono bg-[#E7E3DA] px-2 py-0.5 rounded text-[#292D2A]">24px</span>
+            </div>
+            <div class="text-xs text-[#777D77] mt-0.5">Semibold (600) · Line: 32px</div>
+            <div class="text-[11px] text-[#B99A62] mt-1 font-mono">Section titles, Card groupings</div>
+          </div>
+          <div class="flex-grow">
+            <p style="font-size: 24px; line-height: 32px;" class="font-semibold text-[#292D2A]">
+              Enquiry Management & Lead Responses
+            </p>
+          </div>
+        </div>
+
+        <!-- H3 -->
+        <div class="p-6 flex flex-col lg:flex-row lg:items-center justify-between gap-4 hover:bg-[#F7F4ED]/30 transition-colors">
+          <div class="w-64 flex-shrink-0">
+            <div class="flex items-center gap-2">
+              <span class="font-semibold text-sm text-[#173D32]">H3 Heading</span>
+              <span class="text-[10px] font-mono bg-[#E7E3DA] px-2 py-0.5 rounded text-[#292D2A]">20px</span>
+            </div>
+            <div class="text-xs text-[#777D77] mt-0.5">Semibold (600) · Line: 28px</div>
+            <div class="text-[11px] text-[#B99A62] mt-1 font-mono">Modal titles, Vendor card headers</div>
+          </div>
+          <div class="flex-grow">
+            <p style="font-size: 20px; line-height: 28px;" class="font-semibold text-[#292D2A]">
+              Sree Venkateswara Luxury Stage Decorators
+            </p>
+          </div>
+        </div>
+
+        <!-- H4 -->
+        <div class="p-6 flex flex-col lg:flex-row lg:items-center justify-between gap-4 hover:bg-[#F7F4ED]/30 transition-colors">
+          <div class="w-64 flex-shrink-0">
+            <div class="flex items-center gap-2">
+              <span class="font-semibold text-sm text-[#173D32]">H4 Heading</span>
+              <span class="text-[10px] font-mono bg-[#E7E3DA] px-2 py-0.5 rounded text-[#292D2A]">18px</span>
+            </div>
+            <div class="text-xs text-[#777D77] mt-0.5">Medium (500) · Line: 26px</div>
+            <div class="text-[11px] text-[#B99A62] mt-1 font-mono">Subsection labels, Metric widget headings</div>
+          </div>
+          <div class="flex-grow">
+            <p style="font-size: 18px; line-height: 26px;" class="font-medium text-[#292D2A]">
+              Recent Customer Activity & Quotes Requested
+            </p>
+          </div>
+        </div>
+
+        <!-- Body Large -->
+        <div class="p-6 flex flex-col lg:flex-row lg:items-center justify-between gap-4 hover:bg-[#F7F4ED]/30 transition-colors">
+          <div class="w-64 flex-shrink-0">
+            <div class="flex items-center gap-2">
+              <span class="font-semibold text-sm text-[#173D32]">Body Large</span>
+              <span class="text-[10px] font-mono bg-[#E7E3DA] px-2 py-0.5 rounded text-[#292D2A]">16px</span>
+            </div>
+            <div class="text-xs text-[#777D77] mt-0.5">Regular (400) · Line: 24px</div>
+            <div class="text-[11px] text-[#B99A62] mt-1 font-mono">Lead paragraphs, Introductory descriptions</div>
+          </div>
+          <div class="flex-grow">
+            <p style="font-size: 16px; line-height: 24px;" class="font-normal text-[#292D2A]">
+              Connect directly with verified vendors across Hyderabad. Compare transparent quotation packages and schedule stage decor consultations seamlessly.
+            </p>
+          </div>
+        </div>
+
+        <!-- Body -->
+        <div class="p-6 flex flex-col lg:flex-row lg:items-center justify-between gap-4 hover:bg-[#F7F4ED]/30 transition-colors">
+          <div class="w-64 flex-shrink-0">
+            <div class="flex items-center gap-2">
+              <span class="font-semibold text-sm text-[#173D32]">Body (Default)</span>
+              <span class="text-[10px] font-mono bg-[#E7E3DA] px-2 py-0.5 rounded text-[#292D2A]">14px</span>
+            </div>
+            <div class="text-xs text-[#777D77] mt-0.5">Regular (400) · Line: 20px</div>
+            <div class="text-[11px] text-[#B99A62] mt-1 font-mono">Standard interface text, Table rows, Descriptions</div>
+          </div>
+          <div class="flex-grow">
+            <p style="font-size: 14px; line-height: 20px;" class="font-normal text-[#292D2A]">
+              Wedding reception stage decor package including mandap setup, fresh marigold & orchid floral arrangements, warm ambient LED lighting, and entrance arches.
+            </p>
+          </div>
+        </div>
+
+        <!-- Form Labels -->
+        <div class="p-6 flex flex-col lg:flex-row lg:items-center justify-between gap-4 hover:bg-[#F7F4ED]/30 transition-colors">
+          <div class="w-64 flex-shrink-0">
+            <div class="flex items-center gap-2">
+              <span class="font-semibold text-sm text-[#173D32]">Form Labels</span>
+              <span class="text-[10px] font-mono bg-[#E7E3DA] px-2 py-0.5 rounded text-[#292D2A]">13px</span>
+            </div>
+            <div class="text-xs text-[#777D77] mt-0.5">Medium (500) · Line: 18px</div>
+            <div class="text-[11px] text-[#B99A62] mt-1 font-mono">Form input labels, Data headers</div>
+          </div>
+          <div class="flex-grow">
+            <label style="font-size: 13px; line-height: 18px;" class="font-medium text-[#292D2A] flex items-center gap-1">
+              Estimated Event Budget (INR) <span class="text-[#C64D48]">*</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Small Text -->
+        <div class="p-6 flex flex-col lg:flex-row lg:items-center justify-between gap-4 hover:bg-[#F7F4ED]/30 transition-colors">
+          <div class="w-64 flex-shrink-0">
+            <div class="flex items-center gap-2">
+              <span class="font-semibold text-sm text-[#173D32]">Small Text</span>
+              <span class="text-[10px] font-mono bg-[#E7E3DA] px-2 py-0.5 rounded text-[#292D2A]">12px</span>
+            </div>
+            <div class="text-xs text-[#777D77] mt-0.5">Regular (400) · Line: 16px</div>
+            <div class="text-[11px] text-[#B99A62] mt-1 font-mono">Status badges, Timestamps, Helper notes</div>
+          </div>
+          <div class="flex-grow flex items-center gap-3">
+            <span style="font-size: 12px; line-height: 16px;" class="text-[#777D77]">Submitted 16 Nov 2026 at 10:45 AM</span>
+            <span class="inline-flex items-center px-2 py-0.5 rounded-[6px] text-[12px] font-medium bg-[#27845B]/10 text-[#27845B] border border-[#27845B]/20">
+              Verified Vendor
+            </span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 3. BUTTONS COMPONENT LIBRARY -->
+    <!-- ========================================== -->
+    <section id="buttons" class="space-y-6 scroll-mt-20">
+      <div class="flex items-center justify-between border-b border-[#E7E3DA] pb-4">
+        <div>
+          <span class="text-xs font-semibold tracking-wider text-[#B99A62] uppercase">03 / Action Elements</span>
+          <h2 class="text-2xl font-semibold text-[#292D2A]">Buttons & Variants</h2>
+          <p class="text-xs text-[#777D77]">All standard button styles with specified heights, border-radii, states, and iconography.</p>
+        </div>
+        <div class="text-xs text-[#777D77] bg-white px-3 py-1.5 rounded-[6px] border border-[#E7E3DA]">
+          Radius: 10px / Padding: 10px 20px
+        </div>
+      </div>
+
+      <!-- Button Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- Primary Button -->
+        <div class="bg-white rounded-[14px] p-6 border border-[#E7E3DA] shadow-sm space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="text-sm font-semibold text-[#292D2A]">Primary Button</span>
+            <span class="text-[11px] font-mono text-[#777D77]">Default & Hover</span>
+          </div>
+          <p class="text-xs text-[#777D77]">Used for primary call-to-actions, confirmations, and submissions.</p>
+          <div class="space-y-3 pt-2">
+            <div>
+              <span class="text-[11px] text-[#777D77] block mb-1">Normal state:</span>
+              <button class="w-full h-11 bg-[#173D32] hover:bg-[#245746] text-white text-sm font-medium rounded-[10px] px-5 transition-colors flex items-center justify-center gap-2 shadow-sm">
+                <span>Request Quotation</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+              </button>
+            </div>
+            <div>
+              <span class="text-[11px] text-[#777D77] block mb-1">Hover simulated (#245746):</span>
+              <button class="w-full h-11 bg-[#245746] text-white text-sm font-medium rounded-[10px] px-5 flex items-center justify-center gap-2">
+                <span>Request Quotation</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Secondary Button -->
+        <div class="bg-white rounded-[14px] p-6 border border-[#E7E3DA] shadow-sm space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="text-sm font-semibold text-[#292D2A]">Secondary Button</span>
+            <span class="text-[11px] font-mono text-[#777D77]">Soft Ivory Tone</span>
+          </div>
+          <p class="text-xs text-[#777D77]">Alternative actions, secondary steps, and filters.</p>
+          <div class="space-y-3 pt-2">
+            <div>
+              <span class="text-[11px] text-[#777D77] block mb-1">Normal state:</span>
+              <button class="w-full h-11 bg-[#F7F4ED] hover:bg-[#EAE5D9] text-[#173D32] border border-[#E7E3DA] text-sm font-medium rounded-[10px] px-5 transition-colors flex items-center justify-center gap-2">
+                <span>View Portfolio Gallery</span>
+              </button>
+            </div>
+            <div>
+              <span class="text-[11px] text-[#777D77] block mb-1">With leading icon:</span>
+              <button class="w-full h-11 bg-[#F7F4ED] text-[#173D32] border border-[#E7E3DA] text-sm font-medium rounded-[10px] px-5 flex items-center justify-center gap-2">
+                <svg class="w-4 h-4 text-[#B99A62]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                <span>32 Photos Available</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Outline Button -->
+        <div class="bg-white rounded-[14px] p-6 border border-[#E7E3DA] shadow-sm space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="text-sm font-semibold text-[#292D2A]">Outline Button</span>
+            <span class="text-[11px] font-mono text-[#777D77]">Bordered Variant</span>
+          </div>
+          <p class="text-xs text-[#777D77]">Neutral interactions, secondary dashboard actions.</p>
+          <div class="space-y-3 pt-2">
+            <div>
+              <span class="text-[11px] text-[#777D77] block mb-1">Normal state:</span>
+              <button class="w-full h-11 bg-transparent hover:bg-white text-[#292D2A] border border-[#E7E3DA] hover:border-[#173D32] text-sm font-medium rounded-[10px] px-5 transition-colors flex items-center justify-center gap-2">
+                <span>Download Contract</span>
+                <svg class="w-4 h-4 text-[#777D77]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+              </button>
+            </div>
+            <div>
+              <span class="text-[11px] text-[#777D77] block mb-1">Active filter outline:</span>
+              <button class="w-full h-11 bg-white text-[#173D32] border-2 border-[#173D32] text-sm font-semibold rounded-[10px] px-5 flex items-center justify-center gap-2">
+                <span>Filter: Hyderabad (All)</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- WhatsApp Action Button -->
+        <div class="bg-white rounded-[14px] p-6 border border-[#E7E3DA] shadow-sm space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="text-sm font-semibold text-[#292D2A]">WhatsApp Action</span>
+            <span class="text-[11px] font-mono text-[#27845B]">Direct Contact</span>
+          </div>
+          <p class="text-xs text-[#777D77]">Essential for Indian marketplace instant vendor chats.</p>
+          <div class="space-y-3 pt-2">
+            <div>
+              <span class="text-[11px] text-[#777D77] block mb-1">Full solid green:</span>
+              <button class="w-full h-11 bg-[#25D366] hover:bg-[#20ba5a] text-white text-sm font-semibold rounded-[10px] px-5 transition-colors flex items-center justify-center gap-2 shadow-sm">
+                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.974.53 1.942.812 2.801.812 3.179 0 5.767-2.587 5.767-5.766.001-3.187-2.575-5.767-5.772-5.767zm9.969 5.766c0 5.518-4.482 10-10 10-1.761 0-3.418-.46-4.869-1.265l-5.131 1.341 1.365-4.992c-.933-1.503-1.465-3.268-1.465-5.084 0-5.518 4.482-10 10-10s10 4.482 10 10z"/></svg>
+                <span>Chat on WhatsApp</span>
+              </button>
+            </div>
+            <div>
+              <span class="text-[11px] text-[#777D77] block mb-1">Muted soft tint:</span>
+              <button class="w-full h-11 bg-[#25D366]/10 hover:bg-[#25D366]/20 text-[#173D32] border border-[#25D366]/30 text-sm font-medium rounded-[10px] px-5 transition-colors flex items-center justify-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-[#25D366]"></span>
+                <span>Vendor Online & Available</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Danger / Destructive Button -->
+        <div class="bg-white rounded-[14px] p-6 border border-[#E7E3DA] shadow-sm space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="text-sm font-semibold text-[#292D2A]">Danger / Destructive</span>
+            <span class="text-[11px] font-mono text-[#C64D48]">#C64D48</span>
+          </div>
+          <p class="text-xs text-[#777D77]">Rejecting applications, deleting records, cancellation.</p>
+          <div class="space-y-3 pt-2">
+            <div>
+              <span class="text-[11px] text-[#777D77] block mb-1">Solid danger:</span>
+              <button class="w-full h-11 bg-[#C64D48] hover:bg-[#b0403b] text-white text-sm font-medium rounded-[10px] px-5 transition-colors flex items-center justify-center gap-2">
+                <span>Reject Application</span>
+              </button>
+            </div>
+            <div>
+              <span class="text-[11px] text-[#777D77] block mb-1">Subtle ghost danger:</span>
+              <button class="w-full h-11 bg-[#C64D48]/10 hover:bg-[#C64D48]/20 text-[#C64D48] text-sm font-medium rounded-[10px] px-5 transition-colors flex items-center justify-center gap-2">
+                <span>Cancel Booking</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Disabled & Loading States -->
+        <div class="bg-white rounded-[14px] p-6 border border-[#E7E3DA] shadow-sm space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="text-sm font-semibold text-[#292D2A]">Disabled & Loading</span>
+            <span class="text-[11px] font-mono text-[#777D77]">Interactive States</span>
+          </div>
+          <p class="text-xs text-[#777D77]">Handling pending async queries and inactive conditions.</p>
+          <div class="space-y-3 pt-2">
+            <div>
+              <span class="text-[11px] text-[#777D77] block mb-1">Disabled state (cursor not-allowed):</span>
+              <button disabled class="w-full h-11 bg-[#E7E3DA] text-[#777D77] cursor-not-allowed text-sm font-medium rounded-[10px] px-5 flex items-center justify-center gap-2">
+                <span>Submit Quotation</span>
+              </button>
+            </div>
+            <div>
+              <span class="text-[11px] text-[#777D77] block mb-1">Loading spinner state:</span>
+              <button class="w-full h-11 bg-[#173D32] opacity-90 text-white text-sm font-medium rounded-[10px] px-5 flex items-center justify-center gap-2 cursor-wait">
+                <svg class="animate-spin h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
+                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                  <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                <span>Processing Application...</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Icon Buttons & Sizes -->
+        <div class="bg-white rounded-[14px] p-6 border border-[#E7E3DA] shadow-sm space-y-4 lg:col-span-3">
+          <div class="flex items-center justify-between">
+            <span class="text-sm font-semibold text-[#292D2A]">Icon Buttons & Size Variants</span>
+            <span class="text-[11px] font-mono text-[#777D77]">Sizes: Small (36px), Medium (44px), Large (50px)</span>
+          </div>
+          <div class="flex flex-wrap items-center gap-6 pt-2">
+            <!-- Icon Only Small -->
+            <div class="flex items-center gap-3">
+              <button class="w-9 h-9 rounded-[8px] bg-white border border-[#E7E3DA] hover:border-[#173D32] text-[#292D2A] flex items-center justify-center transition-colors">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+              </button>
+              <button class="w-9 h-9 rounded-[8px] bg-[#173D32] text-white flex items-center justify-center">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+              </button>
+              <span class="text-xs text-[#777D77]">Small (36px)</span>
+            </div>
+
+            <!-- Size Comparisons -->
+            <div class="flex items-center gap-3 pl-6 border-l border-[#E7E3DA]">
+              <button class="h-9 px-3.5 bg-[#173D32] text-white text-xs font-medium rounded-[8px]">
+                Small (36px)
+              </button>
+              <button class="h-11 px-5 bg-[#173D32] text-white text-sm font-medium rounded-[10px]">
+                Medium Default (44px)
+              </button>
+              <button class="h-[50px] px-6 bg-[#173D32] text-white text-base font-semibold rounded-[12px]">
+                Large Hero (50px)
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 4. INPUT FIELDS & FORM CONTROLS -->
+    <!-- ========================================== -->
+    <section id="inputs" class="space-y-6 scroll-mt-20">
+      <div class="flex items-center justify-between border-b border-[#E7E3DA] pb-4">
+        <div>
+          <span class="text-xs font-semibold tracking-wider text-[#B99A62] uppercase">04 / Form System</span>
+          <h2 class="text-2xl font-semibold text-[#292D2A]">Input Fields & Form Elements</h2>
+          <p class="text-xs text-[#777D77]">Form inputs with 13px medium labels, 10px radius, validation states, and Indian market patterns.</p>
+        </div>
+        <div class="text-xs text-[#777D77] bg-white px-3 py-1.5 rounded-[6px] border border-[#E7E3DA]">
+          Label: 13px / Height: 44px / Radius: 10px
+        </div>
+      </div>
+
+      <div class="bg-white rounded-[14px] p-8 border border-[#E7E3DA] shadow-sm space-y-10">
+
+        <!-- Row 1: Standard Text Inputs & States -->
+        <div>
+          <h3 class="text-base font-semibold text-[#292D2A] mb-4 flex items-center gap-2">
+            <span>Standard Text Inputs & Interactive States</span>
+            <span class="text-xs font-normal text-[#777D77]">(Default, Focus Ring, Error, Disabled)</span>
+          </h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+            <!-- Default State -->
+            <div class="space-y-1.5">
+              <label class="block text-[13px] font-medium text-[#292D2A]">
+                Full Name <span class="text-[#C64D48]">*</span>
+              </label>
+              <input type="text" placeholder="e.g. Ramesh Varma" value="" class="w-full h-11 px-3.5 bg-white border border-[#E7E3DA] rounded-[10px] text-sm text-[#292D2A] placeholder-[#777D77]/60 focus:outline-none focus:border-[#173D32] focus:ring-1 focus:ring-[#173D32] transition-colors">
+              <span class="block text-[11px] text-[#777D77]">Default idle state</span>
+            </div>
+
+            <!-- Focused / Active State -->
+            <div class="space-y-1.5">
+              <label class="block text-[13px] font-medium text-[#173D32]">
+                Email Address <span class="text-[#C64D48]">*</span>
+              </label>
+              <input type="email" value="ramesh.varma@gmail.com" class="w-full h-11 px-3.5 bg-white border-2 border-[#173D32] ring-2 ring-[#173D32]/10 rounded-[10px] text-sm text-[#292D2A] focus:outline-none">
+              <span class="block text-[11px] text-[#173D32] font-medium">Focused state with #173D32 ring</span>
+            </div>
+
+            <!-- Error State -->
+            <div class="space-y-1.5">
+              <label class="block text-[13px] font-medium text-[#C64D48]">
+                Event Date <span class="text-[#C64D48]">*</span>
+              </label>
+              <div class="relative">
+                <input type="text" value="31/02/2026" class="w-full h-11 px-3.5 bg-white border-2 border-[#C64D48] ring-2 ring-[#C64D48]/10 rounded-[10px] text-sm text-[#292D2A] focus:outline-none">
+                <svg class="w-4 h-4 text-[#C64D48] absolute right-3.5 top-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              </div>
+              <span class="block text-[11px] text-[#C64D48] font-medium">Please enter a valid calendar date</span>
+            </div>
+
+            <!-- Disabled State -->
+            <div class="space-y-1.5">
+              <label class="block text-[13px] font-medium text-[#777D77]">
+                GSTIN / Tax ID
+              </label>
+              <input type="text" disabled value="36AAAAA0000A1Z5" class="w-full h-11 px-3.5 bg-[#F7F4ED] border border-[#E7E3DA] rounded-[10px] text-sm text-[#777D77] cursor-not-allowed">
+              <span class="block text-[11px] text-[#777D77]">Locked by Admin verification</span>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Row 2: Special Inputs (Mobile +91, Search, Select Dropdown, Date) -->
+        <div class="pt-6 border-t border-[#E7E3DA]">
+          <h3 class="text-base font-semibold text-[#292D2A] mb-4 flex items-center gap-2">
+            <span>Specialized Inputs & Form Patterns</span>
+            <span class="text-xs font-normal text-[#777D77]">(Indian Mobile Prefix, Search, Select Dropdown, Calendar)</span>
+          </h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+            <!-- Mobile Number with +91 Prefix -->
+            <div class="space-y-1.5">
+              <label class="block text-[13px] font-medium text-[#292D2A]">
+                Mobile Number <span class="text-[#C64D48]">*</span>
+              </label>
+              <div class="flex rounded-[10px] border border-[#E7E3DA] focus-within:border-[#173D32] focus-within:ring-1 focus-within:ring-[#173D32] bg-white overflow-hidden transition-colors">
+                <span class="inline-flex items-center px-3 bg-[#F7F4ED] text-xs font-medium text-[#292D2A] border-r border-[#E7E3DA]">
+                  🇮🇳 +91
+                </span>
+                <input type="tel" placeholder="98765 43210" class="w-full h-11 px-3 text-sm text-[#292D2A] placeholder-[#777D77]/60 focus:outline-none">
+              </div>
+              <span class="block text-[11px] text-[#777D77]">OTP will be sent for instant lead alerts</span>
+            </div>
+
+            <!-- Search Field with Leading Icon -->
+            <div class="space-y-1.5">
+              <label class="block text-[13px] font-medium text-[#292D2A]">
+                Search Customer or Vendor
+              </label>
+              <div class="relative">
+                <svg class="w-4 h-4 text-[#777D77] absolute left-3.5 top-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                <input type="text" placeholder="Search by name, ID or locality..." class="w-full h-11 pl-10 pr-3.5 bg-white border border-[#E7E3DA] rounded-[10px] text-sm text-[#292D2A] placeholder-[#777D77]/60 focus:outline-none focus:border-[#173D32] focus:ring-1 focus:ring-[#173D32]">
+              </div>
+              <span class="block text-[11px] text-[#777D77]">Supports autocomplete & live query</span>
+            </div>
+
+            <!-- Custom Select Dropdown -->
+            <div class="space-y-1.5">
+              <label class="block text-[13px] font-medium text-[#292D2A]">
+                Event Occasion Category
+              </label>
+              <div class="relative">
+                <select class="w-full h-11 px-3.5 bg-white border border-[#E7E3DA] rounded-[10px] text-sm text-[#292D2A] appearance-none focus:outline-none focus:border-[#173D32] focus:ring-1 focus:ring-[#173D32]">
+                  <option>Wedding & Reception</option>
+                  <option>Engagement & Sangeet</option>
+                  <option>Birthday Party</option>
+                  <option>Corporate Gala</option>
+                  <option>Catering & Food Stalls</option>
+                </select>
+                <svg class="w-4 h-4 text-[#777D77] absolute right-3.5 top-3.5 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+              </div>
+              <span class="block text-[11px] text-[#777D77]">Native or custom styled menu</span>
+            </div>
+
+            <!-- Date Picker Field -->
+            <div class="space-y-1.5">
+              <label class="block text-[13px] font-medium text-[#292D2A]">
+                Event Date & Time
+              </label>
+              <div class="relative">
+                <input type="date" value="2026-11-20" class="w-full h-11 px-3.5 bg-white border border-[#E7E3DA] rounded-[10px] text-sm text-[#292D2A] focus:outline-none focus:border-[#173D32] focus:ring-1 focus:ring-[#173D32]">
+              </div>
+              <span class="block text-[11px] text-[#777D77]">Calendar picker integration</span>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Row 3: Textarea, File Upload & Selection Controls -->
+        <div class="pt-6 border-t border-[#E7E3DA]">
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+            <!-- Textarea -->
+            <div class="space-y-1.5">
+              <label class="block text-[13px] font-medium text-[#292D2A]">
+                Event Details & Custom Decor Requirements
+              </label>
+              <textarea rows="4" placeholder="Mention stage dimensions, color theme (e.g. Ivory & Gold), guest count, or venue location in Hyderabad..." class="w-full p-3.5 bg-white border border-[#E7E3DA] rounded-[10px] text-sm text-[#292D2A] placeholder-[#777D77]/60 focus:outline-none focus:border-[#173D32] focus:ring-1 focus:ring-[#173D32]"></textarea>
+              <span class="block text-[11px] text-[#777D77]">Max 500 characters</span>
+            </div>
+
+            <!-- Drag & Drop File Upload -->
+            <div class="space-y-1.5">
+              <label class="block text-[13px] font-medium text-[#292D2A]">
+                Portfolio Images / Decor Catalog (PDF/JPG)
+              </label>
+              <div class="border-2 border-dashed border-[#E7E3DA] hover:border-[#173D32] rounded-[10px] p-6 text-center bg-[#F7F4ED]/40 transition-colors cursor-pointer">
+                <svg class="w-8 h-8 text-[#B99A62] mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/></svg>
+                <div class="text-xs font-semibold text-[#173D32]">Click to upload or drag & drop</div>
+                <div class="text-[11px] text-[#777D77] mt-0.5">High-res photos up to 10MB each</div>
+              </div>
+              <span class="block text-[11px] text-[#777D77]">Multiple file uploads supported</span>
+            </div>
+
+            <!-- Toggles, Checkboxes & Radio Selection -->
+            <div class="space-y-4">
+              <label class="block text-[13px] font-medium text-[#292D2A]">
+                Selection Controls (Checkbox, Radio, Toggle)
+              </label>
+              
+              <!-- Checkboxes -->
+              <div class="space-y-2">
+                <label class="flex items-center gap-2.5 text-xs text-[#292D2A] cursor-pointer">
+                  <input type="checkbox" checked class="w-4 h-4 rounded text-[#173D32] focus:ring-[#173D32] border-[#E7E3DA] accent-[#173D32]">
+                  <span>Mandap & Stage Decoration</span>
+                </label>
+                <label class="flex items-center gap-2.5 text-xs text-[#292D2A] cursor-pointer">
+                  <input type="checkbox" checked class="w-4 h-4 rounded text-[#173D32] focus:ring-[#173D32] border-[#E7E3DA] accent-[#173D32]">
+                  <span>Ambient LED Lighting & Sound Setup</span>
+                </label>
+              </div>
+
+              <!-- Radios -->
+              <div class="pt-2 border-t border-[#E7E3DA] flex items-center gap-4">
+                <label class="flex items-center gap-2 text-xs text-[#292D2A] cursor-pointer">
+                  <input type="radio" name="loc" checked class="w-4 h-4 accent-[#173D32]">
+                  <span>Hyderabad Only</span>
+                </label>
+                <label class="flex items-center gap-2 text-xs text-[#292D2A] cursor-pointer">
+                  <input type="radio" name="loc" class="w-4 h-4 accent-[#173D32]">
+                  <span>Telangana & AP</span>
+                </label>
+              </div>
+
+              <!-- Toggle Switch -->
+              <div class="pt-2 border-t border-[#E7E3DA] flex items-center justify-between">
+                <div>
+                  <span class="block text-xs font-medium text-[#292D2A]">Instant WhatsApp Alert</span>
+                  <span class="text-[11px] text-[#777D77]">Notify directly when quotation requested</span>
+                </div>
+                <label class="relative inline-flex items-center cursor-pointer">
+                  <input type="checkbox" checked class="sr-only peer">
+                  <div class="w-11 h-6 bg-[#E7E3DA] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#173D32]"></div>
+                </label>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Bottom Reusable Implementation Code Snippets Bar -->
+    <div class="p-6 bg-[#173D32] text-white rounded-[14px] flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+      <div>
+        <h4 class="text-base font-semibold">Ready for Marketplace, Vendor & Admin Implementation</h4>
+        <p class="text-xs text-[#E7E3DA]/80 mt-0.5">Use these modular design tokens and components across all screens for 100% visual coherence.</p>
+      </div>
+      <div class="flex items-center gap-3">
+        <a href="#colors" class="text-xs px-3.5 py-2 bg-[#245746] hover:bg-[#2e6d58] rounded-[8px] border border-[#E7E3DA]/20 text-white transition-colors">
+          Back to Top ↑
+        </a>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="mt-12 py-8 border-t border-[#E7E3DA] bg-white text-center text-xs text-[#777D77]">
+    AyojanSetu Design System · Reusable Component & Token Spec · Hyderabad, India
+  </footer>
+
+</body>
+</html>

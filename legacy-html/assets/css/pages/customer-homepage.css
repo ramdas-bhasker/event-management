@@ -1,0 +1,719 @@
+/**
+ * AyojanSetu – Customer Homepage Stylesheet
+ * Uses CSS Custom Properties from ../root.css and Reusable Classes from ../components.css
+ */
+
+/* Section Layout Cadence (8px Grid) */
+.hp-section {
+  padding: var(--space-16) 0;
+}
+
+.hp-section-white {
+  background-color: var(--brand-white);
+  border-top: 1px solid var(--border-default);
+  border-bottom: 1px solid var(--border-default);
+}
+
+.hp-section-ivory {
+  background-color: var(--brand-ivory);
+}
+
+.section-header-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: var(--space-10);
+}
+
+.section-header-center {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto var(--space-10);
+}
+
+.section-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--fs-badge);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--brand-gold-dark);
+  margin-bottom: var(--space-2);
+}
+
+.section-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--fs-body);
+  font-weight: 600;
+  color: var(--brand-green);
+  transition: color var(--transition-fast), transform var(--transition-fast);
+}
+
+.section-link:hover {
+  color: var(--brand-green-hover);
+}
+
+.section-link .material-symbols-outlined {
+  font-size: 18px;
+  transition: transform var(--transition-fast);
+}
+
+.section-link:hover .material-symbols-outlined {
+  transform: translateX(4px);
+}
+
+/* ==========================================
+   SECTION 1: HERO & SEARCH WIDGET
+   ========================================== */
+.hero-section {
+  padding: var(--space-10) 0 var(--space-16);
+  background: linear-gradient(180deg, var(--brand-ivory-subtle) 0%, var(--brand-ivory) 100%);
+  border-bottom: 1px solid var(--border-default);
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 7fr 5fr;
+  gap: var(--space-10);
+  align-items: center;
+}
+
+.hero-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  background-color: var(--brand-white);
+  border: 1px solid var(--border-default);
+  margin-bottom: var(--space-4);
+  width: fit-content;
+  box-shadow: var(--shadow-xs);
+}
+
+.hero-title {
+  font-size: 2.75rem;
+  line-height: 1.18;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.025em;
+  margin-bottom: var(--space-4);
+}
+
+.hero-title-accent {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 600;
+  color: var(--brand-green);
+}
+
+.hero-subtitle {
+  font-size: var(--fs-body-lg);
+  line-height: var(--lh-body-lg);
+  color: var(--text-secondary);
+  max-width: 580px;
+  margin-bottom: var(--space-8);
+}
+
+/* Multi-Field Search Widget Card */
+.search-widget-card {
+  background-color: var(--brand-white);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-2xl);
+  padding: var(--space-4);
+  box-shadow: var(--shadow-md);
+}
+
+/* Optional Event-Type Filter Bar inside Hero Search */
+.event-type-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  padding-bottom: var(--space-3);
+  margin-bottom: var(--space-3);
+  border-bottom: 1px solid var(--border-default);
+}
+
+.event-type-filter-label {
+  font-size: var(--fs-small);
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-right: 4px;
+}
+
+.event-type-pill {
+  padding: 5px 11px;
+  border-radius: var(--radius-full);
+  background-color: var(--brand-ivory);
+  border: 1px solid var(--border-default);
+  font-size: var(--fs-small);
+  font-weight: 500;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.event-type-pill:hover {
+  border-color: var(--brand-green);
+  color: var(--brand-green);
+  background-color: var(--brand-white);
+}
+
+.event-type-pill.is-active {
+  background-color: var(--brand-green);
+  color: var(--brand-white);
+  border-color: var(--brand-green);
+  font-weight: 600;
+}
+
+/* Active Search Filter Prototype Result Bar */
+.search-prototype-status {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  padding: 12px 16px;
+  margin-bottom: var(--space-6);
+  border-radius: var(--radius-xl);
+  background-color: var(--brand-white);
+  border: 1.5px solid var(--brand-green);
+  box-shadow: var(--shadow-xs);
+}
+
+.search-prototype-status.is-visible {
+  display: flex;
+}
+
+.vendor-card-clickable {
+  cursor: pointer;
+}
+
+.vendor-category-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: var(--radius-xs);
+  background-color: var(--brand-green-light);
+  color: var(--brand-green);
+  font-size: var(--fs-badge);
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.search-widget-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-3);
+  margin-bottom: var(--space-3);
+}
+
+.search-field-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: var(--radius-lg);
+  background-color: var(--brand-ivory);
+  border: 1px solid var(--border-default);
+  transition: border-color var(--transition-fast), background-color var(--transition-fast);
+}
+
+.search-field-box:focus-within,
+.search-field-box:hover {
+  border-color: var(--brand-green);
+  background-color: var(--brand-white);
+}
+
+.search-field-icon {
+  color: var(--brand-green);
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.search-field-content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 0;
+}
+
+.search-field-label {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-secondary);
+}
+
+.search-field-control {
+  width: 100%;
+  border: none;
+  background: transparent;
+  font-size: var(--fs-body);
+  font-weight: 500;
+  color: var(--text-primary);
+  outline: none;
+  cursor: pointer;
+  padding-top: 2px;
+}
+
+.trending-tags-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+}
+
+.trending-tag {
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  background-color: var(--brand-white);
+  border: 1px solid var(--border-default);
+  font-size: var(--fs-small);
+  color: var(--text-primary);
+  transition: all var(--transition-fast);
+}
+
+.trending-tag:hover {
+  border-color: var(--brand-green);
+  color: var(--brand-green);
+  background-color: var(--brand-green-light);
+}
+
+/* Hero Visual Showcase */
+.hero-visual-frame {
+  position: relative;
+  border-radius: var(--radius-2xl);
+  overflow: hidden;
+  aspect-ratio: 4 / 4.8;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border-default);
+  background-color: var(--brand-green);
+}
+
+.hero-visual-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-visual-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(23, 61, 50, 0.85) 0%, rgba(23, 61, 50, 0.20) 50%, transparent 100%);
+}
+
+.hero-float-top {
+  position: absolute;
+  top: var(--space-5);
+  left: var(--space-5);
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  padding: var(--space-3);
+  max-width: 215px;
+  box-shadow: var(--shadow-md);
+}
+
+.hero-float-bottom {
+  position: absolute;
+  bottom: var(--space-5);
+  left: var(--space-5);
+  right: var(--space-5);
+  background-color: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  box-shadow: var(--shadow-md);
+}
+
+/* ==========================================
+   SECTION 2: OCCASIONS & CATEGORIES (8-Card Grid)
+   ========================================== */
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-6);
+}
+
+.category-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.category-card-media {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background-color: var(--brand-ivory);
+}
+
+.category-card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 450ms ease;
+}
+
+.category-card:hover .category-card-media img {
+  transform: scale(1.05);
+}
+
+.category-count-pill {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background-color: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(4px);
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  font-size: var(--fs-badge);
+  font-weight: 700;
+  color: var(--brand-green);
+  border: 1px solid var(--border-default);
+}
+
+.category-card-body {
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+}
+
+.category-card-title {
+  font-size: var(--fs-h4);
+  line-height: var(--lh-h4);
+  font-weight: 600;
+  color: var(--text-primary);
+  transition: color var(--transition-fast);
+}
+
+.category-card:hover .category-card-title {
+  color: var(--brand-green);
+}
+
+.category-card-footer {
+  margin-top: var(--space-4);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--border-default);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--brand-gold-dark);
+  font-size: var(--fs-badge);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* ==========================================
+   SECTION 3: POPULAR SERVICES DIRECTORY
+   ========================================== */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-4);
+}
+
+.service-card {
+  padding: var(--space-4);
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.service-icon-box {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-lg);
+  background-color: var(--brand-ivory);
+  border: 1px solid var(--border-default);
+  color: var(--brand-green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all var(--transition-fast);
+}
+
+.service-card:hover .service-icon-box {
+  background-color: var(--brand-green);
+  color: var(--brand-gold);
+  border-color: var(--brand-green);
+}
+
+/* ==========================================
+   SECTION 4: FEATURED HYDERABAD VENDORS
+   ========================================== */
+.vendors-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-6);
+}
+
+.vendor-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.vendor-card-media {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background-color: var(--brand-ivory);
+}
+
+.vendor-card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 400ms ease;
+}
+
+.vendor-card:hover .vendor-card-media img {
+  transform: scale(1.04);
+}
+
+.vendor-verified-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background-color: #FEDB9D;
+  color: #5A4313;
+  padding: 3px 8px;
+  border-radius: var(--radius-xs);
+  font-size: var(--fs-badge);
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  box-shadow: var(--shadow-xs);
+}
+
+.vendor-bookmark-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  background-color: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(4px);
+  border: 1px solid var(--border-default);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.vendor-bookmark-btn:hover,
+.vendor-bookmark-btn.is-active {
+  color: var(--state-error);
+  background-color: var(--brand-white);
+}
+
+.vendor-card-body {
+  padding: var(--space-4);
+}
+
+.vendor-rating-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+
+.vendor-price-box {
+  margin-top: var(--space-3);
+  padding: 10px 12px;
+  border-radius: var(--radius-md);
+  background-color: var(--brand-ivory);
+  border: 1px solid var(--border-default);
+}
+
+.vendor-card-actions {
+  padding: 0 var(--space-4) var(--space-4);
+  display: grid;
+  grid-template-columns: 1fr 1.25fr;
+  gap: var(--space-2);
+}
+
+/* ==========================================
+   SECTION 5: HOW AYOJANSETU WORKS (3 Steps)
+   ========================================== */
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-8);
+}
+
+.step-card {
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.step-number {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: rgba(185, 154, 98, 0.35);
+  line-height: 1;
+}
+
+.step-icon-box {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-lg);
+  background-color: var(--brand-ivory);
+  border: 1px solid var(--border-default);
+  color: var(--brand-green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ==========================================
+   SECTION 6: WHY CHOOSE AYOJANSETU
+   ========================================== */
+.why-grid {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: var(--space-10);
+  align-items: center;
+}
+
+.why-highlight-panel {
+  background-color: var(--brand-white);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-2xl);
+  padding: var(--space-8);
+  box-shadow: var(--shadow-sm);
+}
+
+.why-pledge-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  border-radius: var(--radius-lg);
+  background-color: var(--brand-ivory);
+  border: 1px solid var(--border-default);
+}
+
+.why-features-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-5);
+}
+
+.why-feature-card {
+  padding: var(--space-5);
+}
+
+.why-feature-card.span-2 {
+  grid-column: span 2;
+}
+
+/* ==========================================
+   SECTION 7: VENDOR REGISTRATION CTA BANNER
+   ========================================== */
+.cta-banner {
+  position: relative;
+  border-radius: var(--radius-3xl);
+  background-color: var(--brand-green);
+  color: var(--brand-white);
+  padding: var(--space-12);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--brand-green-hover);
+}
+
+.cta-gold-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background-color: var(--brand-gold);
+}
+
+.cta-banner-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-8);
+}
+
+.cta-metrics-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4);
+  margin-top: var(--space-6);
+  color: #FFDEA6;
+  font-size: var(--fs-label);
+  font-weight: 600;
+}
+
+/* ==========================================
+   RESPONSIVE BREAKPOINTS
+   ========================================== */
+@media (max-width: 1100px) {
+  .hero-grid,
+  .why-grid {
+    grid-template-columns: 1fr;
+  }
+  .categories-grid,
+  .vendors-grid,
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .cta-banner-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 768px) {
+  .search-widget-grid,
+  .steps-grid,
+  .why-features-grid {
+    grid-template-columns: 1fr;
+  }
+  .why-feature-card.span-2 {
+    grid-column: span 1;
+  }
+  .hero-title {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 540px) {
+  .categories-grid,
+  .vendors-grid,
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+  .cta-banner {
+    padding: var(--space-6);
+  }
+}

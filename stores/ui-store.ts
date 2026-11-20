@@ -4,6 +4,7 @@
 
 import { create } from 'zustand';
 import type { EventTypeFilter, MicroMarketId, ServiceId } from '@/types';
+import type { BudgetRangeSlug } from '@/types/vendor';
 
 export interface ProfileModalData {
   eyebrow: string;
@@ -42,20 +43,25 @@ interface UiStoreState {
   selectedEventType: EventTypeFilter;
   selectedService: ServiceId;
   selectedLocation: MicroMarketId;
+  selectedBudget: BudgetRangeSlug;
   selectedDate: string;
   selectedDateLabel: string;
   isSearchPrototypeActive: boolean;
   setSelectedEventType: (eventType: EventTypeFilter) => void;
   setSelectedService: (service: ServiceId) => void;
   setSelectedLocation: (location: MicroMarketId) => void;
+  setSelectedBudget: (budget: BudgetRangeSlug) => void;
   setSelectedDate: (date: string, label: string) => void;
   activateSearchPrototype: () => void;
   resetSearchFilters: () => void;
 
-  // 6. Client-side Vendor Bookmarks
+  // 6. Client-side Vendor Bookmarks (Persisted to localStorage for MVP)
   bookmarkedVendorIds: string[];
+  hydrateBookmarks: () => void;
   toggleVendorBookmark: (vendorId: string) => void;
 }
+
+const SAVED_VENDORS_STORAGE_KEY = 'ayojansetu_saved_vendors';
 
 export const useUiStore = create<UiStoreState>((set) => ({
   isEnquiryModalOpen: false,
@@ -95,12 +101,14 @@ export const useUiStore = create<UiStoreState>((set) => ({
   selectedEventType: 'All Events',
   selectedService: 'all',
   selectedLocation: 'all',
+  selectedBudget: 'all',
   selectedDate: 'flexible',
   selectedDateLabel: 'Flexible Dates',
   isSearchPrototypeActive: false,
   setSelectedEventType: (eventType) => set({ selectedEventType: eventType }),
   setSelectedService: (service) => set({ selectedService: service }),
   setSelectedLocation: (location) => set({ selectedLocation: location }),
+  setSelectedBudget: (budget) => set({ selectedBudget: budget }),
   setSelectedDate: (date, label) =>
     set({ selectedDate: date, selectedDateLabel: label }),
   activateSearchPrototype: () => set({ isSearchPrototypeActive: true }),
@@ -109,19 +117,42 @@ export const useUiStore = create<UiStoreState>((set) => ({
       selectedEventType: 'All Events',
       selectedService: 'all',
       selectedLocation: 'all',
+      selectedBudget: 'all',
       selectedDate: 'flexible',
       selectedDateLabel: 'Flexible Dates',
       isSearchPrototypeActive: false,
     }),
 
   bookmarkedVendorIds: [],
+  hydrateBookmarks: () => {
+    if (typeof window === 'undefined') return;
+    try {
+      const raw = window.localStorage.getItem(SAVED_VENDORS_STORAGE_KEY);
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        if (Array.isArray(parsed)) {
+          set({ bookmarkedVendorIds: parsed.filter((x) => typeof x === 'string') });
+        }
+      }
+    } catch {
+      // Ignore storage access errors
+    }
+  },
   toggleVendorBookmark: (vendorId) =>
     set((state) => {
       const exists = state.bookmarkedVendorIds.includes(vendorId);
+      const next = exists
+        ? state.bookmarkedVendorIds.filter((id) => id !== vendorId)
+        : [...state.bookmarkedVendorIds, vendorId];
+      if (typeof window !== 'undefined') {
+        try {
+          window.localStorage.setItem(SAVED_VENDORS_STORAGE_KEY, JSON.stringify(next));
+        } catch {
+          // Ignore storage access errors
+        }
+      }
       return {
-        bookmarkedVendorIds: exists
-          ? state.bookmarkedVendorIds.filter((id) => id !== vendorId)
-          : [...state.bookmarkedVendorIds, vendorId],
+        bookmarkedVendorIds: next,
       };
     }),
 }));

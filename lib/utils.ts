@@ -1,6 +1,14 @@
 /**
- * AyojanSetu – Utility Helpers
+ * AyojanSetu – Utility Helpers & Search Route Builders
  */
+
+import type { EventTypeFilter, MicroMarketId, ServiceId } from '@/types';
+import type {
+  BudgetRangeSlug,
+  EventCategorySlug,
+  VendorCategorySlug,
+  VendorLocationSlug,
+} from '@/types/vendor';
 
 export function cn(...classes: Array<string | false | null | undefined>): string {
   return classes.filter(Boolean).join(' ');
@@ -60,4 +68,100 @@ export function formatPanchangamDisplayDate(
   const ddFormatted = String(day).padStart(2, '0');
   const suffix = isMuhurtham ? ' · Muhurtham' : '';
   return `${ddFormatted} ${SHORT_MONTHS[monthIndex]} ${year}${suffix}`;
+}
+
+const SERVICE_TO_CATEGORY_MAP: Record<Exclude<ServiceId, 'all'>, Exclude<VendorCategorySlug, 'all'>> = {
+  decorators: 'wedding-decorators',
+  florists: 'wedding-decorators',
+  photography: 'wedding-photographers',
+  catering: 'caterers',
+  venue: 'event-venues',
+  makeup: 'makeup-artists',
+  planners: 'event-planners',
+  dj: 'djs-and-entertainment',
+};
+
+const MICRO_MARKET_TO_LOCATION_MAP: Record<MicroMarketId, VendorLocationSlug> = {
+  all: 'hyderabad',
+  banjara: 'banjara-hills',
+  jubilee: 'jubilee-hills',
+  gachibowli: 'gachibowli',
+  madhapur: 'madhapur',
+  secunderabad: 'secunderabad',
+  kondapur: 'kukatpally-kondapur',
+};
+
+const EVENT_TYPE_TO_SLUG_MAP: Record<Exclude<EventTypeFilter, 'All Events'>, Exclude<EventCategorySlug, 'all'>> = {
+  Weddings: 'weddings-receptions',
+  Birthdays: 'birthdays-milestones',
+  'Corporate Events': 'corporate-galas',
+  'Traditional Functions': 'pooja-traditional',
+  'Family Functions': 'pooja-traditional',
+  'Private Celebrations': 'private-celebrations',
+};
+
+export function mapServiceIdToCategorySlug(serviceId?: ServiceId): VendorCategorySlug {
+  if (!serviceId || serviceId === 'all') return 'all';
+  return SERVICE_TO_CATEGORY_MAP[serviceId] || 'all';
+}
+
+export function mapMicroMarketToLocationSlug(locationId?: MicroMarketId): VendorLocationSlug {
+  if (!locationId) return 'hyderabad';
+  return MICRO_MARKET_TO_LOCATION_MAP[locationId] || 'hyderabad';
+}
+
+export function mapEventTypeToEventSlug(eventType?: EventTypeFilter): EventCategorySlug {
+  if (!eventType || eventType === 'All Events') return 'all';
+  return EVENT_TYPE_TO_SLUG_MAP[eventType] || 'all';
+}
+
+/**
+ * Builds a canonical `/vendors?...` URL with sensible defaults (`location=hyderabad`).
+ */
+export function buildVendorsSearchUrl(options: {
+  category?: VendorCategorySlug;
+  serviceId?: ServiceId;
+  event?: EventCategorySlug;
+  eventType?: EventTypeFilter;
+  location?: VendorLocationSlug;
+  locationId?: MicroMarketId;
+  budget?: BudgetRangeSlug;
+  date?: string;
+}): string {
+  const params = new URLSearchParams();
+
+  const resolvedCategory =
+    options.category ??
+    (options.serviceId ? mapServiceIdToCategorySlug(options.serviceId) : 'all');
+
+  const resolvedEvent =
+    options.event ??
+    (options.eventType ? mapEventTypeToEventSlug(options.eventType) : 'all');
+
+  const resolvedLocation =
+    options.location ??
+    (options.locationId
+      ? mapMicroMarketToLocationSlug(options.locationId)
+      : 'hyderabad');
+
+  if (resolvedCategory && resolvedCategory !== 'all') {
+    params.set('category', resolvedCategory);
+  }
+
+  if (resolvedEvent && resolvedEvent !== 'all') {
+    params.set('event', resolvedEvent);
+  }
+
+  params.set('location', resolvedLocation || 'hyderabad');
+
+  if (options.budget && options.budget !== 'all') {
+    params.set('budget', options.budget);
+  }
+
+  if (options.date && options.date !== 'flexible') {
+    params.set('date', options.date);
+  }
+
+  const qs = params.toString();
+  return qs ? `/vendors?${qs}` : '/vendors?location=hyderabad';
 }

@@ -33,56 +33,56 @@ export const EXPLORE_VENDORS_MEGA_LINKS: MegaMenuVendorItem[] = [
     id: 'decorators',
     label: 'Decorators',
     icon: 'yard',
-    href: '#featured-vendors',
+    href: '/vendors?category=wedding-decorators&location=hyderabad',
     serviceId: 'decorators',
   },
   {
     id: 'photographers-videographers',
     label: 'Photographers & Videographers',
     icon: 'photo_camera',
-    href: '#featured-vendors',
+    href: '/vendors?category=wedding-photographers&location=hyderabad',
     serviceId: 'photography',
   },
   {
     id: 'caterers',
     label: 'Caterers',
     icon: 'restaurant',
-    href: '#featured-vendors',
+    href: '/vendors?category=caterers&location=hyderabad',
     serviceId: 'catering',
   },
   {
     id: 'venues-banquets',
     label: 'Venues & Banquets',
     icon: 'apartment',
-    href: '#featured-vendors',
+    href: '/vendors?category=event-venues&location=hyderabad',
     serviceId: 'venue',
   },
   {
     id: 'makeup-artists',
     label: 'Makeup Artists',
     icon: 'face_retouching_natural',
-    href: '#featured-vendors',
+    href: '/vendors?category=makeup-artists&location=hyderabad',
     serviceId: 'makeup',
   },
   {
     id: 'event-planners',
     label: 'Event Planners',
     icon: 'event_note',
-    href: '#featured-vendors',
+    href: '/vendors?category=event-planners&location=hyderabad',
     serviceId: 'planners',
   },
   {
     id: 'djs-entertainment',
     label: 'DJs & Entertainment',
     icon: 'graphic_eq',
-    href: '#featured-vendors',
+    href: '/vendors?category=djs-and-entertainment&location=hyderabad',
     serviceId: 'dj',
   },
   {
     id: 'florists-gifts',
     label: 'Florists & Gifts',
     icon: 'local_florist',
-    href: '#featured-vendors',
+    href: '/vendors?category=wedding-decorators&location=hyderabad',
     serviceId: 'florists',
   },
 ];
@@ -92,56 +92,56 @@ export const EVENT_CATEGORIES_MEGA_LINKS: MegaMenuCategoryItem[] = [
     id: 'weddings-engagements',
     label: 'Weddings & Engagements',
     icon: 'favorite',
-    href: '#event-categories',
+    href: '/vendors?event=weddings-receptions&location=hyderabad',
     eventFilter: 'Weddings',
   },
   {
     id: 'birthdays-milestones',
     label: 'Birthdays & Milestones',
     icon: 'cake',
-    href: '#event-categories',
+    href: '/vendors?event=birthdays-milestones&location=hyderabad',
     eventFilter: 'Birthdays',
   },
   {
     id: 'corporate-events',
     label: 'Corporate Events',
     icon: 'business_center',
-    href: '#event-categories',
+    href: '/vendors?event=corporate-galas&location=hyderabad',
     eventFilter: 'Corporate Events',
   },
   {
     id: 'traditional-functions',
     label: 'Traditional Functions',
     icon: 'auto_awesome',
-    href: '#event-categories',
+    href: '/vendors?event=pooja-traditional&location=hyderabad',
     eventFilter: 'Traditional Functions',
   },
   {
     id: 'housewarming-poojas',
     label: 'Housewarming & Poojas',
     icon: 'self_improvement',
-    href: '#event-categories',
+    href: '/vendors?event=pooja-traditional&location=hyderabad',
     eventFilter: 'Traditional Functions',
   },
   {
     id: 'anniversaries-jubilees',
     label: 'Anniversaries & Jubilees',
     icon: 'wine_bar',
-    href: '#event-categories',
+    href: '/vendors?event=private-celebrations&location=hyderabad',
     eventFilter: 'Family Functions',
   },
   {
     id: 'baby-showers-naming',
     label: 'Baby Showers & Naming Ceremonies',
     icon: 'child_care',
-    href: '#event-categories',
+    href: '/vendors?event=pooja-traditional&location=hyderabad',
     eventFilter: 'Family Functions',
   },
   {
     id: 'private-parties-social',
     label: 'Private Parties & Social Gatherings',
     icon: 'nightlife',
-    href: '#event-categories',
+    href: '/vendors?event=private-celebrations&location=hyderabad',
     eventFilter: 'Private Celebrations',
   },
 ];
@@ -176,22 +176,22 @@ export const TRENDING_SEARCH_TAGS: TrendingSearchTag[] = [
   {
     label: 'Stage & Event Decorators',
     serviceId: 'decorators',
-    href: '#featured-vendors',
+    href: '/vendors?category=wedding-decorators&location=hyderabad',
   },
   {
     label: 'Hyderabad Caterers',
     serviceId: 'catering',
-    href: '#featured-vendors',
+    href: '/vendors?category=caterers&location=hyderabad',
   },
   {
     label: 'Event Photography',
     serviceId: 'photography',
-    href: '#featured-vendors',
+    href: '/vendors?category=wedding-photographers&location=hyderabad',
   },
   {
     label: 'Banquet Halls & Lawns',
     serviceId: 'venue',
-    href: '#featured-vendors',
+    href: '/vendors?category=event-venues&location=hyderabad',
   },
 ];
 
@@ -206,7 +206,7 @@ export const OCCASION_CATEGORIES: OccasionCategory[] = [
     imageUrl:
       'https://lh3.googleusercontent.com/aida-public/AB6AXuAIcg5uX5Fj1NvUrbI4BbwWLUsmc0E_vx5EGoSqKfAxxI8TSaAVhHGr1kw7Kr3yKUcB8ttIdP5vUJYcmsMuFGpBmkgIImuv7D0hcxIRfbAmmAjDNdw9r9dTaedUauh0QEsGlPkCsyWxcOcCB8DMjF9y7lRPwJ5yl9uoKw17GoKbeXrsl1ms6Cmhr2iaQPRI4TXLZEkRE5QATd0VfKkgF29uoaYylQt7uQ7IoLwehbQ',
     imageAlt: 'Traditional Indian wedding and engagement stage setup in Hyderabad',
-    href: '#featured-vendors',
+    href: '/vendors?event=weddings-receptions&location=hyderabad',
     eventFilter: 'Weddings',
   },
   {
@@ -220,7 +220,7 @@ export const OCCASION_CATEGORIES: OccasionCategory[] = [
       'https://lh3.googleusercontent.com/aida-public/AB6AXuC7nmhQd-s-TSeFzH9E_yspmXeZ8r9DURuVX0xJ6xUPeRluxIZTE3IXQo7SWPLWu0JVHIZcZg_LZSGyX0MLLXYnRlQvOVBYwZIKPW0rXDpGC0y0Sh_XzSYNe0d2WYYAvTemYx9EO-N_nIRFRYHc0mzrDuEHOdOV649bfjOiS3Zk9EaSgWVqsPomIc1lga8JA2Ms7aF-Fqb0oPYLh0K_7uIRjAJ75H333jfMOHwglBU',
     imageAlt:
       'Birthday party celebration setup in Hyderabad with custom backdrop and lighting',
-    href: '#featured-vendors',
+    href: '/vendors?event=birthdays-milestones&location=hyderabad',
     eventFilter: 'Birthdays',
   },
   {
@@ -233,7 +233,7 @@ export const OCCASION_CATEGORIES: OccasionCategory[] = [
     imageUrl:
       'https://lh3.googleusercontent.com/aida-public/AB6AXuCfZDCfPVJmqBn7LwfGma0wmJBQqEGWvIVmwubvNRIZuw7Mq_2sQIj7zRFw8IWf5Lbe0LWz2EhbMPK9mNtTULj89a5u4-rtfzDjHvGNFsGo55lTStYAQZuErv0sEwpM2pVdo12QqiOQ2rUu58wpbu0seiyJCnaV7FBC7VuD_oo7RqfJA-q-qC2B2d7zh8t6s8XVk5oPidkLx8NzM9fK6p4VR0STjZBBAsvr8rWXbk8',
     imageAlt: 'Corporate conference and gala stage setup in Hyderabad',
-    href: '#featured-vendors',
+    href: '/vendors?event=corporate-galas&location=hyderabad',
     eventFilter: 'Corporate Events',
   },
   {
@@ -247,7 +247,7 @@ export const OCCASION_CATEGORIES: OccasionCategory[] = [
       'https://lh3.googleusercontent.com/aida-public/AB6AXuAm1Qrq_FjWG7liWeMyl3KboGxmFiXVeE7xaEFUkb0wmQd0OZEU8c572XWH-YEGIJob6boVnCSwi_901t3-0fHQDB-p4mpRgqHGyo_r09n_UCIIhPaIvCz9fOf9g_DVeg4la7oIoN-snAGwurCXh4rhXKrTmXQwH9cu63NYxRQGakB8oY-AJnlFVfz7yTHhqp8VrcUAD5OvfROnmstAhFLq3axr3ypX4ZF--4Lwhrk',
     imageAlt:
       'Traditional South Indian Half Saree and family ceremony floral decor in Hyderabad',
-    href: '#featured-vendors',
+    href: '/vendors?event=pooja-traditional&location=hyderabad',
     eventFilter: 'Traditional Functions',
   },
   {
@@ -261,7 +261,7 @@ export const OCCASION_CATEGORIES: OccasionCategory[] = [
       'https://lh3.googleusercontent.com/aida-public/AB6AXuBJFfioaw2moNdshPzjx5XaPWBj0Yt7JnJdf2S0TRYZnZ_H4wz8ku2SkTUskjg8hBY8aZhi4crmAZ-ZV1q2j2j7yOLRoNR8xujsH2HSBLWESxptvyYQ_JcPLMdMCZEfggSPVWkmFOc1WTW9C3Mt7WdM15kCktpy-a4BloGgsAwkjbKnRaTesYy6E6oNlWQNHNCnMZDN4d-tbqef1dmcsT34m5d1l5Plx-ADkH_xGQg',
     imageAlt:
       'Griha Pravesh housewarming marigold and mango leaf entrance decor in Hyderabad',
-    href: '#featured-vendors',
+    href: '/vendors?event=pooja-traditional&location=hyderabad',
     eventFilter: 'Traditional Functions',
   },
   {
@@ -274,7 +274,7 @@ export const OCCASION_CATEGORIES: OccasionCategory[] = [
     imageUrl:
       'https://lh3.googleusercontent.com/aida-public/AB6AXuAONWoNEl3jGyvskTXo1aPA5KCSb8xGDAwsSpOg9uUlMA6a-AwPGyWpsIQumMFLhm1YgmXqAsahZxdv-M_9agYQBLJwH1C6AV7gPYdJLgEdofis-yU8E3bs9bqLn04USCIrvqCVrPybMbPh4YN6l9WFyQnrddw5AN1ymNpjtgwxQrmC_Yi7-9RZQ66NFAYrSTjcCPt27jAlSTOxi-7iRsjtqNeDjEdZK-CPxuhjNoU',
     imageAlt: 'Silver jubilee anniversary evening dinner setup on a Hyderabad lawn',
-    href: '#featured-vendors',
+    href: '/vendors?event=private-celebrations&location=hyderabad',
     eventFilter: 'Family Functions',
   },
   {
@@ -287,7 +287,7 @@ export const OCCASION_CATEGORIES: OccasionCategory[] = [
     imageUrl:
       'https://lh3.googleusercontent.com/aida-public/AB6AXuAnNyJPDNfFuJS4WMWWPbvZh1ll-bbwP3ZD8vUHqkEaiO4al_ZwBh9khsBbiAdpLAmF1ej3cJxStze6igW_H7tnG-81LrEqNy2tOaB_ISIQB0kB67zRXo2jgJret9XTDUKfZYFd8GTRt_Q9cRn_aSMCszxS29FyS-XAF52fudGy29uB9yq72NlYO_cdgzJVHo7Aw2C4FfrRYmJm-rP3zfkV7lVgQqlYUYusqEvsoxg',
     imageAlt: 'Traditional cradle ceremony and baby shower stage decor in Hyderabad',
-    href: '#featured-vendors',
+    href: '/vendors?event=pooja-traditional&location=hyderabad',
     eventFilter: 'Family Functions',
   },
   {
@@ -301,7 +301,7 @@ export const OCCASION_CATEGORIES: OccasionCategory[] = [
       'https://lh3.googleusercontent.com/aida-public/AB6AXuAq_OhXurhXxQM7dgYHDgp0-fgQlGnZHK-sgJes1gWFrXSx25n4d_WGEAI7_aG382e6YWtc_snLk5X_605nPvn1xUxCEM7NPXRKTUD-j8hvWUfdheomhuZnza0fIBAHSUH3_M7BvOfkQjNuPjtII2zFhlPV0ZSKsfNY77bv7EddU9Pf7Q28KHw92nBwfZUw7BUt4mva-VrLQCn8lRtqUUJqMJ_O97FF0MKsnkGk2xY',
     imageAlt:
       'Evening social gathering and private party lighting with DJ console in Hyderabad',
-    href: '#featured-vendors',
+    href: '/vendors?event=private-celebrations&location=hyderabad',
     eventFilter: 'Private Celebrations',
   },
 ];
@@ -312,7 +312,7 @@ export const POPULAR_SERVICES: PopularServiceItem[] = [
     title: 'Decorators',
     subtitle: 'Stage, Floral & Theme Styling',
     icon: 'yard',
-    href: '#featured-vendors',
+    href: '/vendors?category=wedding-decorators&location=hyderabad',
     serviceId: 'decorators',
   },
   {
@@ -320,7 +320,7 @@ export const POPULAR_SERVICES: PopularServiceItem[] = [
     title: 'Photographers & Videographers',
     subtitle: 'Candid, Traditional & Event Films',
     icon: 'photo_camera',
-    href: '#featured-vendors',
+    href: '/vendors?category=wedding-photographers&location=hyderabad',
     serviceId: 'photography',
   },
   {
@@ -328,7 +328,7 @@ export const POPULAR_SERVICES: PopularServiceItem[] = [
     title: 'Caterers',
     subtitle: 'Multi-Cuisine & Regional Menus',
     icon: 'restaurant',
-    href: '#featured-vendors',
+    href: '/vendors?category=caterers&location=hyderabad',
     serviceId: 'catering',
   },
   {
@@ -336,7 +336,7 @@ export const POPULAR_SERVICES: PopularServiceItem[] = [
     title: 'Venues & Banquets',
     subtitle: 'Halls, Lawns & Convention Spaces',
     icon: 'apartment',
-    href: '#featured-vendors',
+    href: '/vendors?category=event-venues&location=hyderabad',
     serviceId: 'venue',
   },
   {
@@ -344,7 +344,7 @@ export const POPULAR_SERVICES: PopularServiceItem[] = [
     title: 'Makeup Artists',
     subtitle: 'Bridal, Party & Family Styling',
     icon: 'face_retouching_natural',
-    href: '#featured-vendors',
+    href: '/vendors?category=makeup-artists&location=hyderabad',
     serviceId: 'makeup',
   },
   {
@@ -352,7 +352,7 @@ export const POPULAR_SERVICES: PopularServiceItem[] = [
     title: 'Event Planners',
     subtitle: 'End-to-End Event Coordination',
     icon: 'event_note',
-    href: '#featured-vendors',
+    href: '/vendors?category=event-planners&location=hyderabad',
     serviceId: 'planners',
   },
   {
@@ -360,7 +360,7 @@ export const POPULAR_SERVICES: PopularServiceItem[] = [
     title: 'DJs & Entertainment',
     subtitle: 'Sound, Lighting, Live Bands & MCs',
     icon: 'graphic_eq',
-    href: '#featured-vendors',
+    href: '/vendors?category=djs-and-entertainment&location=hyderabad',
     serviceId: 'dj',
   },
   {
@@ -368,7 +368,7 @@ export const POPULAR_SERVICES: PopularServiceItem[] = [
     title: 'Florists & Gifts',
     subtitle: 'Garlands, Hampers & Return Gifts',
     icon: 'local_florist',
-    href: '#featured-vendors',
+    href: '/vendors?category=wedding-decorators&location=hyderabad',
     serviceId: 'florists',
   },
 ];

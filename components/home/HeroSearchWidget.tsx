@@ -1,7 +1,9 @@
 'use client';
 
-import { useCallback, useRef, useState, type FormEvent } from 'react';
+import { useCallback, useRef, useState, type FormEvent, type KeyboardEvent } from 'react';
+import { useRouter } from 'next/navigation';
 import { useOutsideClickAndEscape } from '@/hooks/useOutsideClickAndEscape';
+import { BUDGET_RANGE_OPTIONS } from '@/data/mock-vendors';
 import {
   EVENT_TYPE_FILTER_PILLS,
   MICRO_MARKET_OPTIONS,
@@ -9,6 +11,7 @@ import {
   TRENDING_SEARCH_TAGS,
 } from '@/lib/constants';
 import {
+  buildVendorsSearchUrl,
   cn,
   formatIsoDate,
   MONTH_NAMES,
@@ -17,20 +20,23 @@ import {
 } from '@/lib/utils';
 import { useUiStore } from '@/stores/ui-store';
 import type { ServiceId } from '@/types';
+import type { BudgetRangeSlug } from '@/types/vendor';
 
-type ActiveSearchDropdown = 'service' | 'location' | 'date' | null;
+type ActiveSearchDropdown = 'service' | 'location' | 'budget' | 'date' | null;
 
 export function HeroSearchWidget() {
+  const router = useRouter();
   const selectedEventType = useUiStore((s) => s.selectedEventType);
   const selectedService = useUiStore((s) => s.selectedService);
   const selectedLocation = useUiStore((s) => s.selectedLocation);
+  const selectedBudget = useUiStore((s) => s.selectedBudget);
   const selectedDate = useUiStore((s) => s.selectedDate);
   const selectedDateLabel = useUiStore((s) => s.selectedDateLabel);
   const setSelectedEventType = useUiStore((s) => s.setSelectedEventType);
   const setSelectedService = useUiStore((s) => s.setSelectedService);
   const setSelectedLocation = useUiStore((s) => s.setSelectedLocation);
+  const setSelectedBudget = useUiStore((s) => s.setSelectedBudget);
   const setSelectedDate = useUiStore((s) => s.setSelectedDate);
-  const activateSearchPrototype = useUiStore((s) => s.activateSearchPrototype);
 
   const [openDropdown, setOpenDropdown] = useState<ActiveSearchDropdown>(null);
   const [activePreset, setActivePreset] = useState<'flexible' | 'weekend' | 'next-month' | null>('flexible');
@@ -47,13 +53,17 @@ export function HeroSearchWidget() {
     MICRO_MARKET_OPTIONS.find((opt) => opt.value === selectedLocation) ||
     MICRO_MARKET_OPTIONS[0];
 
+  const activeBudgetOption =
+    BUDGET_RANGE_OPTIONS.find((opt) => opt.value === selectedBudget) ||
+    BUDGET_RANGE_OPTIONS[0];
+
   const handleCloseDropdown = useCallback(() => {
     setOpenDropdown(null);
   }, []);
 
   useOutsideClickAndEscape(widgetRef, handleCloseDropdown, openDropdown !== null);
 
-  function toggleDropdown(target: 'service' | 'location' | 'date') {
+  function toggleDropdown(target: 'service' | 'location' | 'budget' | 'date') {
     setOpenDropdown((prev) => (prev === target ? null : target));
   }
 
@@ -116,19 +126,33 @@ export function HeroSearchWidget() {
     setOpenDropdown(null);
   }
 
+  function navigateToVendors(serviceId: ServiceId = selectedService) {
+    setOpenDropdown(null);
+    router.push(
+      buildVendorsSearchUrl({
+        eventType: selectedEventType,
+        serviceId,
+        locationId: selectedLocation,
+        budget: selectedBudget,
+      })
+    );
+  }
+
   function handleTrendingTagClick(serviceId: ServiceId) {
     setSelectedService(serviceId);
-    activateSearchPrototype();
-    const vendorsSection = document.getElementById('featured-vendors');
-    vendorsSection?.scrollIntoView({ behavior: 'smooth' });
+    navigateToVendors(serviceId);
   }
 
   function handleSearchSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setOpenDropdown(null);
-    activateSearchPrototype();
-    const vendorsSection = document.getElementById('featured-vendors');
-    vendorsSection?.scrollIntoView({ behavior: 'smooth' });
+    navigateToVendors();
+  }
+
+  function handleSearchKeyDown(e: KeyboardEvent<HTMLFormElement>) {
+    if (e.key !== 'Enter') return;
+    if (e.target instanceof HTMLButtonElement && e.target.type === 'submit') return;
+    e.preventDefault();
+    navigateToVendors();
   }
 
   const firstDayOfWeek = new Date(calYear, calMonth, 1).getDay();
@@ -138,7 +162,11 @@ export function HeroSearchWidget() {
     <div ref={widgetRef}>
       {/* Search Widget Component */}
       <div className="search-widget-card">
-        <form id="heroSearchForm" onSubmit={handleSearchSubmit}>
+        <form
+          id="heroSearchForm"
+          onSubmit={handleSearchSubmit}
+          onKeyDown={handleSearchKeyDown}
+        >
           <input
             type="hidden"
             name="eventType"
@@ -323,7 +351,83 @@ export function HeroSearchWidget() {
               </div>
             </div>
 
-            {/* Field 3: When is your event? (Flexible by default) */}
+            {/* Field 3: Budget range */}
+            <div
+              className={cn('ay-dropdown', openDropdown === 'budget' && 'is-open')}
+              id="budgetDropdown"
+              data-dropdown="budget"
+            >
+              <input
+                type="hidden"
+                name="budget"
+                id="heroBudgetInput"
+                value={selectedBudget}
+              />
+              <button
+                type="button"
+                className="ay-dropdown-trigger"
+                aria-haspopup="listbox"
+                aria-expanded={openDropdown === 'budget'}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  toggleDropdown('budget');
+                }}
+              >
+                <div className="ay-dropdown-trigger-left">
+                  <div className="ay-dropdown-icon-box">
+                    <span
+                      className="material-symbols-outlined"
+                      style={{ fontSize: '19px' }}
+                    >
+                      payments
+                    </span>
+                  </div>
+                  <div className="ay-dropdown-text">
+                    <span className="ay-dropdown-label">Budget range</span>
+                    <span className="ay-dropdown-value">
+                      {activeBudgetOption.label}
+                    </span>
+                  </div>
+                </div>
+                <span className="material-symbols-outlined ay-dropdown-chevron">
+                  expand_more
+                </span>
+              </button>
+
+              <div
+                className="ay-dropdown-menu"
+                role="listbox"
+                aria-label="Select budget range"
+              >
+                <div className="ay-dropdown-list">
+                  {BUDGET_RANGE_OPTIONS.map((option) => {
+                    const isSelected = option.value === selectedBudget;
+                    return (
+                      <div
+                        key={option.value}
+                        className={cn('ay-dropdown-item', isSelected && 'is-selected')}
+                        role="option"
+                        aria-selected={isSelected}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setSelectedBudget(option.value as BudgetRangeSlug);
+                          setOpenDropdown(null);
+                        }}
+                      >
+                        <span className="material-symbols-outlined ay-dropdown-item-icon">
+                          payments
+                        </span>
+                        <span className="ay-dropdown-item-title">
+                          {option.label}
+                        </span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+
+            {/* Field 4: When is your event? (Flexible by default) */}
             <div
               className={cn('ay-dropdown', openDropdown === 'date' && 'is-open')}
               id="dateDropdown"

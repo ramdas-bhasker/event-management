@@ -127,6 +127,7 @@ export function buildVendorsSearchUrl(options: {
   locationId?: MicroMarketId;
   budget?: BudgetRangeSlug;
   date?: string;
+  query?: string;
 }): string {
   const params = new URLSearchParams();
 
@@ -160,6 +161,10 @@ export function buildVendorsSearchUrl(options: {
 
   if (options.date && options.date !== 'flexible') {
     params.set('date', options.date);
+  }
+
+  if (options.query?.trim()) {
+    params.set('q', options.query.trim());
   }
 
   const qs = params.toString();

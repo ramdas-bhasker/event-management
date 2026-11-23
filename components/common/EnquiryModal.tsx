@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState, type FormEvent } from 'react';
+import { useRouter } from 'next/navigation';
 import { ENQUIRY_OCCASION_OPTIONS } from '@/lib/constants';
 import { prepareVendorEnquiryPayload } from '@/lib/api/client';
 import { useUiStore } from '@/stores/ui-store';
@@ -15,6 +16,7 @@ import {
 type ActiveModalDropdown = 'occasion' | 'date' | null;
 
 export function EnquiryModal() {
+  const router = useRouter();
   const isEnquiryModalOpen = useUiStore((s) => s.isEnquiryModalOpen);
   const enquiryVendorName = useUiStore((s) => s.enquiryVendorName);
   const closeEnquiryModal = useUiStore((s) => s.closeEnquiryModal);
@@ -25,7 +27,6 @@ export function EnquiryModal() {
   const isProfileModalOpen = useUiStore((s) => s.isProfileModalOpen);
   const profileModalData = useUiStore((s) => s.profileModalData);
   const closeProfileModal = useUiStore((s) => s.closeProfileModal);
-  const openEnquiryModal = useUiStore((s) => s.openEnquiryModal);
 
   const [fullName, setFullName] = useState('');
   const [mobileNumber, setMobileNumber] = useState('');
@@ -908,20 +909,23 @@ export function EnquiryModal() {
             >
               Close
             </button>
-            <button
-              type="button"
-              className="btn btn-md btn-primary"
-              onClick={() => {
-                const targetName = profileModalData?.name || 'Sample Vendor';
-                closeProfileModal();
-                openEnquiryModal(targetName);
-              }}
-            >
-              <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>
-                chat
-              </span>
-              <span>Enquire With Vendor</span>
-            </button>
+            {profileModalData?.vendorId && (
+              <button
+                type="button"
+                className="btn btn-md btn-primary"
+                onClick={() => {
+                  const vendorId = profileModalData?.vendorId;
+                  if (!vendorId) return;
+                  closeProfileModal();
+                  router.push(`/enquiry?vendorId=${encodeURIComponent(vendorId)}`);
+                }}
+              >
+                <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>
+                  chat
+                </span>
+                <span>Enquire With Vendor</span>
+              </button>
+            )}
           </div>
         </div>
       </div>

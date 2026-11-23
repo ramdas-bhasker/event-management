@@ -7,6 +7,7 @@ import type { EventTypeFilter, MicroMarketId, ServiceId } from '@/types';
 import type { BudgetRangeSlug } from '@/types/vendor';
 
 export interface ProfileModalData {
+  vendorId?: string;
   eyebrow: string;
   name: string;
   category: string;

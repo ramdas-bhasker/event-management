@@ -1,19 +1,20 @@
 'use client';
 
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import { Container } from '@/components/common/Container';
 import {
   FEATURED_VENDORS,
   MICRO_MARKET_OPTIONS,
   SERVICE_TYPE_OPTIONS,
 } from '@/lib/constants';
+import { MOCK_VENDORS } from '@/data/mock-vendors';
 import { cn } from '@/lib/utils';
 import { useUiStore } from '@/stores/ui-store';
 import type { FeaturedVendor } from '@/types';
 
 export function FeaturedVendors() {
-  const openEnquiryModal = useUiStore((s) => s.openEnquiryModal);
-  const openProfileModal = useUiStore((s) => s.openProfileModal);
+  const router = useRouter();
   const bookmarkedVendorIds = useUiStore((s) => s.bookmarkedVendorIds);
   const toggleVendorBookmark = useUiStore((s) => s.toggleVendorBookmark);
 
@@ -45,15 +46,8 @@ export function FeaturedVendors() {
       : FEATURED_VENDORS;
 
   function handleOpenVendorProfile(vendor: FeaturedVendor) {
-    openProfileModal({
-      eyebrow: 'Sample Vendor Profile',
-      name: vendor.name,
-      category: vendor.categoryLabel,
-      area: vendor.location,
-      about: vendor.about,
-      price: vendor.priceValue,
-      status: vendor.verificationStatus,
-    });
+    const matchingRecord = MOCK_VENDORS.find((record) => record.businessName === vendor.name);
+    router.push(`/vendors/${matchingRecord?.slug ?? vendor.id}`);
   }
 
   return (
@@ -294,7 +288,7 @@ export function FeaturedVendors() {
                     className="btn btn-sm btn-primary"
                     onClick={(e) => {
                       e.stopPropagation();
-                      openEnquiryModal(vendor.name);
+                      router.push(`/enquiry?vendorId=${encodeURIComponent(vendor.id)}`);
                     }}
                   >
                     <span

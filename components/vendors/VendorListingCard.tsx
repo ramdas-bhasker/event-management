@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import { useUiStore } from '@/stores/ui-store';
 import type { VendorRecord } from '@/types/vendor';
@@ -12,7 +12,7 @@ interface VendorListingCardProps {
 
 export function VendorListingCard({ vendor }: VendorListingCardProps) {
   const router = useRouter();
-  const openEnquiryModal = useUiStore((s) => s.openEnquiryModal);
+  const searchParams = useSearchParams();
   const bookmarkedVendorIds = useUiStore((s) => s.bookmarkedVendorIds);
   const toggleVendorBookmark = useUiStore((s) => s.toggleVendorBookmark);
 
@@ -21,7 +21,8 @@ export function VendorListingCard({ vendor }: VendorListingCardProps) {
     vendor.portfolioImages[0] || '/images/luxury_wedding_decor.png';
 
   function handleNavigateDetails() {
-    router.push(`/vendors/${vendor.slug}`);
+    const query = searchParams?.toString() ?? '';
+    router.push(`/vendors/${vendor.slug}${query ? `?${query}` : ''}`);
   }
 
   return (
@@ -183,7 +184,7 @@ export function VendorListingCard({ vendor }: VendorListingCardProps) {
               type="button"
               onClick={(e) => {
                 e.stopPropagation();
-                openEnquiryModal(vendor.businessName);
+                router.push(`/enquiry?vendorId=${encodeURIComponent(vendor.slug)}`);
               }}
               className="py-2 px-3 rounded-lg bg-brand-green hover:bg-brand-green-hover text-brand-white text-xs font-semibold transition-colors text-center inline-flex items-center justify-center gap-1"
             >

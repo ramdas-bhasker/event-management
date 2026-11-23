@@ -1,19 +1,22 @@
 'use client';
 
 import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import { useUiStore } from '@/stores/ui-store';
 
 interface VendorDetailActionsProps {
   vendorId: string;
+  vendorSlug: string;
   businessName: string;
 }
 
 export function VendorDetailActions({
   vendorId,
+  vendorSlug,
   businessName,
 }: VendorDetailActionsProps) {
-  const openEnquiryModal = useUiStore((s) => s.openEnquiryModal);
+  const router = useRouter();
   const bookmarkedVendorIds = useUiStore((s) => s.bookmarkedVendorIds);
   const toggleVendorBookmark = useUiStore((s) => s.toggleVendorBookmark);
   const hydrateBookmarks = useUiStore((s) => s.hydrateBookmarks);
@@ -28,7 +31,8 @@ export function VendorDetailActions({
     <div className="flex flex-wrap items-center gap-3">
       <button
         type="button"
-        onClick={() => openEnquiryModal(businessName)}
+        aria-label={`Request a quotation from ${businessName}`}
+        onClick={() => router.push(`/enquiry?vendorId=${encodeURIComponent(vendorSlug)}`)}
         className="btn btn-md btn-primary"
       >
         <span className="material-symbols-outlined text-[18px]">chat</span>

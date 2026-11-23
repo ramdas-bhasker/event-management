@@ -1,207 +1,195 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { EnquiryModal } from '@/components/common/EnquiryModal';
 import { Footer } from '@/components/layout/Footer';
 import { Header } from '@/components/layout/Header';
 import { HeritageStrip } from '@/components/layout/HeritageStrip';
 import { VendorDetailActions } from '@/components/vendors/VendorDetailActions';
+import { VendorListingCard } from '@/components/vendors/VendorListingCard';
+import { VendorPortfolioGallery } from '@/components/vendors/VendorPortfolioGallery';
 import { LOCATION_AREA_OPTIONS, MOCK_VENDORS } from '@/data/mock-vendors';
+import { FEATURED_VENDORS } from '@/lib/constants';
 
 interface VendorDetailPageProps {
   params: Promise<{ slug: string }>;
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
 }
 
-export default async function VendorDetailPage({
-  params,
-}: VendorDetailPageProps) {
-  const { slug } = await params;
-  const vendor = MOCK_VENDORS.find((v) => v.slug === slug);
-
-  if (!vendor) {
-    notFound();
+function getResultsHref(params: Record<string, string | string[] | undefined>) {
+  const query = new URLSearchParams();
+  for (const [key, value] of Object.entries(params)) {
+    if (typeof value === 'string' && value) query.set(key, value);
+    else if (Array.isArray(value)) value.forEach((item) => query.append(key, item));
   }
+  const suffix = query.toString();
+  return suffix ? `/vendors?${suffix}` : '/vendors';
+}
 
-  const areaLabels = vendor.serviceAreas
-    .map(
-      (areaSlug) =>
-        LOCATION_AREA_OPTIONS.find((l) => l.value === areaSlug)?.shortLabel ||
-        areaSlug
-    )
-    .join(' · ');
+function findVendor(slug: string) {
+  const slugAliases: Record<string, string> = {
+    'moments-event-photography': 'moments-event-photography-films',
+  };
+  const canonicalSlug = slugAliases[slug] ?? slug;
+  return MOCK_VENDORS.find((item) => item.slug === canonicalSlug);
+}
+
+function findFeaturedVendor(slug: string) {
+  return FEATURED_VENDORS.find((item) => item.id === slug);
+}
+
+export async function generateMetadata({ params }: VendorDetailPageProps) {
+  const { slug } = await params;
+  const vendor = findVendor(slug);
+  const featuredVendor = findFeaturedVendor(slug);
+  return {
+    title: vendor ? `${vendor.businessName} | AyojanSetu` : featuredVendor ? `${featuredVendor.name} | AyojanSetu` : 'Vendor not found | AyojanSetu',
+    description: vendor?.description ?? featuredVendor?.about ?? 'Explore event vendors on AyojanSetu.',
+  };
+}
+
+export default async function VendorDetailPage({ params, searchParams }: VendorDetailPageProps) {
+  const [{ slug }, queryParams] = await Promise.all([params, searchParams]);
+  const vendor = findVendor(slug);
+  const featuredVendor = vendor ? undefined : findFeaturedVendor(slug);
+  if (!vendor && !featuredVendor) notFound();
+
+  if (featuredVendor) {
+    const resultsHref = getResultsHref(queryParams);
+    return (
+      <>
+        <HeritageStrip />
+        <Header />
+        <main className="min-h-screen w-full bg-brand-ivory py-8 pb-24 lg:pb-8">
+          <div className="ay-container">
+            <nav aria-label="Breadcrumb" className="mb-6 flex flex-wrap items-center gap-1.5 text-xs text-text-secondary">
+              <Link href="/" className="font-medium hover:text-brand-green">Home</Link><span aria-hidden="true">›</span>
+              <Link href={resultsHref} className="font-medium hover:text-brand-green">Find Vendors</Link><span aria-hidden="true">›</span>
+              <span className="font-semibold text-brand-green" aria-current="page">{featuredVendor.name}</span>
+            </nav>
+            <VendorPortfolioGallery images={[featuredVendor.imageUrl]} name={featuredVendor.name} />
+            <div className="mt-8 grid items-start gap-8 lg:grid-cols-[minmax(0,1fr)_340px]">
+              <div className="rounded-2xl bg-brand-white p-6 shadow-sm sm:p-8">
+                <span className="badge badge-gold">{featuredVendor.badgeLabel}</span>
+                <h1 className="mt-4 text-h1 font-bold text-brand-green">{featuredVendor.name}</h1>
+                <p className="mt-2 text-sm text-text-secondary">{featuredVendor.categoryLabel} · {featuredVendor.location}</p>
+                <p className="mt-5 leading-relaxed text-text-primary">{featuredVendor.about}</p>
+                <div className="mt-6 rounded-xl border border-border-default bg-brand-ivory p-4">
+                  <p className="text-xs font-semibold uppercase tracking-wide text-brand-gold-dark">Profile status</p>
+                  <p className="mt-1 text-sm text-text-secondary">{featuredVendor.verificationStatus}</p>
+                  <p className="mt-3 text-sm text-text-secondary">Detailed services and package information are not available in this sample listing yet.</p>
+                </div>
+              </div>
+              <aside className="lg:sticky lg:top-6">
+                <div className="rounded-2xl border border-border-default bg-brand-white p-6 shadow-sm">
+                  <p className="text-sm font-semibold text-text-secondary">{featuredVendor.priceCaption}</p>
+                  <p className="mb-5 mt-1 text-2xl font-bold text-brand-green">{featuredVendor.priceValue}</p>
+                  <Link href={`/enquiry?vendorId=${encodeURIComponent(featuredVendor.id)}`} className="btn btn-md btn-primary">Request Quotation</Link>
+                  <Link href={resultsHref} className="mt-5 inline-flex text-sm font-semibold text-brand-green underline underline-offset-4">Back to Search</Link>
+                </div>
+              </aside>
+            </div>
+          </div>
+        </main>
+        <Footer />
+      </>
+    );
+  }
+  if (!vendor) notFound();
+
+  const areaLabels = vendor.serviceAreas.map((areaSlug) => LOCATION_AREA_OPTIONS.find((area) => area.value === areaSlug)?.shortLabel || areaSlug).join(' · ');
+  const resultsHref = getResultsHref(queryParams);
+  const similarVendors = MOCK_VENDORS.filter((candidate) =>
+    candidate.id !== vendor.id && candidate.category === vendor.category &&
+    (candidate.locationSlug === vendor.locationSlug || candidate.serviceAreas.some((area) => vendor.serviceAreas.includes(area)))
+  ).slice(0, 4);
+  const eventLabels = vendor.eventCategories.map((event) => event.replaceAll('-', ' '));
 
   return (
     <>
       <HeritageStrip />
       <Header />
-      <main className="w-full bg-brand-ivory min-h-screen py-8">
+      <main className="min-h-screen w-full bg-brand-ivory py-8 pb-24 lg:pb-8">
         <div className="ay-container">
-          {/* Breadcrumbs */}
-          <nav
-            aria-label="Breadcrumb"
-            className="flex flex-wrap items-center gap-1.5 text-text-secondary text-xs mb-6"
-          >
-            <Link
-              href="/"
-              className="hover:text-brand-green transition-colors font-medium"
-            >
-              Home
-            </Link>
-            <span className="material-symbols-outlined text-[14px] text-text-muted">
-              chevron_right
-            </span>
-            <Link
-              href="/vendors"
-              className="hover:text-brand-green transition-colors font-medium"
-            >
-              Find Vendors
-            </Link>
-            <span className="material-symbols-outlined text-[14px] text-text-muted">
-              chevron_right
-            </span>
-            <Link
-              href={`/vendors?category=${vendor.category}&location=hyderabad`}
-              className="hover:text-brand-green transition-colors font-medium"
-            >
-              {vendor.categoryLabel}
-            </Link>
-            <span className="material-symbols-outlined text-[14px] text-text-muted">
-              chevron_right
-            </span>
-            <span className="text-brand-green font-semibold">
-              {vendor.businessName}
-            </span>
+          <nav aria-label="Breadcrumb" className="mb-6 flex flex-wrap items-center gap-1.5 text-xs text-text-secondary">
+            <Link href="/" className="font-medium hover:text-brand-green">Home</Link><span aria-hidden="true">›</span>
+            <Link href={resultsHref} className="font-medium hover:text-brand-green">Find Vendors</Link><span aria-hidden="true">›</span>
+            <Link href={resultsHref} className="font-medium hover:text-brand-green">All Event Vendors</Link><span aria-hidden="true">›</span>
+            <span className="font-semibold text-brand-green" aria-current="page">{vendor.businessName}</span>
           </nav>
 
-          {/* Main Vendor Details Card */}
-          <div className="bg-brand-white rounded-2xl border border-border-default shadow-sm overflow-hidden grid grid-cols-1 lg:grid-cols-12">
-            {/* Left Image Column */}
-            <div className="lg:col-span-6 relative aspect-[4/3] lg:aspect-auto min-h-[320px] bg-brand-ivory">
-              <Image
-                src={
-                  vendor.portfolioImages[0] || '/images/luxury_wedding_decor.png'
-                }
-                alt={`${vendor.businessName} portfolio showcase`}
-                fill
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                className="object-cover"
-              />
-              <div className="absolute top-4 left-4 flex items-center gap-1.5 bg-brand-green/90 text-brand-white backdrop-blur-md px-3 py-1 rounded-md text-xs font-semibold">
-                <span className="material-symbols-outlined text-[15px] text-brand-gold">
-                  {vendor.specialtyIcon}
-                </span>
-                <span>{vendor.specialtyBadge}</span>
-              </div>
+          <VendorPortfolioGallery images={vendor.portfolioImages} name={vendor.businessName} />
+
+          <div className="mt-8 grid grid-cols-1 items-start gap-8 lg:grid-cols-[minmax(0,1fr)_340px]">
+            <div className="min-w-0">
+              <section className="mb-8 rounded-2xl bg-brand-white p-6 shadow-sm sm:p-8">
+                <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
+                  {vendor.verified && <span className="badge badge-green">Ayojan Verified</span>}
+                  {typeof vendor.rating === 'number' && (vendor.reviewCount ?? 0) > 0 && <span className="text-sm font-semibold text-brand-green">★ {vendor.rating.toFixed(1)} <span className="font-normal text-text-secondary">({vendor.reviewCount} reviews)</span></span>}
+                </div>
+                <h1 className="text-h1 font-bold text-brand-green">{vendor.businessName}</h1>
+                <p className="mt-2 text-sm text-text-secondary">{vendor.categoryLabel} · {vendor.location}</p>
+                <p className="mt-5 leading-relaxed text-text-primary">{vendor.description}</p>
+                <div className="mt-5 flex flex-wrap gap-2">{vendor.services.map((service) => <span key={service} className="rounded-full border border-border-default bg-brand-ivory px-3 py-1 text-xs text-text-secondary">{service}</span>)}</div>
+                <p className="mt-5 text-sm"><span className="font-semibold text-brand-green">Service areas: </span><span className="text-text-secondary">{areaLabels}</span></p>
+              </section>
+
+              <section className="mb-8 rounded-2xl bg-brand-white p-6 sm:p-8" aria-labelledby="about-vendor">
+                <h2 id="about-vendor" className="text-h3 mb-3 text-brand-green">About the vendor</h2>
+                <p className="leading-relaxed text-text-secondary">{vendor.description}</p>
+                <h3 className="mt-6 text-sm font-semibold text-brand-green">Event specialities</h3>
+                <p className="mt-2 capitalize text-sm text-text-secondary">{eventLabels.join(' · ')}</p>
+                <h3 className="mt-5 text-sm font-semibold text-brand-green">Business location</h3>
+                <p className="mt-2 text-sm text-text-secondary">{vendor.location}</p>
+              </section>
+
+              <section className="mb-8 rounded-2xl bg-brand-white p-6 sm:p-8" aria-labelledby="vendor-services">
+                <h2 id="vendor-services" className="text-h3 mb-4 text-brand-green">Services &amp; packages</h2>
+                <ul className="grid gap-x-6 sm:grid-cols-2">{vendor.services.map((service) => <li key={service} className="border-b border-border-default py-3 text-sm text-text-primary">{service}</li>)}</ul>
+                <p className="mt-4 text-sm text-text-secondary">Package details are not listed. Contact the vendor for available packages.</p>
+              </section>
+
+              <section className="mb-8 rounded-2xl bg-brand-white p-6 sm:p-8" aria-labelledby="vendor-pricing">
+                <h2 id="vendor-pricing" className="text-h3 mb-3 text-brand-green">Pricing information</h2>
+                <p className="text-sm text-text-secondary">{vendor.priceCaption} · {vendor.priceTypeLabel}</p>
+                <p className="mt-1 text-2xl font-bold text-brand-green">{vendor.priceDisplay || 'Request a custom quotation'}</p>
+                <p className="mt-3 text-sm text-text-secondary">Final pricing depends on event requirements and vendor confirmation.</p>
+              </section>
+
+              <section className="mb-8 rounded-2xl bg-brand-white p-6 sm:p-8" aria-labelledby="vendor-reviews">
+                <h2 id="vendor-reviews" className="text-h3 mb-3 text-brand-green">Customer reviews</h2>
+                {typeof vendor.rating === 'number' && (vendor.reviewCount ?? 0) > 0 ? <p className="text-sm text-text-secondary">Rated <strong className="text-brand-green">{vendor.rating.toFixed(1)} / 5</strong> from {vendor.reviewCount} reviews. Individual review details are not available yet.</p> : <p className="text-sm text-text-secondary">Customer reviews are not available yet.</p>}
+              </section>
+
+              <section className="mb-8 rounded-2xl bg-brand-white p-6 sm:p-8" aria-labelledby="vendor-faqs">
+                <h2 id="vendor-faqs" className="text-h3 mb-4 text-brand-green">Frequently asked questions</h2>
+                <details className="border-b border-border-default py-3"><summary className="cursor-pointer font-semibold text-brand-green">Which events do you specialise in?</summary><p className="mt-2 capitalize text-sm text-text-secondary">{eventLabels.join(', ')}.</p></details>
+                <details className="border-b border-border-default py-3"><summary className="cursor-pointer font-semibold text-brand-green">Which areas do you serve?</summary><p className="mt-2 text-sm text-text-secondary">{areaLabels || vendor.location}.</p></details>
+                <details className="border-b border-border-default py-3"><summary className="cursor-pointer font-semibold text-brand-green">How can I request a quotation?</summary><p className="mt-2 text-sm text-text-secondary">Use the enquiry preview on this page. It will not be sent until an enquiry service is connected.</p></details>
+                <details className="py-3"><summary className="cursor-pointer font-semibold text-brand-green">Are package details available?</summary><p className="mt-2 text-sm text-text-secondary">Contact the vendor through the enquiry preview for package details.</p></details>
+              </section>
             </div>
 
-            {/* Right Details Column */}
-            <div className="lg:col-span-6 p-6 sm:p-8 flex flex-col justify-between gap-6">
-              <div>
-                <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
-                  {vendor.verified ? (
-                    <span className="inline-flex items-center gap-1 text-xs font-semibold text-[#FFDEA6] bg-brand-green px-2.5 py-1 rounded-md">
-                      <span className="material-symbols-outlined text-[14px] text-brand-gold">
-                        verified
-                      </span>
-                      <span>Ayojan Verified Partner</span>
-                    </span>
-                  ) : (
-                    <span className="badge badge-gold">
-                      {vendor.categoryLabel}
-                    </span>
-                  )}
-
-                  {typeof vendor.rating === 'number' &&
-                  typeof vendor.reviewCount === 'number' &&
-                  vendor.reviewCount > 0 ? (
-                    <div className="flex items-center gap-1 text-sm font-semibold text-brand-green">
-                      <span
-                        className="material-symbols-outlined text-[17px] text-brand-gold"
-                        style={{ fontVariationSettings: "'FILL' 1" }}
-                      >
-                        star
-                      </span>
-                      <span>{vendor.rating.toFixed(1)}</span>
-                      <span className="text-text-secondary font-normal text-xs">
-                        ({vendor.reviewCount} reviews)
-                      </span>
-                    </div>
-                  ) : null}
-                </div>
-
-                <h1 className="text-h1 text-brand-green font-bold">
-                  {vendor.businessName}
-                </h1>
-
-                <p className="text-body text-text-secondary flex items-center gap-1.5 mt-1">
-                  <span className="material-symbols-outlined text-[16px] text-brand-gold-dark">
-                    location_on
-                  </span>
-                  <span>
-                    {vendor.location} · {vendor.categoryLabel}
-                  </span>
-                </p>
-
-                <p className="text-body text-text-primary mt-4 leading-relaxed">
-                  {vendor.description}
-                </p>
-
-                {/* Services & Specialities */}
-                <div className="mt-5">
-                  <span className="text-badge text-text-secondary uppercase tracking-wider block mb-2">
-                    Services &amp; Specialities Included
-                  </span>
-                  <div className="flex flex-wrap gap-1.5">
-                    {vendor.services.map((srv) => (
-                      <span
-                        key={srv}
-                        className="bg-brand-ivory border border-border-default text-text-primary text-xs px-2.5 py-1 rounded-md font-medium"
-                      >
-                        {srv}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Areas Served */}
-                <div className="mt-4">
-                  <span className="text-badge text-text-secondary uppercase tracking-wider block mb-1">
-                    Hyderabad Service Areas
-                  </span>
-                  <p className="text-small text-text-secondary">{areaLabels}</p>
-                </div>
+            <aside className="hidden lg:sticky lg:top-6 lg:block">
+              <div className="rounded-2xl border border-border-default bg-brand-white p-6 shadow-sm">
+                <p className="text-sm font-semibold text-text-secondary">{vendor.priceCaption} · {vendor.priceTypeLabel}</p>
+                <p className="mb-5 mt-1 text-2xl font-bold text-brand-green">{vendor.priceDisplay}</p>
+                <VendorDetailActions vendorId={vendor.id} vendorSlug={vendor.slug} businessName={vendor.businessName} />
+                <p className="mt-4 text-xs leading-relaxed text-text-secondary">Complete the event form to prepare a temporary demo enquiry.</p>
+                <Link href={resultsHref} className="mt-5 inline-flex text-sm font-semibold text-brand-green underline underline-offset-4">Back to Search</Link>
               </div>
-
-              {/* Pricing Box & Actions */}
-              <div className="pt-5 border-t border-border-default flex flex-col gap-4">
-                <div className="bg-brand-ivory border border-border-default rounded-xl p-4 flex items-center justify-between">
-                  <div>
-                    <span className="text-badge text-text-secondary uppercase block">
-                      {vendor.priceCaption} ({vendor.priceTypeLabel})
-                    </span>
-                    <span className="text-h3 text-brand-green font-bold">
-                      {vendor.priceDisplay}
-                    </span>
-                  </div>
-                  <span className="badge badge-green">Zero Commission</span>
-                </div>
-
-                <div className="flex flex-wrap items-center justify-between gap-3">
-                  <VendorDetailActions
-                    vendorId={vendor.id}
-                    businessName={vendor.businessName}
-                  />
-                  <Link href="/vendors" className="btn btn-md btn-outline">
-                    Back to Results
-                  </Link>
-                </div>
-              </div>
-            </div>
+            </aside>
           </div>
+
+          <section className="mt-12" aria-labelledby="similar-vendors">
+            <h2 id="similar-vendors" className="text-h2 mb-5 text-brand-green">Similar vendors</h2>
+            {similarVendors.length > 0 ? <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-4">{similarVendors.map((item) => <VendorListingCard key={item.id} vendor={item} />)}</div> : <p className="text-sm text-text-secondary">No similar vendors are available yet.</p>}
+          </section>
         </div>
       </main>
       <Footer />
-      <EnquiryModal />
+      <div className="fixed inset-x-0 bottom-0 z-40 flex items-center justify-between gap-3 border-t border-border-default bg-brand-white p-3 lg:hidden">
+        <span className="min-w-0 truncate text-sm font-bold text-brand-green">{vendor.priceDisplay}</span>
+        <VendorDetailActions vendorId={vendor.id} vendorSlug={vendor.slug} businessName={vendor.businessName} />
+      </div>
     </>
   );
 }

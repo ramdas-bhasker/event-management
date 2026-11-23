@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation';
 import { useOutsideClickAndEscape } from '@/hooks/useOutsideClickAndEscape';
 import { BUDGET_RANGE_OPTIONS } from '@/data/mock-vendors';
 import {
-  EVENT_TYPE_FILTER_PILLS,
   MICRO_MARKET_OPTIONS,
   SERVICE_TYPE_OPTIONS,
   TRENDING_SEARCH_TAGS,
@@ -26,13 +25,11 @@ type ActiveSearchDropdown = 'service' | 'location' | 'budget' | 'date' | null;
 
 export function HeroSearchWidget() {
   const router = useRouter();
-  const selectedEventType = useUiStore((s) => s.selectedEventType);
   const selectedService = useUiStore((s) => s.selectedService);
   const selectedLocation = useUiStore((s) => s.selectedLocation);
   const selectedBudget = useUiStore((s) => s.selectedBudget);
   const selectedDate = useUiStore((s) => s.selectedDate);
   const selectedDateLabel = useUiStore((s) => s.selectedDateLabel);
-  const setSelectedEventType = useUiStore((s) => s.setSelectedEventType);
   const setSelectedService = useUiStore((s) => s.setSelectedService);
   const setSelectedLocation = useUiStore((s) => s.setSelectedLocation);
   const setSelectedBudget = useUiStore((s) => s.setSelectedBudget);
@@ -42,6 +39,7 @@ export function HeroSearchWidget() {
   const [activePreset, setActivePreset] = useState<'flexible' | 'weekend' | 'next-month' | null>('flexible');
   const [calYear, setCalYear] = useState(() => new Date().getFullYear());
   const [calMonth, setCalMonth] = useState(() => new Date().getMonth());
+  const [searchText, setSearchText] = useState('');
 
   const widgetRef = useRef<HTMLDivElement>(null);
 
@@ -126,21 +124,22 @@ export function HeroSearchWidget() {
     setOpenDropdown(null);
   }
 
-  function navigateToVendors(serviceId: ServiceId = selectedService) {
+  function navigateToVendors(serviceId: ServiceId = selectedService, query = searchText) {
     setOpenDropdown(null);
     router.push(
       buildVendorsSearchUrl({
-        eventType: selectedEventType,
         serviceId,
         locationId: selectedLocation,
         budget: selectedBudget,
+        query,
       })
     );
   }
 
   function handleTrendingTagClick(serviceId: ServiceId) {
     setSelectedService(serviceId);
-    navigateToVendors(serviceId);
+    setSearchText('');
+    navigateToVendors(serviceId, '');
   }
 
   function handleSearchSubmit(e: FormEvent<HTMLFormElement>) {
@@ -167,33 +166,16 @@ export function HeroSearchWidget() {
           onSubmit={handleSearchSubmit}
           onKeyDown={handleSearchKeyDown}
         >
-          <input
-            type="hidden"
-            name="eventType"
-            id="heroEventTypeInput"
-            value={selectedEventType}
-          />
-
-          {/* Event-Type Filter Pill Bar */}
-          <div
-            className="event-type-filter-bar"
-            role="group"
-            aria-label="Filter by event occasion"
-          >
-            <span className="event-type-filter-label">Occasion:</span>
-            {EVENT_TYPE_FILTER_PILLS.map((pill) => (
-              <button
-                key={pill}
-                type="button"
-                className={cn(
-                  'event-type-pill',
-                  selectedEventType === pill && 'is-active'
-                )}
-                onClick={() => setSelectedEventType(pill)}
-              >
-                {pill}
-              </button>
-            ))}
+          <div className="hero-search-query">
+            <span className="material-symbols-outlined" aria-hidden="true">search</span>
+            <input
+              type="search"
+              name="q"
+              aria-label="Search vendor categories, services, or names"
+              placeholder="Search decorators, catering, or vendor names"
+              value={searchText}
+              onChange={(event) => setSearchText(event.target.value)}
+            />
           </div>
 
           <div className="search-widget-grid">

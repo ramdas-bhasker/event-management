@@ -1,0 +1,9 @@
+{
+  "/_not-found/page": "/_not-found",
+  "/page": "/",
+  "/vendors/[slug]/page": "/vendors/[slug]",
+  "/enquiry/confirmation/page": "/enquiry/confirmation",
+  "/enquiry/page": "/enquiry",
+  "/vendor/dashboard/page": "/vendor/dashboard",
+  "/vendors/page": "/vendors"
+}

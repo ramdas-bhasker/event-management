@@ -211,19 +211,6 @@ export const PRICE_TYPE_OPTIONS: Array<{
   { value: 'custom-quote', label: 'Custom Quote' },
 ];
 
-export const SERVICE_SPECIALTY_OPTIONS: string[] = [
-  'Traditional Telugu Mandaps',
-  'Contemporary Floral Arches',
-  'Brass Deepams & Urlis',
-  'Thematic LED Wash & Truss',
-  'Eco-Friendly Banana & Palm Leaf',
-  'Seemantham & Cradle Setups',
-  'Candid & Drone Cinematography',
-  'Hyderabadi Dum & Live Counters',
-  'HD & Airbrush Bridal Styling',
-  'Corporate AV & Gala Production',
-];
-
 export const GUEST_CAPACITY_OPTIONS: Array<{
   value: GuestCapacitySlug;
   label: string;
@@ -1137,3 +1124,86 @@ export const MOCK_VENDORS: VendorRecord[] = [
     createdAt: '2026-11-15',
   },
 ];
+
+export function isActualServiceSpecialty(service: string): boolean {
+  const normalized = service.trim().toLowerCase();
+  if (!normalized || normalized === 'zero-plastic') return false;
+  return !/^\d[\d,]*(?:\+)?\s*(?:guests?|pax)\b/i.test(normalized);
+}
+
+const WEDDING_DECORATOR_SIDEBAR_SERVICES = [
+  'Fresh Marigold',
+  'Pastel Arches',
+  'Contemporary Floral Arches',
+  'English Roses',
+  'Tuberoses',
+  'Pink Lotuses',
+  'Pastel Balloons',
+];
+
+function getAvailableServices(category: VendorCategorySlug): string[] {
+  const vendors = category === 'all'
+    ? MOCK_VENDORS
+    : MOCK_VENDORS.filter((vendor) => vendor.category === category);
+  return Array.from(new Set(vendors.flatMap((vendor) => vendor.services).filter(isActualServiceSpecialty)));
+}
+
+export function getServiceSpecialtyOptions(category: VendorCategorySlug): string[] {
+  const availableServices = getAvailableServices(category);
+  if (category !== 'wedding-decorators') return availableServices;
+
+  const availableServiceSet = new Set(availableServices);
+  return WEDDING_DECORATOR_SIDEBAR_SERVICES.filter((service) => availableServiceSet.has(service));
+}
+
+export interface ServiceSpecialtyGroup {
+  name: string;
+  services: string[];
+}
+
+const DECOR_SERVICE_GROUPS: ServiceSpecialtyGroup[] = [
+  { name: 'Mandap & Traditional Decor', services: ['Mandap Stage', 'Vedic Bells', 'Traditional Telugu Mandaps', 'Griha Pravesh', 'Home Mandap', 'Seemantham & Cradle Setups', 'Water Mandap', 'Homam Setup'] },
+  { name: 'Floral & Wedding Decor', services: ['Fresh Marigold', 'Pastel Arches', 'Contemporary Floral Arches', 'English Roses', 'Tuberoses', 'Pink Lotuses', 'Pastel Balloons'] },
+  { name: 'Lighting & Stage Effects', services: ['Glass Runway', 'Neon Truss', 'Thematic LED Wash & Truss', 'LED Trusses', 'Kinetic Lights', 'Warm Wash', 'Neon Signages'] },
+  { name: 'Entrance & Decorative Elements', services: ['Brass Deepams & Urlis', 'Brass Urlis', 'Royal Pillars', 'Brass Samai', 'Peacock Lamp', 'Entry Urli', 'Gate Structure'] },
+  { name: 'Eco-Friendly & Traditional Crafts', services: ['Gold Zari', 'Heritage Craft', 'Coconut Leaf', 'Palm Craft', 'Eco-Friendly Banana & Palm Leaf'] },
+  { name: 'Special Setups & Experiences', services: ['Farmhouse', 'Lake Canopy', 'Photo Booth', 'Velvet Lounges', 'Cabanas', 'Fairy Canopy', 'Light Tunnel', 'Bulb Walkway', 'Dessert Cart'] },
+];
+
+const OTHER_SERVICE_GROUPS: Array<{ category: Exclude<VendorCategorySlug, 'all'>; name: string }> = [
+  { category: 'wedding-photographers', name: 'Wedding Photography & Films' },
+  { category: 'caterers', name: 'Food & Catering' },
+  { category: 'makeup-artists', name: 'Makeup & Bridal Styling' },
+  { category: 'event-venues', name: 'Venues & Event Spaces' },
+  { category: 'event-planners', name: 'Event Planning & Coordination' },
+  { category: 'djs-and-entertainment', name: 'DJs & Entertainment' },
+];
+
+export function getAllServiceSpecialtyGroups(): ServiceSpecialtyGroup[] {
+  const groups: ServiceSpecialtyGroup[] = [];
+  const usedServices = new Set<string>();
+  const decoratorServices = new Set(getAvailableServices('wedding-decorators'));
+
+  for (const group of DECOR_SERVICE_GROUPS) {
+    const services = group.services.filter((service) => decoratorServices.has(service) && !usedServices.has(service));
+    services.forEach((service) => usedServices.add(service));
+    if (services.length > 0) groups.push({ name: group.name, services });
+  }
+
+  for (const group of OTHER_SERVICE_GROUPS) {
+    const services = getAvailableServices(group.category).filter((service) => !usedServices.has(service));
+    services.forEach((service) => usedServices.add(service));
+    if (services.length > 0) groups.push({ name: group.name, services });
+  }
+
+  return groups;
+}
+
+export function getPriceTypeOptions(category: VendorCategorySlug): typeof PRICE_TYPE_OPTIONS {
+  const vendors = category === 'all'
+    ? MOCK_VENDORS
+    : MOCK_VENDORS.filter((vendor) => vendor.category === category);
+  return PRICE_TYPE_OPTIONS.filter((option) =>
+    vendors.some((vendor) => vendor.priceType === option.value)
+  );
+}

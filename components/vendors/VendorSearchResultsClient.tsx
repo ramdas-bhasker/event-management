@@ -22,6 +22,8 @@ import {
   PRICE_TYPE_OPTIONS,
   VENDOR_CATEGORY_OPTIONS,
   VENDOR_SORT_OPTIONS,
+  getServiceSpecialtyOptions,
+  getPriceTypeOptions,
 } from '@/data/mock-vendors';
 import { useUiStore } from '@/stores/ui-store';
 import type {
@@ -78,6 +80,26 @@ const LOCATION_ALIASES: Record<string, VendorLocationSlug> = {
   secunderabad: 'secunderabad',
   kondapur: 'kukatpally-kondapur',
 };
+
+function matchesVendorSearch(vendor: (typeof MOCK_VENDORS)[number], query: string) {
+  const categorySynonyms = vendor.category === 'caterers' ? 'catering caterings food' : '';
+  const searchableText = [
+    vendor.businessName,
+    vendor.category,
+    vendor.categoryLabel,
+    vendor.description,
+    vendor.location,
+    vendor.specialtyBadge,
+    ...vendor.services,
+    categorySynonyms,
+  ].join(' ').toLowerCase();
+  const terms = query.toLowerCase().trim().split(/\s+/).filter(Boolean);
+
+  return terms.every((term) => {
+    const singular = term.length > 4 && term.endsWith('s') ? term.slice(0, -1) : term;
+    return searchableText.includes(term) || searchableText.includes(singular);
+  });
+}
 
 function parseCategoryParam(raw: string | null): VendorCategorySlug {
   if (!raw) return 'all';
@@ -223,6 +245,7 @@ export function VendorSearchResultsClient() {
         params.set('priceType', next.priceTypes.join(','));
       if (next.services.length > 0)
         params.set('service', next.services.join(','));
+      if (next.query.trim()) params.set('q', next.query.trim());
       if (next.verifiedOnly) params.set('verified', 'true');
       if (next.fastResponseOnly) params.set('fast', 'true');
       if (next.capacity !== 'all') params.set('capacity', next.capacity);
@@ -246,6 +269,8 @@ export function VendorSearchResultsClient() {
     );
 
     const matching = MOCK_VENDORS.filter((vendor) => {
+      if (filters.query && !matchesVendorSearch(vendor, filters.query)) return false;
+
       // 1. Vendor Category
       if (filters.category !== 'all' && vendor.category !== filters.category) {
         return false;
@@ -416,6 +441,14 @@ export function VendorSearchResultsClient() {
       }
     }
 
+    if (filters.query.trim()) {
+      chips.push({
+        key: 'query',
+        label: `Search: ${filters.query}`,
+        onRemove: () => updateUrlFilters({ query: '' }),
+      });
+    }
+
     if (filters.event !== 'all') {
       const evOpt = EVENT_CATEGORY_OPTIONS.find(
         (e) => e.value === filters.event
@@ -564,6 +597,37 @@ export function VendorSearchResultsClient() {
     });
   }
 
+  function handleSelectCategory(category: VendorCategorySlug) {
+    const availableServices = new Set(getServiceSpecialtyOptions(category));
+    const availablePriceTypes = new Set(getPriceTypeOptions(category).map((option) => option.value));
+    updateUrlFilters({
+      category,
+      services: filters.services.filter((service) => availableServices.has(service)),
+      priceTypes: filters.priceTypes.filter((priceType) => availablePriceTypes.has(priceType)),
+    });
+  }
+
+  function handleSearchBarApply(criteria: {
+    event: EventCategorySlug;
+    category: VendorCategorySlug;
+    location: VendorLocationSlug;
+    budget: BudgetRangeSlug;
+  }) {
+    setIsLoading(true);
+    const availableServices = new Set(getServiceSpecialtyOptions(criteria.category));
+    const availablePriceTypes = new Set(getPriceTypeOptions(criteria.category).map((option) => option.value));
+    updateUrlFilters({
+      event: criteria.event,
+      category: criteria.category,
+      location: criteria.location,
+      budget: criteria.budget,
+      areas: criteria.location === 'hyderabad' ? [] : [criteria.location],
+      services: filters.services.filter((service) => availableServices.has(service)),
+      priceTypes: filters.priceTypes.filter((priceType) => availablePriceTypes.has(priceType)),
+    });
+    setTimeout(() => setIsLoading(false), 140);
+  }
+
   return (
     <div className="w-full bg-brand-ivory min-h-screen pb-16">
       {/* Top Breadcrumbs, Hero Strip & Persistent 5-Column Search Bar */}
@@ -577,20 +641,7 @@ export function VendorSearchResultsClient() {
             ? 'All Event Vendors'
             : activeCategoryOption.shortLabel
         }
-        onApplySearch={(criteria) => {
-          setIsLoading(true);
-          updateUrlFilters({
-            event: criteria.event,
-            category: criteria.category,
-            location: criteria.location,
-            budget: criteria.budget,
-            areas:
-              criteria.location === 'hyderabad'
-                ? []
-                : [criteria.location],
-          });
-          setTimeout(() => setIsLoading(false), 140);
-        }}
+        onApplySearch={handleSearchBarApply}
       />
 
       {/* MAIN TWO-COLUMN MARKETPLACE LAYOUT */}
@@ -603,7 +654,7 @@ export function VendorSearchResultsClient() {
           >
             <VendorFilterSidebar
               filters={filters}
-              onSelectCategory={(category) => updateUrlFilters({ category })}
+              onSelectCategory={handleSelectCategory}
               onToggleArea={handleToggleArea}
               onSelectBudget={(budget) => updateUrlFilters({ budget })}
               onTogglePriceType={handleTogglePriceType}

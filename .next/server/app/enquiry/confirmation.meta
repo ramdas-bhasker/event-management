@@ -1,0 +1,15 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/enquiry/layout,_N_T_/enquiry/confirmation/layout,_N_T_/enquiry/confirmation/page,_N_T_/enquiry/confirmation"
+  },
+  "routeCache": {
+    "key": "/route-cache/APP_PAGE/00dd1eb7f924b92b41c3b9180e63e556899b09532dc5a2d70d17b6447988ae36/$/enquiry/confirmation",
+    "owner": {
+      "kind": "APP_PAGE",
+      "sourceRoute": "/enquiry/confirmation/page"
+    },
+    "isFallback": false
+  }
+}

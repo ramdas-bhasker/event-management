@@ -1,12 +1,14 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import {
   BUDGET_RANGE_OPTIONS,
   GUEST_CAPACITY_OPTIONS,
   LOCATION_AREA_OPTIONS,
   MOCK_VENDORS,
-  PRICE_TYPE_OPTIONS,
-  SERVICE_SPECIALTY_OPTIONS,
+  getAllServiceSpecialtyGroups,
+  getServiceSpecialtyOptions,
+  getPriceTypeOptions,
   VENDOR_CATEGORY_OPTIONS,
 } from '@/data/mock-vendors';
 import { cn } from '@/lib/utils';
@@ -48,6 +50,12 @@ export function VendorFilterSidebar({
   showConciergeCard = true,
 }: VendorFilterSidebarProps) {
   const openEnquiryModal = useUiStore((s) => s.openEnquiryModal);
+  const allServiceGroups = getAllServiceSpecialtyGroups();
+  const firstServiceGroup = allServiceGroups[0]?.name;
+  const [expandedServiceGroups, setExpandedServiceGroups] = useState<Set<string>>(
+    () => new Set(firstServiceGroup ? [firstServiceGroup] : [])
+  );
+  const [showAllCategoryServices, setShowAllCategoryServices] = useState(false);
 
   const activeBudgetMeta =
     BUDGET_RANGE_OPTIONS.find((b) => b.value === filters.budget) ||
@@ -57,6 +65,22 @@ export function VendorFilterSidebar({
     (loc): loc is { value: Exclude<VendorLocationSlug, 'hyderabad'>; label: string; shortLabel: string } =>
       loc.value !== 'hyderabad'
   );
+  const serviceOptions = getServiceSpecialtyOptions(filters.category);
+  const priceTypeOptions = getPriceTypeOptions(filters.category);
+
+  useEffect(() => {
+    setShowAllCategoryServices(false);
+    setExpandedServiceGroups(new Set(firstServiceGroup ? [firstServiceGroup] : []));
+  }, [filters.category, firstServiceGroup]);
+
+  function toggleServiceGroup(groupName: string) {
+    setExpandedServiceGroups((current) => {
+      const next = new Set(current);
+      if (next.has(groupName)) next.delete(groupName);
+      else next.add(groupName);
+      return next;
+    });
+  }
 
   // Calculate counts from dataset
   function getCategoryCount(cat: VendorCategorySlug): number {
@@ -271,7 +295,7 @@ export function VendorFilterSidebar({
           <span className="text-label text-brand-green font-semibold uppercase tracking-wider mb-1">
             Price Structure
           </span>
-          {PRICE_TYPE_OPTIONS.map((pt) => {
+          {priceTypeOptions.map((pt) => {
             const isChecked = filters.priceTypes.includes(pt.value);
             return (
               <label
@@ -299,27 +323,54 @@ export function VendorFilterSidebar({
           <span className="text-label text-brand-green font-semibold uppercase tracking-wider mb-1">
             Services &amp; Specialities
           </span>
-          {SERVICE_SPECIALTY_OPTIONS.map((service) => {
-            const isChecked = filters.services.includes(service);
-            return (
-              <label
-                key={service}
-                className="flex items-center gap-2 text-xs text-text-secondary hover:text-brand-green cursor-pointer py-1"
-              >
-                <input
-                  type="checkbox"
-                  checked={isChecked}
-                  onChange={() => onToggleService(service)}
-                  className="w-4 h-4 rounded accent-brand-green cursor-pointer"
-                />
-                <span
-                  className={cn(isChecked && 'text-brand-green font-semibold')}
-                >
-                  {service}
-                </span>
-              </label>
-            );
-          })}
+          {filters.category === 'all' ? (
+            <div className="flex flex-col gap-2">
+              {allServiceGroups.map((group) => {
+                const isExpanded = expandedServiceGroups.has(group.name);
+                const groupId = `service-group-${group.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
+                return (
+                  <section key={group.name} className="border-b border-border-default/70 pb-2 last:border-b-0">
+                    <button
+                      type="button"
+                      aria-expanded={isExpanded}
+                      aria-controls={groupId}
+                      onClick={() => toggleServiceGroup(group.name)}
+                      className="flex w-full items-center justify-between gap-2 py-1.5 text-left text-xs font-semibold text-text-primary hover:text-brand-green"
+                    >
+                      <span className="min-w-0">{group.name} <span className="font-normal text-text-secondary">({group.services.length})</span></span>
+                      <span className={cn('material-symbols-outlined shrink-0 text-[18px] transition-transform', isExpanded && 'rotate-180')} aria-hidden="true">expand_more</span>
+                    </button>
+                    {isExpanded && <div id={groupId} role="group" aria-label={group.name} className="flex flex-col gap-0.5 pt-1">
+                      {group.services.map((service) => {
+                        const isChecked = filters.services.includes(service);
+                        return (
+                          <label key={service} className="flex min-h-8 items-center gap-2 py-1 text-xs text-text-secondary hover:text-brand-green cursor-pointer">
+                            <input type="checkbox" checked={isChecked} onChange={() => onToggleService(service)} className="w-4 h-4 shrink-0 rounded accent-brand-green cursor-pointer" />
+                            <span className={cn(isChecked && 'text-brand-green font-semibold')}>{service}</span>
+                          </label>
+                        );
+                      })}
+                    </div>}
+                  </section>
+                );
+              })}
+            </div>
+          ) : serviceOptions.length > 0 ? (
+            <>
+              {(showAllCategoryServices ? serviceOptions : serviceOptions.slice(0, 8)).map((service) => {
+                const isChecked = filters.services.includes(service);
+                return (
+                  <label key={service} className="flex min-h-8 items-center gap-2 text-xs text-text-secondary hover:text-brand-green cursor-pointer py-1">
+                    <input type="checkbox" checked={isChecked} onChange={() => onToggleService(service)} className="w-4 h-4 shrink-0 rounded accent-brand-green cursor-pointer" />
+                    <span className={cn(isChecked && 'text-brand-green font-semibold')}>{service}</span>
+                  </label>
+                );
+              })}
+              {serviceOptions.length > 8 && <button type="button" aria-expanded={showAllCategoryServices} onClick={() => setShowAllCategoryServices((current) => !current)} className="mt-1 self-start text-xs font-semibold text-brand-green underline underline-offset-4">{showAllCategoryServices ? 'Show less' : `Show all services (${serviceOptions.length})`}</button>}
+            </>
+          ) : (
+            <p className="py-1 text-xs text-text-secondary">No service options are listed for this category yet.</p>
+          )}
         </div>
 
         {/* 7. Guest Capacity Experience */}

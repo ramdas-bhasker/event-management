@@ -60,6 +60,18 @@
       "namedRegex": "^/vendor/dashboard(?:/)?$"
     },
     {
+      "page": "/vendor/dashboard/business-profile",
+      "regex": "^/vendor/dashboard/business\\-profile(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/vendor/dashboard/business\\-profile(?:/)?$"
+    },
+    {
+      "page": "/vendor/dashboard/enquiries",
+      "regex": "^/vendor/dashboard/enquiries(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/vendor/dashboard/enquiries(?:/)?$"
+    },
+    {
       "page": "/vendors",
       "regex": "^/vendors(?:/)?$",
       "routeKeys": {},

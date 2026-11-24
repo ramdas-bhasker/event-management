@@ -50,6 +50,54 @@
         "x-next-revalidate-tag-token"
       ]
     },
+    "/vendor/dashboard/business-profile": {
+      "experimentalBypassFor": [
+        {
+          "type": "header",
+          "key": "next-action"
+        },
+        {
+          "type": "header",
+          "key": "content-type",
+          "value": "multipart/form-data;.*"
+        }
+      ],
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/vendor/dashboard/business-profile",
+      "dataRoute": "/vendor/dashboard/business-profile.rsc",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/vendor/dashboard/enquiries": {
+      "experimentalBypassFor": [
+        {
+          "type": "header",
+          "key": "next-action"
+        },
+        {
+          "type": "header",
+          "key": "content-type",
+          "value": "multipart/form-data;.*"
+        }
+      ],
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/vendor/dashboard/enquiries",
+      "dataRoute": "/vendor/dashboard/enquiries.rsc",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
     "/vendor/dashboard": {
       "experimentalBypassFor": [
         {
@@ -126,8 +174,8 @@
   "dynamicRoutes": {},
   "notFoundRoutes": [],
   "preview": {
-    "previewModeId": "342b2c88c76ec0503fd2b282461f20ae",
-    "previewModeSigningKey": "5bf3dca8eca864fade0a7a021605e8216139a9315dccb8f07b0b99fb51ee6e00",
-    "previewModeEncryptionKey": "b81eb3fdd71a401cca1901b9aa066a88bd41f0de3893334fbf75fff85f209091"
+    "previewModeId": "eddfa84effd4bf696be1f652140481c2",
+    "previewModeSigningKey": "1c68de1c001fbb3d766d1c195b3fc81ae94488d56f0647d30be0f5786381f405",
+    "previewModeEncryptionKey": "2bafa5e74c2d6ef52b3023172b0b7757639b679af4ac8d03b297e83c1a77a51f"
   }
 }

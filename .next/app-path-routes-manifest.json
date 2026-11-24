@@ -4,6 +4,8 @@
   "/vendors/[slug]/page": "/vendors/[slug]",
   "/enquiry/confirmation/page": "/enquiry/confirmation",
   "/enquiry/page": "/enquiry",
+  "/vendor/dashboard/business-profile/page": "/vendor/dashboard/business-profile",
+  "/vendor/dashboard/enquiries/page": "/vendor/dashboard/enquiries",
   "/vendor/dashboard/page": "/vendor/dashboard",
   "/vendors/page": "/vendors"
 }

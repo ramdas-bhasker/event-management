@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { cookies } from 'next/headers';
 import { notFound } from 'next/navigation';
 import { Footer } from '@/components/layout/Footer';
 import { Header } from '@/components/layout/Header';
@@ -6,8 +7,10 @@ import { HeritageStrip } from '@/components/layout/HeritageStrip';
 import { VendorDetailActions } from '@/components/vendors/VendorDetailActions';
 import { VendorListingCard } from '@/components/vendors/VendorListingCard';
 import { VendorPortfolioGallery } from '@/components/vendors/VendorPortfolioGallery';
-import { LOCATION_AREA_OPTIONS, MOCK_VENDORS } from '@/data/mock-vendors';
+import { LOCATION_AREA_OPTIONS, MOCK_VENDORS, VENDOR_CATEGORY_OPTIONS } from '@/data/mock-vendors';
+import { BUSINESS_PROFILE_PREVIEW_COOKIE } from '@/data/vendor-business-profile';
 import { FEATURED_VENDORS } from '@/lib/constants';
+import type { VendorPublicProfilePreview } from '@/types/vendor-business-profile';
 
 interface VendorDetailPageProps {
   params: Promise<{ slug: string }>;
@@ -36,9 +39,44 @@ function findFeaturedVendor(slug: string) {
   return FEATURED_VENDORS.find((item) => item.id === slug);
 }
 
-export async function generateMetadata({ params }: VendorDetailPageProps) {
-  const { slug } = await params;
-  const vendor = findVendor(slug);
+function withProfilePreview(vendor: (typeof MOCK_VENDORS)[number], rawCookie?: string) {
+  if (!rawCookie) return vendor;
+  try {
+    const preview = (JSON.parse(rawCookie) as VendorPublicProfilePreview);
+    if (preview.vendorId !== vendor.id || preview.vendorSlug !== vendor.slug) return vendor;
+    const validCategory = VENDOR_CATEGORY_OPTIONS.some((option) => option.value === preview.category);
+    const validAreaValues: string[] = LOCATION_AREA_OPTIONS.filter((option) => option.value !== 'hyderabad').map((option) => option.value);
+    const validAreas = Array.isArray(preview.serviceAreas) && preview.serviceAreas.every((area) => validAreaValues.includes(area));
+    const validEvents = Array.isArray(preview.eventCategories) && preview.eventCategories.every((event) => ['weddings-receptions', 'corporate-galas', 'pooja-traditional', 'birthdays-milestones', 'private-celebrations'].includes(event));
+    const validCapacity = Array.isArray(preview.guestCapacity) && preview.guestCapacity.every((capacity) => ['intimate', 'medium', 'grand'].includes(capacity));
+    if (!validCategory || !validAreas || !validEvents || !validCapacity || !Array.isArray(preview.services)) return vendor;
+    return {
+      ...vendor,
+      businessName: typeof preview.businessName === 'string' ? preview.businessName : vendor.businessName,
+      category: preview.category,
+      categoryLabel: VENDOR_CATEGORY_OPTIONS.find((option) => option.value === preview.category)?.shortLabel ?? vendor.categoryLabel,
+      description: typeof preview.description === 'string' ? preview.description : vendor.description,
+      location: typeof preview.location === 'string' ? preview.location : vendor.location,
+      serviceAreas: preview.serviceAreas,
+      services: preview.services.filter((service): service is string => typeof service === 'string'),
+      eventCategories: preview.eventCategories,
+      guestCapacity: preview.guestCapacity,
+    };
+  } catch {
+    try {
+      const decoded = decodeURIComponent(rawCookie);
+      if (decoded !== rawCookie) return withProfilePreview(vendor, decoded);
+    } catch { /* Invalid preview cookie; show the ordinary mock vendor profile. */ }
+    return vendor;
+  }
+}
+
+export async function generateMetadata({ params, searchParams }: VendorDetailPageProps) {
+  const [{ slug }, query] = await Promise.all([params, searchParams]);
+  let vendor = findVendor(slug);
+  if (vendor && query.profilePreview === '1') {
+    vendor = withProfilePreview(vendor, (await cookies()).get(BUSINESS_PROFILE_PREVIEW_COOKIE)?.value);
+  }
   const featuredVendor = findFeaturedVendor(slug);
   return {
     title: vendor ? `${vendor.businessName} | AyojanSetu` : featuredVendor ? `${featuredVendor.name} | AyojanSetu` : 'Vendor not found | AyojanSetu',
@@ -48,7 +86,10 @@ export async function generateMetadata({ params }: VendorDetailPageProps) {
 
 export default async function VendorDetailPage({ params, searchParams }: VendorDetailPageProps) {
   const [{ slug }, queryParams] = await Promise.all([params, searchParams]);
-  const vendor = findVendor(slug);
+  let vendor = findVendor(slug);
+  if (vendor && queryParams.profilePreview === '1') {
+    vendor = withProfilePreview(vendor, (await cookies()).get(BUSINESS_PROFILE_PREVIEW_COOKIE)?.value);
+  }
   const featuredVendor = vendor ? undefined : findFeaturedVendor(slug);
   if (!vendor && !featuredVendor) notFound();
 

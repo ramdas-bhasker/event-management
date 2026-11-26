@@ -46,19 +46,29 @@ export function Footer() {
             <h3 className="footer-heading">Explore Events</h3>
             <ul className="footer-links">
               <li>
-                <a href="#event-categories">Weddings &amp; Engagements</a>
+                <Link href="/vendors?event=weddings-receptions&location=hyderabad">
+                  Weddings &amp; Engagements
+                </Link>
               </li>
               <li>
-                <a href="#event-categories">Birthdays &amp; Milestones</a>
+                <Link href="/vendors?event=birthdays-milestones&location=hyderabad">
+                  Birthdays &amp; Milestones
+                </Link>
               </li>
               <li>
-                <a href="#event-categories">Corporate Events</a>
+                <Link href="/vendors?event=corporate-galas&location=hyderabad">
+                  Corporate Events
+                </Link>
               </li>
               <li>
-                <a href="#event-categories">Traditional Functions</a>
+                <Link href="/vendors?event=pooja-traditional&location=hyderabad">
+                  Traditional Functions
+                </Link>
               </li>
               <li>
-                <a href="#event-categories">Housewarming &amp; Poojas</a>
+                <Link href="/vendors?event=pooja-traditional&location=hyderabad">
+                  Housewarming &amp; Poojas
+                </Link>
               </li>
             </ul>
           </div>
@@ -68,19 +78,25 @@ export function Footer() {
             <h3 className="footer-heading">Find Vendors</h3>
             <ul className="footer-links">
               <li>
-                <a href="#vendor-categories">Decorators &amp; Florists</a>
+                <Link href="/vendors?category=wedding-decorators&location=hyderabad">
+                  Decorators &amp; Florists
+                </Link>
               </li>
               <li>
-                <a href="#vendor-categories">Photographers &amp; Videographers</a>
+                <Link href="/vendors?category=wedding-photographers&location=hyderabad">
+                  Photographers &amp; Videographers
+                </Link>
               </li>
               <li>
-                <a href="#vendor-categories">Caterers &amp; Venues</a>
+                <Link href="/vendors?category=caterers&location=hyderabad">
+                  Caterers &amp; Venues
+                </Link>
               </li>
               <li>
-                <a href="#vendor-cta">List Your Business</a>
+                <Link href="/#vendor-cta">List Your Business</Link>
               </li>
               <li>
-                <a href="#how-it-works">How It Works</a>
+                <Link href="/#how-it-works">How It Works</Link>
               </li>
             </ul>
           </div>

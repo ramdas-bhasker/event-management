@@ -1,11 +1,7 @@
 {
-  "/_not-found/page": "app/_not-found/page.js",
-  "/page": "app/page.js",
+  "/admin/enquiries/page": "app/admin/enquiries/page.js",
   "/vendors/[slug]/page": "app/vendors/[slug]/page.js",
-  "/enquiry/confirmation/page": "app/enquiry/confirmation/page.js",
-  "/enquiry/page": "app/enquiry/page.js",
-  "/vendor/dashboard/business-profile/page": "app/vendor/dashboard/business-profile/page.js",
-  "/vendor/dashboard/enquiries/page": "app/vendor/dashboard/enquiries/page.js",
-  "/vendor/dashboard/page": "app/vendor/dashboard/page.js",
-  "/vendors/page": "app/vendors/page.js"
+  "/admin/enquiries/assign/page": "app/admin/enquiries/assign/page.js",
+  "/admin/vendors/review/page": "app/admin/vendors/review/page.js",
+  "/admin/enquiries/details/page": "app/admin/enquiries/details/page.js"
 }

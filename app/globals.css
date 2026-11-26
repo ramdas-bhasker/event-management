@@ -1331,6 +1331,9 @@ textarea {
 }
 
 .ay-dropdown-item {
+  width: 100%;
+  text-align: left;
+  justify-content: flex-start;
   display: flex;
   align-items: center;
   gap: 12px;
@@ -1339,6 +1342,11 @@ textarea {
   cursor: pointer;
   color: var(--text-primary);
   transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.ay-dropdown-item-title {
+  text-align: left;
+  flex: 1;
 }
 
 .ay-dropdown-item:hover {

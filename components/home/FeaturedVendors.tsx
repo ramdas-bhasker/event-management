@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { Container } from '@/components/common/Container';
 import {
@@ -70,17 +71,13 @@ export function FeaturedVendors() {
               starting prices, and direct enquiries work.
             </p>
           </div>
-          <a
-            href="#featured-vendors"
+          <Link
+            href="/vendors?location=hyderabad"
             className="section-link"
-            onClick={(e) => {
-              e.preventDefault();
-              resetSearchFilters();
-            }}
           >
             <span>Show All Sample Vendors</span>
             <span className="material-symbols-outlined">arrow_forward</span>
-          </a>
+          </Link>
         </div>
 
         {/* Dynamic Search Filter Prototype Banner */}

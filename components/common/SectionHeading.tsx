@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import Link from 'next/link';
 
 interface SectionHeadingProps {
   eyebrow: string;
@@ -70,12 +71,12 @@ export function SectionHeading({
         )}
       </div>
       {actionLink && (
-        <a href={actionLink.href} className="section-link">
+        <Link href={actionLink.href} className="section-link">
           <span>{actionLink.label}</span>
           <span className="material-symbols-outlined">
             {actionLink.icon || 'arrow_forward'}
           </span>
-        </a>
+        </Link>
       )}
     </div>
   );

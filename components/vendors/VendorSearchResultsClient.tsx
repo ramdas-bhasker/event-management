@@ -126,6 +126,10 @@ export function VendorSearchResultsClient() {
 
   const hydrateBookmarks = useUiStore((s) => s.hydrateBookmarks);
   const openEnquiryModal = useUiStore((s) => s.openEnquiryModal);
+  const setSelectedService = useUiStore((s) => s.setSelectedService);
+  const setSelectedLocation = useUiStore((s) => s.setSelectedLocation);
+  const setSelectedBudget = useUiStore((s) => s.setSelectedBudget);
+  const setSelectedEventType = useUiStore((s) => s.setSelectedEventType);
 
   const [isMobileDrawerOpen, setIsMobileDrawerOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -221,6 +225,52 @@ export function VendorSearchResultsClient() {
       perPage,
     };
   }, [searchParams]);
+
+  // Keep shared UI store search selections synchronized with URL filters for back/forward navigation
+  useEffect(() => {
+    const categoryToServiceMap: Record<VendorCategorySlug, 'all' | 'decorators' | 'photography' | 'catering' | 'venue' | 'makeup' | 'planners' | 'dj'> = {
+      all: 'all',
+      'wedding-decorators': 'decorators',
+      'wedding-photographers': 'photography',
+      caterers: 'catering',
+      'event-venues': 'venue',
+      'makeup-artists': 'makeup',
+      'event-planners': 'planners',
+      'djs-and-entertainment': 'dj',
+    };
+    const locationToMicroMarketMap: Record<VendorLocationSlug, 'all' | 'banjara' | 'jubilee' | 'gachibowli' | 'madhapur' | 'secunderabad' | 'kondapur'> = {
+      hyderabad: 'all',
+      'banjara-hills': 'banjara',
+      'jubilee-hills': 'jubilee',
+      gachibowli: 'gachibowli',
+      madhapur: 'madhapur',
+      secunderabad: 'secunderabad',
+      'kukatpally-kondapur': 'kondapur',
+      'gandipet-shamshabad': 'all',
+    };
+    const eventToFilterMap: Record<EventCategorySlug, 'All Events' | 'Weddings' | 'Birthdays' | 'Corporate Events' | 'Traditional Functions' | 'Private Celebrations'> = {
+      all: 'All Events',
+      'weddings-receptions': 'Weddings',
+      'birthdays-milestones': 'Birthdays',
+      'corporate-galas': 'Corporate Events',
+      'pooja-traditional': 'Traditional Functions',
+      'private-celebrations': 'Private Celebrations',
+    };
+
+    setSelectedService(categoryToServiceMap[filters.category] || 'all');
+    setSelectedLocation(locationToMicroMarketMap[filters.location] || 'all');
+    setSelectedBudget(filters.budget);
+    setSelectedEventType(eventToFilterMap[filters.event] || 'All Events');
+  }, [
+    filters.category,
+    filters.location,
+    filters.budget,
+    filters.event,
+    setSelectedService,
+    setSelectedLocation,
+    setSelectedBudget,
+    setSelectedEventType,
+  ]);
 
   // Helper to update URL query parameters cleanly
   const updateUrlFilters = useCallback(

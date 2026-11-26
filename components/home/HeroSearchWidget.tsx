@@ -1,6 +1,7 @@
 'use client';
 
 import { useCallback, useRef, useState, type FormEvent, type KeyboardEvent } from 'react';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useOutsideClickAndEscape } from '@/hooks/useOutsideClickAndEscape';
 import { BUDGET_RANGE_OPTIONS } from '@/data/mock-vendors';
@@ -25,6 +26,7 @@ type ActiveSearchDropdown = 'service' | 'location' | 'budget' | 'date' | null;
 
 export function HeroSearchWidget() {
   const router = useRouter();
+  const selectedEventType = useUiStore((s) => s.selectedEventType);
   const selectedService = useUiStore((s) => s.selectedService);
   const selectedLocation = useUiStore((s) => s.selectedLocation);
   const selectedBudget = useUiStore((s) => s.selectedBudget);
@@ -129,8 +131,10 @@ export function HeroSearchWidget() {
     router.push(
       buildVendorsSearchUrl({
         serviceId,
+        eventType: selectedEventType,
         locationId: selectedLocation,
         budget: selectedBudget,
+        date: selectedDate,
         query,
       })
     );
@@ -608,7 +612,7 @@ export function HeroSearchWidget() {
           Popular searches:
         </span>
         {TRENDING_SEARCH_TAGS.map((tag) => (
-          <a
+          <Link
             key={tag.label}
             href={tag.href}
             className="trending-tag"
@@ -618,7 +622,7 @@ export function HeroSearchWidget() {
             }}
           >
             {tag.label}
-          </a>
+          </Link>
         ))}
       </div>
     </div>

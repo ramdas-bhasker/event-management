@@ -8,7 +8,11 @@ import { VendorDetailActions } from '@/components/vendors/VendorDetailActions';
 import { VendorListingCard } from '@/components/vendors/VendorListingCard';
 import { VendorPortfolioGallery } from '@/components/vendors/VendorPortfolioGallery';
 import { LOCATION_AREA_OPTIONS, MOCK_VENDORS, VENDOR_CATEGORY_OPTIONS } from '@/data/mock-vendors';
-import { BUSINESS_PROFILE_PREVIEW_COOKIE } from '@/data/vendor-business-profile';
+import {
+  BUSINESS_PROFILE_PREVIEW_COOKIE,
+  createBusinessProfile,
+  toPublicProfilePreview,
+} from '@/data/vendor-business-profile';
 import { FEATURED_VENDORS } from '@/lib/constants';
 import type { VendorPublicProfilePreview } from '@/types/vendor-business-profile';
 
@@ -39,42 +43,89 @@ function findFeaturedVendor(slug: string) {
   return FEATURED_VENDORS.find((item) => item.id === slug);
 }
 
-function withProfilePreview(vendor: (typeof MOCK_VENDORS)[number], rawCookie?: string) {
-  if (!rawCookie) return vendor;
+type VendorWithProfilePreview = (typeof MOCK_VENDORS)[number] & {
+  yearEstablished?: string;
+  businessEmail?: string;
+  businessPhone?: string;
+  alternativePhone?: string;
+  websiteUrl?: string;
+  businessAddress?: string;
+  pinCode?: string;
+  showPhone?: boolean;
+  showEmail?: boolean;
+};
+
+function withProfilePreview(vendor: (typeof MOCK_VENDORS)[number], rawCookie?: string): VendorWithProfilePreview {
+  const baselinePreview = toPublicProfilePreview(createBusinessProfile(vendor));
+  const baseWithBaseline: VendorWithProfilePreview = {
+    ...vendor,
+    businessName: baselinePreview.businessName || vendor.businessName,
+    category: baselinePreview.category,
+    categoryLabel: baselinePreview.categoryLabel || vendor.categoryLabel,
+    description: baselinePreview.description || vendor.description,
+    location: baselinePreview.location || vendor.location,
+    serviceAreas: baselinePreview.serviceAreas,
+    services: baselinePreview.services,
+    eventCategories: baselinePreview.eventCategories,
+    guestCapacity: baselinePreview.guestCapacity,
+    yearEstablished: baselinePreview.yearEstablished,
+    businessEmail: baselinePreview.businessEmail,
+    businessPhone: baselinePreview.businessPhone,
+    alternativePhone: baselinePreview.alternativePhone,
+    websiteUrl: baselinePreview.websiteUrl,
+    businessAddress: baselinePreview.businessAddress,
+    pinCode: baselinePreview.pinCode,
+    showPhone: baselinePreview.showPhone,
+    showEmail: baselinePreview.showEmail,
+  };
+  if (!rawCookie) return baseWithBaseline;
   try {
     const preview = (JSON.parse(rawCookie) as VendorPublicProfilePreview);
-    if (preview.vendorId !== vendor.id || preview.vendorSlug !== vendor.slug) return vendor;
+    if (preview.vendorId !== vendor.id || preview.vendorSlug !== vendor.slug) return baseWithBaseline;
     const validCategory = VENDOR_CATEGORY_OPTIONS.some((option) => option.value === preview.category);
     const validAreaValues: string[] = LOCATION_AREA_OPTIONS.filter((option) => option.value !== 'hyderabad').map((option) => option.value);
     const validAreas = Array.isArray(preview.serviceAreas) && preview.serviceAreas.every((area) => validAreaValues.includes(area));
     const validEvents = Array.isArray(preview.eventCategories) && preview.eventCategories.every((event) => ['weddings-receptions', 'corporate-galas', 'pooja-traditional', 'birthdays-milestones', 'private-celebrations'].includes(event));
     const validCapacity = Array.isArray(preview.guestCapacity) && preview.guestCapacity.every((capacity) => ['intimate', 'medium', 'grand'].includes(capacity));
-    if (!validCategory || !validAreas || !validEvents || !validCapacity || !Array.isArray(preview.services)) return vendor;
+    if (!validCategory || !validAreas || !validEvents || !validCapacity || !Array.isArray(preview.services)) return baseWithBaseline;
     return {
-      ...vendor,
-      businessName: typeof preview.businessName === 'string' ? preview.businessName : vendor.businessName,
+      ...baseWithBaseline,
+      businessName: typeof preview.businessName === 'string' ? preview.businessName : baseWithBaseline.businessName,
       category: preview.category,
-      categoryLabel: VENDOR_CATEGORY_OPTIONS.find((option) => option.value === preview.category)?.shortLabel ?? vendor.categoryLabel,
-      description: typeof preview.description === 'string' ? preview.description : vendor.description,
-      location: typeof preview.location === 'string' ? preview.location : vendor.location,
+      categoryLabel: VENDOR_CATEGORY_OPTIONS.find((option) => option.value === preview.category)?.shortLabel ?? baseWithBaseline.categoryLabel,
+      description: typeof preview.description === 'string' ? preview.description : baseWithBaseline.description,
+      location: typeof preview.location === 'string' ? preview.location : baseWithBaseline.location,
       serviceAreas: preview.serviceAreas,
       services: preview.services.filter((service): service is string => typeof service === 'string'),
       eventCategories: preview.eventCategories,
       guestCapacity: preview.guestCapacity,
+      startingPrice: preview.startingPrice !== undefined ? preview.startingPrice : baseWithBaseline.startingPrice,
+      priceDisplay: typeof preview.priceDisplay === 'string' ? preview.priceDisplay : baseWithBaseline.priceDisplay,
+      priceType: preview.priceType ?? baseWithBaseline.priceType,
+      priceTypeLabel: typeof preview.priceTypeLabel === 'string' ? preview.priceTypeLabel : baseWithBaseline.priceTypeLabel,
+      yearEstablished: preview.yearEstablished ?? baseWithBaseline.yearEstablished,
+      businessEmail: preview.businessEmail ?? baseWithBaseline.businessEmail,
+      businessPhone: preview.businessPhone ?? baseWithBaseline.businessPhone,
+      alternativePhone: preview.alternativePhone ?? baseWithBaseline.alternativePhone,
+      websiteUrl: preview.websiteUrl ?? baseWithBaseline.websiteUrl,
+      businessAddress: preview.businessAddress ?? baseWithBaseline.businessAddress,
+      pinCode: preview.pinCode ?? baseWithBaseline.pinCode,
+      showPhone: preview.showPhone ?? baseWithBaseline.showPhone,
+      showEmail: preview.showEmail ?? baseWithBaseline.showEmail,
     };
   } catch {
     try {
       const decoded = decodeURIComponent(rawCookie);
       if (decoded !== rawCookie) return withProfilePreview(vendor, decoded);
     } catch { /* Invalid preview cookie; show the ordinary mock vendor profile. */ }
-    return vendor;
+    return baseWithBaseline;
   }
 }
 
-export async function generateMetadata({ params, searchParams }: VendorDetailPageProps) {
-  const [{ slug }, query] = await Promise.all([params, searchParams]);
-  let vendor = findVendor(slug);
-  if (vendor && query.profilePreview === '1') {
+export async function generateMetadata({ params }: VendorDetailPageProps) {
+  const { slug } = await params;
+  let vendor: VendorWithProfilePreview | undefined = findVendor(slug);
+  if (vendor) {
     vendor = withProfilePreview(vendor, (await cookies()).get(BUSINESS_PROFILE_PREVIEW_COOKIE)?.value);
   }
   const featuredVendor = findFeaturedVendor(slug);
@@ -86,8 +137,8 @@ export async function generateMetadata({ params, searchParams }: VendorDetailPag
 
 export default async function VendorDetailPage({ params, searchParams }: VendorDetailPageProps) {
   const [{ slug }, queryParams] = await Promise.all([params, searchParams]);
-  let vendor = findVendor(slug);
-  if (vendor && queryParams.profilePreview === '1') {
+  let vendor: VendorWithProfilePreview | undefined = findVendor(slug);
+  if (vendor) {
     vendor = withProfilePreview(vendor, (await cookies()).get(BUSINESS_PROFILE_PREVIEW_COOKIE)?.value);
   }
   const featuredVendor = vendor ? undefined : findFeaturedVendor(slug);
@@ -176,10 +227,44 @@ export default async function VendorDetailPage({ params, searchParams }: VendorD
               <section className="mb-8 rounded-2xl bg-brand-white p-6 sm:p-8" aria-labelledby="about-vendor">
                 <h2 id="about-vendor" className="text-h3 mb-3 text-brand-green">About the vendor</h2>
                 <p className="leading-relaxed text-text-secondary">{vendor.description}</p>
+                {vendor.yearEstablished && (
+                  <>
+                    <h3 className="mt-5 text-sm font-semibold text-brand-green">Year established</h3>
+                    <p className="mt-1 text-sm text-text-secondary">Est. {vendor.yearEstablished}</p>
+                  </>
+                )}
                 <h3 className="mt-6 text-sm font-semibold text-brand-green">Event specialities</h3>
                 <p className="mt-2 capitalize text-sm text-text-secondary">{eventLabels.join(' · ')}</p>
                 <h3 className="mt-5 text-sm font-semibold text-brand-green">Business location</h3>
-                <p className="mt-2 text-sm text-text-secondary">{vendor.location}</p>
+                <p className="mt-2 text-sm text-text-secondary">{vendor.location}{vendor.pinCode ? ` · ${vendor.pinCode}` : ''}</p>
+                {vendor.businessAddress && (
+                  <p className="mt-1 text-sm text-text-secondary">{vendor.businessAddress}</p>
+                )}
+                {(vendor.businessPhone || vendor.businessEmail || vendor.websiteUrl) && (
+                  <div className="mt-5 grid grid-cols-1 gap-3 border-t border-border-default pt-4 sm:grid-cols-2">
+                    {vendor.businessPhone && vendor.showPhone !== false && (
+                      <div>
+                        <h3 className="text-xs font-semibold uppercase tracking-wide text-brand-green">Business phone</h3>
+                        <p className="mt-1 text-sm font-medium text-text-primary">+91 {vendor.businessPhone.replace(/^\+91[\s-]*/, '')}</p>
+                        {vendor.alternativePhone && (
+                          <p className="mt-0.5 text-xs text-text-secondary">Alt: +91 {vendor.alternativePhone.replace(/^\+91[\s-]*/, '')}</p>
+                        )}
+                      </div>
+                    )}
+                    {vendor.businessEmail && vendor.showEmail !== false && (
+                      <div>
+                        <h3 className="text-xs font-semibold uppercase tracking-wide text-brand-green">Business email</h3>
+                        <p className="mt-1 text-sm font-medium text-text-primary">{vendor.businessEmail}</p>
+                      </div>
+                    )}
+                    {vendor.websiteUrl && (
+                      <div className="sm:col-span-2">
+                        <h3 className="text-xs font-semibold uppercase tracking-wide text-brand-green">Website</h3>
+                        <p className="mt-1 text-sm text-brand-green underline">{vendor.websiteUrl}</p>
+                      </div>
+                    )}
+                  </div>
+                )}
               </section>
 
               <section className="mb-8 rounded-2xl bg-brand-white p-6 sm:p-8" aria-labelledby="vendor-services">

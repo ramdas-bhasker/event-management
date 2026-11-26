@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { Container } from '@/components/common/Container';
 import { SectionHeading } from '@/components/common/SectionHeading';
 import { OCCASION_CATEGORIES } from '@/lib/constants';
@@ -22,7 +23,7 @@ export function CategorySection() {
           align="row"
           actionLink={{
             label: 'Explore All Events',
-            href: '#featured-vendors',
+            href: '/vendors?location=hyderabad',
             icon: 'arrow_forward',
           }}
         />
@@ -30,7 +31,7 @@ export function CategorySection() {
         {/* 8-Card All-Events Occasions Grid */}
         <div className="categories-grid">
           {OCCASION_CATEGORIES.map((category) => (
-            <a
+            <Link
               key={category.id}
               href={category.href}
               className="ay-card ay-card-interactive category-card"
@@ -67,7 +68,7 @@ export function CategorySection() {
                   </span>
                 </div>
               </div>
-            </a>
+            </Link>
           ))}
         </div>
       </Container>

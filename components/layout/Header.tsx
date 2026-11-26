@@ -51,13 +51,13 @@ export function Header() {
           >
             Login / Sign Up
           </button>
-          <a
-            href="#vendor-cta"
+          <Link
+            href="/#vendor-cta"
             className="btn btn-md btn-primary"
             onClick={closeMobileMenu}
           >
             <span>List Your Business</span>
-          </a>
+          </Link>
           <button
             type="button"
             className="btn-icon mobile-menu-toggle"
@@ -93,22 +93,22 @@ export function Header() {
             }}
           >
             <div style={{ display: 'flex', gap: 'var(--space-4)' }}>
-              <a
-                href="#hero"
+              <Link
+                href="/"
                 className="text-label"
                 style={{ fontWeight: 600, color: 'var(--brand-green)' }}
                 onClick={closeMobileMenu}
               >
                 Home
-              </a>
-              <a
-                href="#how-it-works"
+              </Link>
+              <Link
+                href="/#how-it-works"
                 className="text-label"
                 style={{ fontWeight: 600, color: 'var(--text-primary)' }}
                 onClick={closeMobileMenu}
               >
                 How It Works
-              </a>
+              </Link>
             </div>
             <span className="badge badge-gold">Hyderabad</span>
           </div>
@@ -132,7 +132,7 @@ export function Header() {
               }}
             >
               {EXPLORE_VENDORS_MEGA_LINKS.map((item) => (
-                <a
+                <Link
                   key={item.id}
                   href={item.href}
                   className="nav-mega-link"
@@ -146,7 +146,7 @@ export function Header() {
                     {item.icon}
                   </span>
                   <span style={{ fontSize: '13px' }}>{item.label}</span>
-                </a>
+                </Link>
               ))}
             </div>
           </div>
@@ -175,7 +175,7 @@ export function Header() {
               }}
             >
               {EVENT_CATEGORIES_MEGA_LINKS.map((item) => (
-                <a
+                <Link
                   key={item.id}
                   href={item.href}
                   className="nav-mega-link"
@@ -188,7 +188,7 @@ export function Header() {
                     {item.icon}
                   </span>
                   <span style={{ fontSize: '13px' }}>{item.label}</span>
-                </a>
+                </Link>
               ))}
             </div>
           </div>

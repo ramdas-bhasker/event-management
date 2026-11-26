@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { Container } from '@/components/common/Container';
 import { SectionHeading } from '@/components/common/SectionHeading';
 import { POPULAR_SERVICES } from '@/lib/constants';
@@ -21,7 +22,7 @@ export function PopularServices() {
 
         <div className="services-grid">
           {POPULAR_SERVICES.map((service) => (
-            <a
+            <Link
               key={service.id}
               href={service.href}
               className="ay-card ay-card-interactive service-card"
@@ -44,7 +45,7 @@ export function PopularServices() {
                   {service.subtitle}
                 </p>
               </div>
-            </a>
+            </Link>
           ))}
         </div>
       </Container>

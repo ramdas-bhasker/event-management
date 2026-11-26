@@ -1,6 +1,8 @@
 'use client';
 
 import { useCallback, useRef, useState } from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useOutsideClickAndEscape } from '@/hooks/useOutsideClickAndEscape';
 import {
   EVENT_CATEGORIES_MEGA_LINKS,
@@ -13,6 +15,7 @@ import type { EventTypeFilter, ServiceId } from '@/types';
 type ActiveMegaMenu = 'vendors' | 'categories' | null;
 
 export function Navigation() {
+  const pathname = usePathname();
   const [activeMegaMenu, setActiveMegaMenu] = useState<ActiveMegaMenu>(null);
   const navRef = useRef<HTMLElement>(null);
   const setSelectedService = useUiStore((s) => s.setSelectedService);
@@ -40,11 +43,14 @@ export function Navigation() {
     setActiveMegaMenu(null);
   }
 
+  const isHome = pathname === '/';
+  const isVendors = pathname?.startsWith('/vendors');
+
   return (
     <nav ref={navRef} className="site-nav" aria-label="Primary Navigation">
-      <a href="#hero" className="site-nav-link is-active">
+      <Link href="/" className={cn('site-nav-link', isHome && 'is-active')}>
         Home
-      </a>
+      </Link>
 
       {/* Mega-Dropdown 1: Find Vendors (8 General Event Marketplace Categories) */}
       <div
@@ -53,7 +59,7 @@ export function Navigation() {
       >
         <button
           type="button"
-          className="nav-dropdown-trigger"
+          className={cn('nav-dropdown-trigger', isVendors && 'text-brand-green font-semibold')}
           aria-expanded={activeMegaMenu === 'vendors'}
           onClick={(e) => {
             e.stopPropagation();
@@ -69,7 +75,7 @@ export function Navigation() {
           <h3 className="nav-mega-title">Browse event professionals by service</h3>
           <div className="nav-mega-grid">
             {EXPLORE_VENDORS_MEGA_LINKS.map((item) => (
-              <a
+              <Link
                 key={item.id}
                 href={item.href}
                 className="nav-mega-link"
@@ -78,7 +84,7 @@ export function Navigation() {
               >
                 <span className="material-symbols-outlined">{item.icon}</span>
                 <span>{item.label}</span>
-              </a>
+              </Link>
             ))}
           </div>
         </div>
@@ -107,7 +113,7 @@ export function Navigation() {
           <h3 className="nav-mega-title">Explore celebrations &amp; occasions</h3>
           <div className="nav-mega-grid">
             {EVENT_CATEGORIES_MEGA_LINKS.map((item) => (
-              <a
+              <Link
                 key={item.id}
                 href={item.href}
                 className="nav-mega-link"
@@ -115,15 +121,15 @@ export function Navigation() {
               >
                 <span className="material-symbols-outlined">{item.icon}</span>
                 <span>{item.label}</span>
-              </a>
+              </Link>
             ))}
           </div>
         </div>
       </div>
 
-      <a href="#how-it-works" className="site-nav-link">
+      <Link href="/#how-it-works" className="site-nav-link">
         How It Works
-      </a>
+      </Link>
     </nav>
   );
 }
